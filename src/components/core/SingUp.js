@@ -107,6 +107,14 @@ class SingUp extends Component {
                 }}
               />
             </Grid>
+            <Grid item md={12} sm={12} xs={12}>
+              <Typography>
+                <Box component='span' fontWeight='fontWeightLight' fontSize={12}>
+                  Use 8 or more characters with a mix of uppercase,
+                  lowercase, number and special character
+                </Box>
+              </Typography>
+            </Grid>
 
           </Grid>
           <Grid container alignContent='center' item md={3} className='secondery-module'>
