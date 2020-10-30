@@ -25,11 +25,123 @@ class SingUp extends Component {
     passWordFlag: false
   }
 
+  checkFirstName = (e) => {
+    const pattern = '^[A-Za-z]{3,}$';
+    if (e.target.value.length <= 0) {
+      this.setState({
+        fiestNameFlag: false,
+        firstNameHelperText: 'require'
+      })
+    }
+    else if (e.target.value.match(pattern)) {
+      this.setState({
+        fiestNameFlag: true,
+        firstName: e.target.value,
+        firstNameHelperText: '3 or more char'
+      })
+    }
+    else {
+      this.setState({
+        fiestNameFlag: false,
+        firstName: '',
+        firstNameHelperText: '3 or more char'
+      })
+    }
+  }
+
+  checkSecondName = (e) => {
+    const pattern = '^[A-Za-z]{3,}$';
+    if (e.target.value.length <= 0) {
+      this.setState({
+        lastNameFlag: false,
+        lastNameHelperText: 'require'
+      })
+    }
+    else if (e.target.value.match(pattern)) {
+      this.setState({
+        lastNameFlag: true,
+        lastName: e.target.value,
+        lastNameHelperText: '3 or more char'
+      })
+    }
+    else {
+      this.setState({
+        lastNameFlag: false,
+        lastName: '',
+        lastNameHelperText: '3 or more char'
+      })
+    }
+  }
+  checkEmail = (e) => {
+    const pattern = '^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$';
+    if (e.target.value.match(pattern)) {
+      this.setState({
+        email: e.target.value,
+        emailFlag: true
+      })
+    } else {
+      this.setState({
+        emailFlag: false,
+        emailHelperText: 'invalid e-mail'
+      })
+    }
+  }
+
+  checkPassword = (e) => {
+    const pattern = "(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}";
+    if (e.target.value.match(pattern)) {
+      this.setState({
+        passWord: e.target.value
+      })
+    } else {
+      this.setState({
+        passwordHelperText: 'invalid password'
+      })
+    }
+  }
+
+  checkConfirmPassword = (e) => {
+    const pattern = '^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}$';
+    if (e.target.value.match(pattern)) {
+      if (e.target.value === this.state.passWord) {
+        this.setState({
+          passWordFlag: true,
+          confirmPassword: e.target.value
+        })
+      }
+      else {
+        this.setState({
+          passWordFlag: false,
+          passwordHelperText: "both password did not match"
+        })
+      }
+    } else {
+      this.setState({
+        passwordHelperText: 'invalid password'
+      })
+    }
+
+  }
+
+  addPerson = () => {
+    if (this.state.fiestNameFlag && this.state.lastNameFlag && this.state.emailFlag && this.state.passWordFlag) {
+      let singUpObjet = {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        email: this.state.email,
+        password: this.state.password,
+        service: "advance",
+      };
+      console.log(singUpObjet);
+    }
+  }
+
   handleClickShowPassword = () => {
     this.setState({
       showPassword: !this.state.showPassword
     })
   };
+
 
   render() {
     return (
