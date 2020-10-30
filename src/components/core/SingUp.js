@@ -6,6 +6,20 @@ import { Box, Grid, TextField, Typography, InputAdornment, IconButton, Button } 
 
 class SingUp extends Component {
   state = {
+    showPassword: false,
+    firstName: '',
+    lastName: '',
+    email: '',
+    passWord: '',
+    confirmPassword: '',
+    firstNameHelperText: '3 or more char',
+    lastNameHelperText: '3 or more char',
+    emailHelperText: '8 or more char',
+    passwordHelperText: '8 or more char',
+    fiestNameFlag: false,
+    lastNameFlag: false,
+    emailFlag: false,
+    passWordFlag: false
   }
 
   render() {
