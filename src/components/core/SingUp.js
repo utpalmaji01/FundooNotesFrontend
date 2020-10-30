@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './header';
+import image from '../../assets/account.png';
 import { Box, Grid, TextField, Typography, InputAdornment, IconButton, Button } from '@material-ui/core';
 
 
@@ -57,7 +58,9 @@ class SingUp extends Component {
 
           </Grid>
           <Grid container alignContent='center' item md={3} className='secondery-module'>
-
+            <Box >
+              <img src={image} alt="logo" className='account-image' />
+            </Box>
           </Grid>
         </Grid>
       </div>
