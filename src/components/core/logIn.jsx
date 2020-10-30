@@ -54,7 +54,27 @@ class LogIn extends Component {
     }
   };
 
-  
+  logIn = () => {
+    if (this.state.emailFlag && this.state.passWordFlag) {
+      let logInObj = {
+        username: this.state.email,
+        password: this.state.passWord,
+      };
+      axios
+        .post(
+          "http://fundoonotes.incubation.bridgelabz.com/api/user/login",
+          logInObj
+        )
+        .then(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+    }
+  };
 
   handleClickShowPassword = () => {
     this.setState({
