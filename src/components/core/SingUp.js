@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Header from './header';
 import image from '../../assets/account.png';
 import { Box, Grid, TextField, Typography, InputAdornment, IconButton, Button } from '@material-ui/core';
-
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 
 
 class SingUp extends Component {
@@ -66,6 +67,44 @@ class SingUp extends Component {
                 variant="outlined"
                 error={this.state.emailFlag === true ? false : true}
                 onChange={this.checkEmail}
+              />
+            </Grid>
+            <Grid item md={6} sm={12} xs={12} className='input-field'>
+              <TextField
+                fullWidth
+                required={true}
+                label='Password'
+                helperText={this.state.passwordHelperText}
+                margin="dense"
+                variant="outlined"
+                type={this.state.showPassword ? "text" : "password"}
+                error={this.state.passWordFlag === true ? false : true}
+                onChange={this.checkPassword}
+              />
+            </Grid>
+            <Grid item md={6} sm={12} xs={12} className='input-field'>
+              <TextField
+                fullWidth
+                required={true}
+                label='Confirm Password'
+                helperText={this.state.passwordHelperText}
+                margin="dense"
+                variant="outlined"
+                type={this.state.showPassword ? "text" : "password"}
+                error={this.state.passWordFlag === true ? false : true}
+                onChange={this.checkConfirmPassword}
+                InputProps={{ // <-- toggle button is added.
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={this.handleClickShowPassword}
+                      >
+                        {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  )
+                }}
               />
             </Grid>
 
