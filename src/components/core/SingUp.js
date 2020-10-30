@@ -55,6 +55,19 @@ class SingUp extends Component {
                 onChange={this.checkSecondName}
               />
             </Grid>
+            <Grid item md={12} sm={12} xs={12} className='input-field'>
+              <TextField
+                fullWidth
+                required={true}
+                label="Email"
+                type='email'
+                helperText={this.state.emailHelperText}
+                margin="dense"
+                variant="outlined"
+                error={this.state.emailFlag === true ? false : true}
+                onChange={this.checkEmail}
+              />
+            </Grid>
 
           </Grid>
           <Grid container alignContent='center' item md={3} className='secondery-module'>
