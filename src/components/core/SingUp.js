@@ -32,6 +32,7 @@ class SingUp extends Component {
             <Grid item md={12} sm={12}>
               <Header />
             </Grid>
+
             <Grid item md={6} sm={12} xs={12} className='input-field'>
               <TextField
                 fullWidth
@@ -115,7 +116,14 @@ class SingUp extends Component {
                 </Box>
               </Typography>
             </Grid>
-
+            <Grid item md={12} sm={12} xs={12} className='button-group'>
+              <div>
+                <Button color="primary" className='log-in-button'>Log In Instead</Button>
+                <Button variant="contained" color="primary" className='sing-up-button' onClick={this.addPerson}>
+                  Sing Up
+                </Button>
+              </div>
+            </Grid>
           </Grid>
           <Grid container alignContent='center' item md={3} className='secondery-module'>
             <Box >
