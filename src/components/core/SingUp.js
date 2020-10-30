@@ -4,6 +4,7 @@ import image from '../../assets/account.png';
 import { Box, Grid, TextField, Typography, InputAdornment, IconButton, Button } from '@material-ui/core';
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import '../../style//SingUp.scss'
 
 
 class SingUp extends Component {
