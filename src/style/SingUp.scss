@@ -17,6 +17,15 @@ $break-lerge: 960px;
     }
 }
 
+.secondery-module {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+    @media screen and (max-width: $break-medium) {
+        display: none !important;
+    }
+}
+
 .account-image {
     height: 100%;
     width: 100%;
