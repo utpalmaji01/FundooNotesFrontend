@@ -21,17 +21,17 @@ $break-large: 960px;
     padding-left: 12px !important;
 }
 
-.log-in-button {
-    padding-left: 0 !important;
-    float: left;
-    text-transform: none !important;
-}
-
 .button-group {
     margin-top: 1rem !important;
     @media screen and (max-width: $break-large) {
         margin-top: 0px !important;
     }
+}
+
+.log-in-button {
+    padding-left: 0 !important;
+    float: left;
+    text-transform: none !important;
 }
 
 .sing-up-button {

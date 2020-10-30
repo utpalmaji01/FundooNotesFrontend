@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import Header from "./header";
+import Header from "./header.jsx";
 import image from "../../assets/account.png";
-import { Box, Grid, TextField, Typography, InputAdornment, IconButton, Button, Card } from "@material-ui/core";
+import {
+  Box,
+  Grid,
+  TextField,
+  Typography,
+  InputAdornment,
+  IconButton,
+  Button,
+  Card,
+} from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import "../../style//SingUp.scss";
@@ -26,7 +35,7 @@ class SingUp extends Component {
     lastNameFlag: true,
     emailFlag: true,
     passWordFlag: true,
-    confirmPassWordFlag: true
+    confirmPassWordFlag: true,
   };
 
   checkFirstName = (e) => {
@@ -171,149 +180,146 @@ class SingUp extends Component {
     return (
       <div className="App">
         <Card className="main-container sing-up">
-        <Grid
-          container
-          direction="row"
-          wrap="nowrap"
-          spacing={2}
-          
-        >
-          <Grid
-            container
-            item
-            md={9}
-            sm={12}
-            spacing={2}
-            className="main-module"
-          >
-            <Grid item md={12} sm={12}>
-              <Header />
-            </Grid>
-
-            <Grid item md={6} sm={12} xs={12} className="input-field">
-              <TextField
-                fullWidth
-                required={true}
-                label="First Name"
-                helperText={this.state.firstNameHelperText}
-                margin="dense"
-                variant="outlined"
-                error={this.state.fiestNameFlag === true ? false : true}
-                onChange={this.checkFirstName}
-              />
-            </Grid>
-            <Grid item md={6} sm={12} xs={12} py={4} className="input-field">
-              <TextField
-                fullWidth
-                required={true}
-                label="Last Name"
-                helperText={this.state.lastNameHelperText}
-                margin="dense"
-                variant="outlined"
-                error={this.state.lastNameFlag === true ? false : true}
-                onChange={this.checkSecondName}
-              />
-            </Grid>
-            <Grid item md={12} sm={12} xs={12} className="input-field">
-              <TextField
-                fullWidth
-                required={true}
-                label="Email"
-                type="email"
-                helperText={this.state.emailHelperText}
-                margin="dense"
-                variant="outlined"
-                error={this.state.emailFlag === true ? false : true}
-                onChange={this.checkEmail}
-              />
-            </Grid>
-            <Grid item md={6} sm={12} xs={12} className="input-field">
-              <TextField
-                fullWidth
-                required={true}
-                label="Password"
-                helperText={this.state.passwordHelperText}
-                margin="dense"
-                variant="outlined"
-                type={this.state.showPassword ? "text" : "password"}
-                error={this.state.passWordFlag === true ? false : true}
-                onChange={this.checkPassword}
-              />
-            </Grid>
-            <Grid item md={6} sm={12} xs={12} className="input-field">
-              <TextField
-                fullWidth
-                required={true}
-                label="Confirm Password"
-                helperText={this.state.confirmPasswordHelperText}
-                margin="dense"
-                variant="outlined"
-                type={this.state.showPassword ? "text" : "password"}
-                error={this.state.confirmPassWordFlag === true ? false : true}
-                onChange={this.checkConfirmPassword}
-                InputProps={{
-                  // <-- toggle button is added.
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={this.handleClickShowPassword}
-                      >
-                        {this.state.showPassword ? (
-                          <Visibility />
-                        ) : (
-                          <VisibilityOff />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
-            <Grid item md={12} sm={12} xs={12}>
-              <Typography>
-                <Box
-                  component="span"
-                  fontWeight="fontWeightLight"
-                  fontSize={12}
-                >
-                  Use 8 or more characters with a mix of uppercase, lowercase,
-                  number and special character
+          <Grid container direction="row" wrap="nowrap" spacing={2}>
+            <Grid
+              container
+              item
+              md={9}
+              sm={12}
+              spacing={2}
+              className="main-module"
+            >
+              <Grid item md={12} sm={12}>
+                <Header />
+                <Box fontWeight="fontWeightBold" m={1}>
+                  Create your Account
                 </Box>
-              </Typography>
+              </Grid>
+
+              <Grid item md={6} sm={12} xs={12} className="input-field">
+                <TextField
+                  fullWidth
+                  required={true}
+                  label="First Name"
+                  helperText={this.state.firstNameHelperText}
+                  margin="dense"
+                  variant="outlined"
+                  error={this.state.fiestNameFlag === true ? false : true}
+                  onChange={this.checkFirstName}
+                />
+              </Grid>
+              <Grid item md={6} sm={12} xs={12} py={4} className="input-field">
+                <TextField
+                  fullWidth
+                  required={true}
+                  label="Last Name"
+                  helperText={this.state.lastNameHelperText}
+                  margin="dense"
+                  variant="outlined"
+                  error={this.state.lastNameFlag === true ? false : true}
+                  onChange={this.checkSecondName}
+                />
+              </Grid>
+              <Grid item md={12} sm={12} xs={12} className="input-field">
+                <TextField
+                  fullWidth
+                  required={true}
+                  label="Email"
+                  type="email"
+                  helperText={this.state.emailHelperText}
+                  margin="dense"
+                  variant="outlined"
+                  error={this.state.emailFlag === true ? false : true}
+                  onChange={this.checkEmail}
+                />
+              </Grid>
+              <Grid item md={6} sm={12} xs={12} className="input-field">
+                <TextField
+                  fullWidth
+                  required={true}
+                  label="Password"
+                  helperText={this.state.passwordHelperText}
+                  margin="dense"
+                  variant="outlined"
+                  type={this.state.showPassword ? "text" : "password"}
+                  error={this.state.passWordFlag === true ? false : true}
+                  onChange={this.checkPassword}
+                />
+              </Grid>
+              <Grid item md={6} sm={12} xs={12} className="input-field">
+                <TextField
+                  fullWidth
+                  required={true}
+                  label="Confirm Password"
+                  helperText={this.state.confirmPasswordHelperText}
+                  margin="dense"
+                  variant="outlined"
+                  type={this.state.showPassword ? "text" : "password"}
+                  error={this.state.confirmPassWordFlag === true ? false : true}
+                  onChange={this.checkConfirmPassword}
+                  InputProps={{
+                    // <-- toggle button is added.
+                    endAdornment: (
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={this.handleClickShowPassword}
+                        >
+                          {this.state.showPassword ? (
+                            <Visibility />
+                          ) : (
+                            <VisibilityOff />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item md={12} sm={12} xs={12}>
+                <Typography>
+                  <Box
+                    component="span"
+                    fontWeight="fontWeightLight"
+                    fontSize={12}
+                  >
+                    Use 8 or more characters with a mix of uppercase, lowercase,
+                    number and special character
+                  </Box>
+                </Typography>
+              </Grid>
+              <Grid item md={12} sm={12} xs={12} className="button-group">
+                <div>
+                  <Button
+                    color="primary"
+                    className="log-in-button"
+                    onClick={() => history.push("/logIn")}
+                  >
+                    Log In Instead
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="sing-up-button"
+                    onClick={this.addPerson}
+                  >
+                    Sing Up
+                  </Button>
+                </div>
+              </Grid>
             </Grid>
-            <Grid item md={12} sm={12} xs={12} className="button-group">
-              <div>
-                <Button
-                  color="primary"
-                  className="log-in-button"
-                  onClick={() => history.push("/logIn")}
-                >
-                  Log In Instead
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className="sing-up-button"
-                  onClick={this.addPerson}
-                >
-                  Sing Up
-                </Button>
-              </div>
+            <Grid
+              container
+              alignContent="center"
+              item
+              md={3}
+              className="secondery-module"
+            >
+              <Box>
+                <img src={image} alt="logo" className="account-image" />
+              </Box>
             </Grid>
           </Grid>
-          <Grid
-            container
-            alignContent="center"
-            item
-            md={3}
-            className="secondery-module"
-          >
-            <Box>
-              <img src={image} alt="logo" className="account-image" />
-            </Box>
-          </Grid>
-        </Grid>
         </Card>
       </div>
     );
