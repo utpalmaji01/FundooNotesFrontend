@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Header from "./header";
 import image from "../../assets/account.png";
-import { Box, Grid, TextField, Typography, InputAdornment, IconButton, Button } from "@material-ui/core";
+import { Box, Grid, TextField, Typography, InputAdornment, IconButton, Button, Card } from "@material-ui/core";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import "../../style//SingUp.scss";
@@ -162,12 +162,13 @@ class SingUp extends Component {
   render() {
     return (
       <div className="App">
+        <Card className="main-container sing-up">
         <Grid
           container
           direction="row"
           wrap="nowrap"
           spacing={2}
-          className="main-container"
+          
         >
           <Grid
             container
@@ -305,6 +306,7 @@ class SingUp extends Component {
             </Box>
           </Grid>
         </Grid>
+        </Card>
       </div>
     );
   }

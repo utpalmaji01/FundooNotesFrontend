@@ -5,11 +5,13 @@ import {
   InputAdornment,
   IconButton,
   Button,
+  Card,
 } from "@material-ui/core";
 import Header from "./header";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import history from "../../History";
+import "../../style//LogIn.scss";
 
 import axios from "axios";
 
@@ -85,20 +87,21 @@ class LogIn extends Component {
   render() {
     return (
       <div className="App">
+        <Card className="main-container log-in">
         <Grid
           container
           direction="row"
           wrap="nowrap"
           spacing={2}
-          className="main-container"
+          
         >
           <Grid
             container
             item
-            md={9}
+            md={12}
             sm={12}
             spacing={2}
-            className="main-module"
+            className="main-module log-in"
           >
             <Grid item md={12} sm={12}>
               <Header />
@@ -167,6 +170,7 @@ class LogIn extends Component {
             </Grid>
           </Grid>
         </Grid>
+        </Card>
       </div>
     );
   }

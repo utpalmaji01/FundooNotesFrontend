@@ -3,12 +3,12 @@ $break-medium: 800px;
 $break-lerge: 960px;
 
 
-.main-container {
+.main-container.sing-up {
     margin: 0  auto !important;
     margin-top: 90px !important;
     width: 52% !important;
     border-radius: 5px;
-    border: 1px groove grey;
+    padding: 15px;
     justify-content: center;
     @media screen and (max-width: $break-small) {
         width: 80% !important;

@@ -1,0 +1,20 @@
+$break-small: 600px;
+$break-medium: 800px;
+$break-large: 960px;
+
+.main-container.log-in {
+    display: flex;
+    margin: 0  auto !important;
+    margin-top: 140px !important;
+    width: 45% !important;
+    height: 100%;
+    border-radius: 5px;
+    padding: 15px;
+    @media screen and (max-width: $break-small) {
+        width: 80% !important;
+      }
+    @media screen and (max-width: $break-large) {
+        margin-top: 100px !important;
+    }
+}
+
