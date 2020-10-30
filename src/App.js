@@ -1,18 +1,17 @@
-import './App.css';
-import React, { Component } from 'react';
-import SingUp from './components/core/SingUp'
-
+import "./App.css";
+import React, { Component } from "react";
+import Routes from "./Routes";
+import { BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
-  state = {
-
-  }
 
   render() {
     return (
-      <div className="App">
-        <SingUp />
-      </div>
+      <Router>
+        <div className="App">
+          <Routes />
+        </div>
+      </Router>
     );
   }
 }
