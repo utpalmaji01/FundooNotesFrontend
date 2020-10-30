@@ -1,6 +1,6 @@
 $break-small: 600px;
 $break-medium: 800px;
-$break-lerge: 960px;
+$break-large: 960px;
 
 
 .main-container.sing-up {
@@ -13,7 +13,7 @@ $break-lerge: 960px;
     @media screen and (max-width: $break-small) {
         width: 80% !important;
       }
-    @media screen and (max-width: $break-lerge) {
+    @media screen and (max-width: $break-large) {
         margin-top: 0px !important;
     }
 }
@@ -31,7 +31,7 @@ $break-lerge: 960px;
 
 .button-group {
     margin-top: 1rem !important;
-    @media screen and (max-width: $break-lerge) {
+    @media screen and (max-width: $break-large) {
         margin-top: 0px !important;
     }
 }

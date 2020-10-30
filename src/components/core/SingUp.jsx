@@ -17,14 +17,16 @@ class SingUp extends Component {
     email: "",
     passWord: "",
     confirmPassword: "",
-    firstNameHelperText: "3 or more char",
-    lastNameHelperText: "3 or more char",
-    emailHelperText: "8 or more char",
-    passwordHelperText: "8 or more char",
-    fiestNameFlag: false,
-    lastNameFlag: false,
-    emailFlag: false,
-    passWordFlag: false,
+    firstNameHelperText: " ",
+    lastNameHelperText: " ",
+    emailHelperText: " ",
+    passwordHelperText: " ",
+    confirmPasswordHelperText: " ",
+    fiestNameFlag: true,
+    lastNameFlag: true,
+    emailFlag: true,
+    passWordFlag: true,
+    confirmPassWordFlag: true
   };
 
   checkFirstName = (e) => {
@@ -38,12 +40,12 @@ class SingUp extends Component {
       this.setState({
         fiestNameFlag: true,
         firstName: e.target.value,
-        firstNameHelperText: "3 or more char",
+        firstNameHelperText: " ",
       });
     } else {
       this.setState({
         fiestNameFlag: false,
-        firstName: "",
+        firstName: " ",
         firstNameHelperText: "3 or more char",
       });
     }
@@ -60,7 +62,7 @@ class SingUp extends Component {
       this.setState({
         lastNameFlag: true,
         lastName: e.target.value,
-        lastNameHelperText: "3 or more char",
+        lastNameHelperText: " ",
       });
     } else {
       this.setState({
@@ -76,6 +78,7 @@ class SingUp extends Component {
       this.setState({
         email: e.target.value,
         emailFlag: true,
+        emailHelperText: " ",
       });
     } else {
       this.setState({
@@ -91,10 +94,13 @@ class SingUp extends Component {
     if (e.target.value.match(pattern)) {
       this.setState({
         passWord: e.target.value,
+        passwordHelperText: " ",
+        passWordFlag: true,
       });
     } else {
       this.setState({
         passwordHelperText: "invalid password",
+        passWordFlag: false,
       });
     }
   };
@@ -105,18 +111,20 @@ class SingUp extends Component {
     if (e.target.value.match(pattern)) {
       if (e.target.value === this.state.passWord) {
         this.setState({
-          passWordFlag: true,
+          confirmPassWordFlag: true,
           confirmPassword: e.target.value,
+          confirmPasswordHelperText: " ",
         });
       } else {
         this.setState({
-          passWordFlag: false,
-          passwordHelperText: "both password did not match",
+          confirmPassWordFlag: false,
+          confirmPasswordHelperText: "both password did not match",
         });
       }
     } else {
       this.setState({
-        passwordHelperText: "invalid password",
+        confirmPassWordFlag: false,
+        confirmPasswordHelperText: "invalid password",
       });
     }
   };
@@ -237,11 +245,11 @@ class SingUp extends Component {
                 fullWidth
                 required={true}
                 label="Confirm Password"
-                helperText={this.state.passwordHelperText}
+                helperText={this.state.confirmPasswordHelperText}
                 margin="dense"
                 variant="outlined"
                 type={this.state.showPassword ? "text" : "password"}
-                error={this.state.passWordFlag === true ? false : true}
+                error={this.state.confirmPassWordFlag === true ? false : true}
                 onChange={this.checkConfirmPassword}
                 InputProps={{
                   // <-- toggle button is added.

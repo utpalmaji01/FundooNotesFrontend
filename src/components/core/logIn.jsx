@@ -20,8 +20,8 @@ class LogIn extends Component {
     showPassword: false,
     email: "",
     passWord: "",
-    emailHelperText: "8 or more char",
-    passwordHelperText: "8 or more char",
+    emailHelperText: " ",
+    passwordHelperText: " ",
     emailFlag: true,
     passWordFlag: true,
   };
@@ -32,6 +32,7 @@ class LogIn extends Component {
       this.setState({
         email: e.target.value,
         emailFlag: true,
+        emailHelperText: " ",
       });
     } else {
       this.setState({
@@ -48,10 +49,12 @@ class LogIn extends Component {
       this.setState({
         passWordFlag: true,
         passWord: e.target.value,
+        passwordHelperText: " ",
       });
     } else {
       this.setState({
-        passwordHelperText: "invalid password",
+        passwordHelperText: "8 or more char with a mix of uppercase, lowercase, number and Spl. char",
+        passWordFlag: false,
       });
     }
   };
