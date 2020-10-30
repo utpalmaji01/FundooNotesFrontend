@@ -104,7 +104,6 @@ class LogIn extends Component {
             md={12}
             sm={12}
             spacing={2}
-            className="main-module log-in"
           >
             <Grid item md={12} sm={12}>
               <Header />
