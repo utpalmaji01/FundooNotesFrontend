@@ -25,6 +25,12 @@ class SingUp extends Component {
     passWordFlag: false
   }
 
+  handleClickShowPassword = () => {
+    this.setState({
+      showPassword: !this.state.showPassword
+    })
+  };
+
   render() {
     return (
       <div className="App">
