@@ -2,6 +2,7 @@ $break-small: 600px;
 $break-medium: 800px;
 $break-lerge: 960px;
 
+
 .main-container {
     margin: 0  auto !important;
     margin-top: 90px !important;
@@ -17,6 +18,29 @@ $break-lerge: 960px;
     }
 }
 
+.input-field {
+    padding-bottom: 0 !important;
+    padding-left: 12px !important;
+}
+
+.log-in-button {
+    padding-left: 0 !important;
+    float: left;
+    text-transform: none !important;
+}
+
+.button-group {
+    margin-top: 1rem !important;
+    @media screen and (max-width: $break-lerge) {
+        margin-top: 0px !important;
+    }
+}
+
+.sing-up-button {
+    text-transform: none !important;
+    float: right;
+}
+
 .secondery-module {
     flex-grow: 0;
     max-width: 25%;
@@ -26,12 +50,11 @@ $break-lerge: 960px;
     }
 }
 
-.input-field {
-    padding-bottom: 0 !important;
-    padding-left: 12px !important;
-}
-
 .account-image {
     height: 100%;
     width: 100%;
+}
+
+.MuiOutlinedInput-adornedEnd {
+    padding-right: 0 !important;
 }
