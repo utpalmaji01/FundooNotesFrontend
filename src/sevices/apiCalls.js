@@ -48,6 +48,18 @@ class apiCalls {
       forgotPasswordObject
     );
   };
+
+  /*
+   * @description service to reset account password for user
+   * @params {resetPasswordObject} data i.e. new password of the user's account
+   * @params {token} data i.e. sent from the backend for authorization
+   */
+  resetNewPassword = (resetPasswordObject, token) => {
+    return userAccountServices.userServicies(
+      process.env.REACT_APP_RESET_NEW_PASSWPRD_API_PATH + token,
+      resetPasswordObject
+    );
+  };
 }
 
 export default new apiCalls();
