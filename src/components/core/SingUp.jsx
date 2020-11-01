@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Header from "./header.jsx";
 import image from "../../assets/account.png";
 import {
   Box,
@@ -11,9 +10,10 @@ import {
   Button,
   Card,
 } from "@material-ui/core";
+import { red, deepOrange, green } from "@material-ui/core/colors";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import "../../style//SingUp.scss";
+import "../../style/SingUp.scss";
 import history from "../../History";
 
 import apiCalls from "../../sevices/apiCalls.js";
@@ -138,7 +138,7 @@ class SingUp extends Component {
     }
   };
 
-  addPerson = async() => {
+  addPerson = async () => {
     if (
       this.state.fiestNameFlag &&
       this.state.lastNameFlag &&
@@ -154,7 +154,7 @@ class SingUp extends Component {
       };
       let responce = await apiCalls.newUserSignUp(singUpObjet);
       if (responce.status === 200) {
-        history.push('/logIn')
+        history.push("/logIn");
       }
     }
   };
@@ -179,7 +179,30 @@ class SingUp extends Component {
               className="main-module"
             >
               <Grid item md={12} sm={12}>
-                <Header />
+                <Box
+                  display="flex"
+                  flexDirection="row"
+                  m={1}
+                >
+                  <Box fontWeight="fontWeightBold" color="primary.main">
+                    F
+                  </Box>
+                  <Box fontWeight="fontWeightBold" color={red}>
+                    u
+                  </Box>
+                  <Box fontWeight="fontWeightBold" color={deepOrange}>
+                    n
+                  </Box>
+                  <Box fontWeight="fontWeightBold" color="primary.main">
+                    d
+                  </Box>
+                  <Box fontWeight="fontWeightBold" color={green}>
+                    o
+                  </Box>
+                  <Box fontWeight="fontWeightBold" color={red}>
+                    o
+                  </Box>
+                </Box>
                 <Box fontWeight="fontWeightBold" m={1}>
                   Create your Account
                 </Box>

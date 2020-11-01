@@ -102,8 +102,11 @@ class LogIn extends Component {
             <Grid container item md={12} sm={12} spacing={2}>
               <Grid item md={12} sm={12}>
                 <Header />
-                <Box fontWeight="fontWeightBold" m={1}>
+                <Box fontWeight="fontWeightBold" m={1} className='sub-heading'>
                   Sing In
+                </Box>
+                <Box fontWeight="fontWeightBold" m={1} className='sub-heading'>
+                  to continue to FundooFotes
                 </Box>
               </Grid>
               <Grid item md={12} sm={12} xs={12} className="input-field">

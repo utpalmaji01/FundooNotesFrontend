@@ -55,8 +55,11 @@ const ForgetPassword = () => {
           <Grid container item md={12} sm={12} spacing={2}>
             <Grid item md={12} sm={12}>
               <Header />
-              <Box fontWeight="fontWeightBold" m={1}>
-                Forget Password
+              <Box fontWeight="fontWeightBold" m={1} className='sub-heading'>
+                Forget Your Password
+              </Box>
+              <Box fontWeight="fontWeightBold" m={1} className='sub-heading'>
+                Enter your email address and we'll send you a link to reaset your password
               </Box>
             </Grid>
             <Grid item md={12} sm={12} xs={12} className="input-field">
