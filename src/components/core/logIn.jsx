@@ -7,6 +7,7 @@ import {
   IconButton,
   Button,
   Card,
+  Snackbar,
 } from "@material-ui/core";
 import Header from "./header.jsx";
 import Visibility from "@material-ui/icons/Visibility";
@@ -14,6 +15,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import history from "../../History";
 import "../../style//LogIn.scss";
 import apiCalls from "../../sevices/apiCalls.js";
+import Alert from "@material-ui/lab/Alert";
 
 class LogIn extends Component {
   state = {
@@ -24,6 +26,7 @@ class LogIn extends Component {
     passwordHelperText: " ",
     emailFlag: true,
     passWordFlag: true,
+    snackbarActive: false,
   };
 
   checkEmail = (e) => {
@@ -60,16 +63,30 @@ class LogIn extends Component {
     }
   };
 
-  logIn = async() => {
+  logIn = async () => {
     if (this.state.emailFlag && this.state.passWordFlag) {
       let logInObj = {
         username: this.state.email,
         password: this.state.passWord,
       };
       let responce = await apiCalls.userLogIn(logInObj);
-      console.log(responce.status);
+      if(responce.status === 200) {
+        this.state.snackbarActive = true;
+        this.setState({
+          snackbarActive: true
+        });
+      }
     }
   };
+
+  closeSnackbar = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({
+      snackbarActive: false
+    });
+  }
 
   handleClickShowPassword = () => {
     this.setState({
@@ -158,6 +175,15 @@ class LogIn extends Component {
                   >
                     Log In
                   </Button>
+                  <Snackbar
+                    open={this.state.snackbarActive}
+                    autoHideDuration={6000}
+                    onClose={this.closeSnackbar}
+                  >
+                    <Alert onClose={this.closeSnackbar}>
+                      LogIn successfull
+                    </Alert>
+                  </Snackbar>
                 </div>
               </Grid>
             </Grid>
