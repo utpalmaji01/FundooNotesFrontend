@@ -19,7 +19,6 @@ const ForgetPassword = () => {
   const [snackbarActive, setsnackbarActive] = useState(false);
 
   const checkEmail = (e) => {
-    console.log(email);
     const pattern = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     if (e.target.value.match(pattern)) {
       setemail(e.target.value);
@@ -32,13 +31,16 @@ const ForgetPassword = () => {
   };
 
   const sensResetLink = async () => {
-    let resetObject = {
-      email: email,
-    };
-    let responce = await apiCalls.sendResetLink(resetObject);
-    if (responce.status === 200) {
-      setsnackbarActive(true);
+    if (emailFlag) {
+      let resetObject = {
+        email: email,
+      };
+      let responce = await apiCalls.sendResetLink(resetObject);
+      if (responce.status === 200) {
+        setsnackbarActive(true);
+      }
     }
+
   };
 
   const closeSnackbar = (event, reason) => {
