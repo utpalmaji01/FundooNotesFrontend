@@ -13,8 +13,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import history from "../../History";
 import "../../style//LogIn.scss";
-
-import axios from "axios";
+import apiCalls from "../../sevices/apiCalls.js";
 
 class LogIn extends Component {
   state = {
@@ -61,25 +60,14 @@ class LogIn extends Component {
     }
   };
 
-  logIn = () => {
+  logIn = async() => {
     if (this.state.emailFlag && this.state.passWordFlag) {
       let logInObj = {
         username: this.state.email,
         password: this.state.passWord,
       };
-      axios
-        .post(
-          "http://fundoonotes.incubation.bridgelabz.com/api/user/login",
-          logInObj
-        )
-        .then(
-          (response) => {
-            console.log(response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+      let responce = await apiCalls.userLogIn(logInObj);
+      console.log(responce.status);
     }
   };
 
@@ -147,8 +135,8 @@ class LogIn extends Component {
               <Grid item>
                 <Button
                   color="primary"
-                  onClick={() => history.push("/forget-password")}
-                  style={{ "text-transform": "none" }}
+                  onClick={() => history.push("/forgetPassword")}
+                  className="button-text"
                 >
                   Forget Password
                 </Button>

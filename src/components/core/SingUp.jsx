@@ -16,7 +16,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import "../../style//SingUp.scss";
 import history from "../../History";
 
-import axios from "axios";
+import apiCalls from "../../sevices/apiCalls.js";
 
 class SingUp extends Component {
   state = {
@@ -152,21 +152,8 @@ class SingUp extends Component {
         password: this.state.passWord,
         service: "advance",
       };
-      axios
-        .post(
-          "http://fundoonotes.incubation.bridgelabz.com/api/user/userSignUp",
-          singUpObjet
-        )
-        .then(
-          (response) => {
-            if (response.status === 200) {
-              history.push("/logIn");
-            }
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
+      let responce = apiCalls.newUserSignUp(singUpObjet);
+      console.log(responce);
     }
   };
 

@@ -1,0 +1,92 @@
+import React, { useState } from "react";
+import {
+  Grid,
+  TextField,
+  Box,
+  Button,
+  Card,
+} from "@material-ui/core";
+import Header from "./header.jsx";
+import history from "../../History";
+import apiCalls from "../../sevices/apiCalls.js";
+
+const ForgetPassword = () => {
+  const [email, setemail] = useState(" ");
+  const [emailHelperText, setemailHelperText] = useState(" ");
+  const [emailFlag, setemailFlag] = useState(true);
+
+  const checkEmail = (e) => {
+      console.log(email);
+    const pattern = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
+    if (e.target.value.match(pattern)) {
+        setemail(e.target.value);
+        setemailFlag(true);
+        setemailHelperText(" ");
+    } else {
+        setemailFlag(false);
+        setemailHelperText("invalid e-mail");
+    }
+  }
+
+  const sensResetLink = () => {
+      let resetObject = {
+        email: email
+      }
+      apiCalls.sendResetLink(resetObject);
+
+  }
+
+  return (
+    <div className="App">
+      <Card className="main-container log-in">
+        <Grid container direction="row" wrap="nowrap" spacing={2}>
+          <Grid container item md={12} sm={12} spacing={2}>
+            <Grid item md={12} sm={12}>
+              <Header />
+              <Box fontWeight="fontWeightBold" m={1}>
+                Forget Password
+              </Box>
+            </Grid>
+            <Grid item md={12} sm={12} xs={12} className="input-field">
+              <TextField
+                fullWidth
+                required={true}
+                label="Email"
+                type="email"
+                helperText={emailHelperText}
+                margin="dense"
+                variant="outlined"
+                error={!emailFlag}
+                onChange={checkEmail}
+              />
+            </Grid>
+
+            <Grid item>
+              <Button
+                color="primary"
+                onClick={() => history.push("/logIn")}
+                className="button-text"
+              >
+                Remember Password
+              </Button>
+            </Grid>
+            <Grid item md={12} sm={12} xs={12} className="button-group">
+              <div>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className="login-button"
+                  onClick={sensResetLink}
+                >
+                  submit
+                </Button>
+              </div>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Card>
+    </div>
+  );
+};
+
+export default ForgetPassword;
