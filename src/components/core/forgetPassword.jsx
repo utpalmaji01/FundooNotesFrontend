@@ -5,7 +5,9 @@ import {
   Box,
   Button,
   Card,
+  Snackbar,
 } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import Header from "./header.jsx";
 import history from "../../History";
 import apiCalls from "../../sevices/apiCalls.js";
@@ -14,27 +16,37 @@ const ForgetPassword = () => {
   const [email, setemail] = useState(" ");
   const [emailHelperText, setemailHelperText] = useState(" ");
   const [emailFlag, setemailFlag] = useState(true);
+  const [snackbarActive, setsnackbarActive] = useState(false);
 
   const checkEmail = (e) => {
-      console.log(email);
+    console.log(email);
     const pattern = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     if (e.target.value.match(pattern)) {
-        setemail(e.target.value);
-        setemailFlag(true);
-        setemailHelperText(" ");
+      setemail(e.target.value);
+      setemailFlag(true);
+      setemailHelperText(" ");
     } else {
-        setemailFlag(false);
-        setemailHelperText("invalid e-mail");
+      setemailFlag(false);
+      setemailHelperText("invalid e-mail");
     }
-  }
+  };
 
-  const sensResetLink = () => {
-      let resetObject = {
-        email: email
-      }
-      apiCalls.sendResetLink(resetObject);
+  const sensResetLink = async () => {
+    let resetObject = {
+      email: email,
+    };
+    let responce = await apiCalls.sendResetLink(resetObject);
+    if (responce.status === 200) {
+      setsnackbarActive(true);
+    }
+  };
 
-  }
+  const closeSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setsnackbarActive(false);
+  };
 
   return (
     <div className="App">
@@ -80,6 +92,15 @@ const ForgetPassword = () => {
                 >
                   submit
                 </Button>
+                <Snackbar
+                  open={snackbarActive}
+                  autoHideDuration={1000}
+                  onClose={closeSnackbar}
+                >
+                  <Alert onClose={closeSnackbar}>
+                    Reset link sent successfully
+                  </Alert>
+                </Snackbar>
               </div>
             </Grid>
           </Grid>

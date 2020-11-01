@@ -9,13 +9,13 @@ import {
   Card,
   Snackbar,
 } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import Header from "./header.jsx";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import history from "../../History";
 import "../../style//LogIn.scss";
 import apiCalls from "../../sevices/apiCalls.js";
-import Alert from "@material-ui/lab/Alert";
 
 class LogIn extends Component {
   state = {
@@ -177,7 +177,7 @@ class LogIn extends Component {
                   </Button>
                   <Snackbar
                     open={this.state.snackbarActive}
-                    autoHideDuration={6000}
+                    autoHideDuration={1000}
                     onClose={this.closeSnackbar}
                   >
                     <Alert onClose={this.closeSnackbar}>
