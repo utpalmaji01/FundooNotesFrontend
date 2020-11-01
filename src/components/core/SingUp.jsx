@@ -138,7 +138,7 @@ class SingUp extends Component {
     }
   };
 
-  addPerson = () => {
+  addPerson = async() => {
     if (
       this.state.fiestNameFlag &&
       this.state.lastNameFlag &&
@@ -152,8 +152,10 @@ class SingUp extends Component {
         password: this.state.passWord,
         service: "advance",
       };
-      let responce = apiCalls.newUserSignUp(singUpObjet);
-      console.log(responce);
+      let responce = await apiCalls.newUserSignUp(singUpObjet);
+      if (responce.status === 200) {
+        history.push('/logIn')
+      }
     }
   };
 
