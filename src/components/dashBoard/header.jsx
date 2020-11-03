@@ -1,9 +1,6 @@
 import React, { Fragment } from "react";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import { InputAdornment, TextField } from "@material-ui/core";
+import { AppBar, InputAdornment, TextField, Toolbar, Typography } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
 import ViewAgendaIcon from '@material-ui/icons/ViewAgenda';
 import ReplayIcon from '@material-ui/icons/Replay';
@@ -18,7 +15,7 @@ import "../../style/dashBoardHeader.scss";
 export default function Header() {
   return (
     <Fragment>
-      <AppBar position="static">
+      <AppBar position='fixed'>
         <Toolbar variant="dense">
           <IconButton color="inherit" aria-label="menu">
             <MenuIcon />
@@ -26,6 +23,7 @@ export default function Header() {
           <Typography variant="h6" color="inherit">
             FundooNotes
           </Typography>
+          <div className='spacing'></div>
           <TextField
           className='search-bar'
             placeholder="Search"
@@ -45,6 +43,7 @@ export default function Header() {
               ),
             }}
           />
+          <div className='spacing'></div>
           <IconButton color="inherit" aria-label="menu">
             <ReplayIcon fontSize="small"/>
           </IconButton>
@@ -54,6 +53,7 @@ export default function Header() {
           <IconButton color="inherit" aria-label="menu">
             <BuildIcon fontSize="small" />
           </IconButton>
+          <div className='spacing'></div>
           <IconButton color="inherit" aria-label="menu">
             <AppsIcon fontSize="small" />
           </IconButton>
