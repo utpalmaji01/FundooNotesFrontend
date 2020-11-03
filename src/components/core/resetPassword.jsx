@@ -146,7 +146,7 @@ const ResetPassword = () => {
                   className="login-button"
                   onClick={resetPassword}
                 >
-                  submit
+                  Submit
                 </Button>
                 <Snackbar
                   open={snackbarActive}

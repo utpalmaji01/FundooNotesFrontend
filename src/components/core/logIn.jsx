@@ -27,6 +27,8 @@ class LogIn extends Component {
     emailFlag: true,
     passWordFlag: true,
     snackbarActive: false,
+    snackBarMesage: "LogIn Successfull",
+    snackBarSeverity: "success",
   };
 
   checkEmail = (e) => {
@@ -65,28 +67,35 @@ class LogIn extends Component {
 
   logIn = async () => {
     if (this.state.emailFlag && this.state.passWordFlag) {
+      localStorage.setItem("username", this.state.email);
+      console.log(localStorage.getItem("username"));
       let logInObj = {
         username: this.state.email,
         password: this.state.passWord,
       };
       let responce = await apiCalls.userLogIn(logInObj);
-      if(responce.status === 200) {
-        this.state.snackbarActive = true;
+      if (responce.status === 200) {
         this.setState({
-          snackbarActive: true
+          snackbarActive: true,
+        });
+      } else {
+        this.setState({
+          snackbarActive: true,
+          snackBarMesage: "LogIn un-successfull",
+          snackBarSeverity: "error",
         });
       }
     }
   };
 
-  closeSnackbar = (event, reason) => {
-    if (reason === 'clickaway') {
+  closeSnackbar = (reason) => {
+    if (reason === "clickaway") {
       return;
     }
     this.setState({
-      snackbarActive: false
+      snackbarActive: false,
     });
-  }
+  };
 
   handleClickShowPassword = () => {
     this.setState({
@@ -102,10 +111,10 @@ class LogIn extends Component {
             <Grid container item md={12} sm={12} spacing={2}>
               <Grid item md={12} sm={12}>
                 <Header />
-                <Box fontWeight="fontWeightBold" m={1} className='sub-heading'>
+                <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
                   Sing In
                 </Box>
-                <Box fontWeight="fontWeightBold" m={1} className='sub-heading'>
+                <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
                   to continue to FundooFotes
                 </Box>
               </Grid>
@@ -126,7 +135,7 @@ class LogIn extends Component {
                 <TextField
                   fullWidth
                   required={true}
-                  label="Confirm Password"
+                  label="Password"
                   helperText={this.state.passwordHelperText}
                   margin="dense"
                   variant="outlined"
@@ -183,8 +192,11 @@ class LogIn extends Component {
                     autoHideDuration={1000}
                     onClose={this.closeSnackbar}
                   >
-                    <Alert onClose={this.closeSnackbar}>
-                      LogIn successfull
+                    <Alert
+                      severity={this.state.snackBarSeverity}
+                      onClose={this.closeSnackbar}
+                    >
+                      {this.state.snackBarMesage}
                     </Alert>
                   </Snackbar>
                 </div>

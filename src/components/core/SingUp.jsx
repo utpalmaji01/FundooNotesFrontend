@@ -10,9 +10,9 @@ import {
   Button,
   Card,
 } from "@material-ui/core";
-import { red, deepOrange, green } from "@material-ui/core/colors";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import Header from "./header.jsx";
 import "../../style/SingUp.scss";
 import history from "../../History";
 
@@ -167,7 +167,7 @@ class SingUp extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <Card className="main-container sing-up">
           <Grid container direction="row" wrap="nowrap" spacing={2}>
             <Grid
@@ -179,30 +179,7 @@ class SingUp extends Component {
               className="main-module"
             >
               <Grid item md={12} sm={12}>
-                <Box
-                  display="flex"
-                  flexDirection="row"
-                  m={1}
-                >
-                  <Box fontWeight="fontWeightBold" color="primary.main">
-                    F
-                  </Box>
-                  <Box fontWeight="fontWeightBold" color={red}>
-                    u
-                  </Box>
-                  <Box fontWeight="fontWeightBold" color={deepOrange}>
-                    n
-                  </Box>
-                  <Box fontWeight="fontWeightBold" color="primary.main">
-                    d
-                  </Box>
-                  <Box fontWeight="fontWeightBold" color={green}>
-                    o
-                  </Box>
-                  <Box fontWeight="fontWeightBold" color={red}>
-                    o
-                  </Box>
-                </Box>
+                <div className='header-singup'><Header /></div>
                 <Box fontWeight="fontWeightBold" m={1}>
                   Create your Account
                 </Box>

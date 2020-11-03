@@ -43,7 +43,7 @@ const ForgetPassword = () => {
 
   };
 
-  const closeSnackbar = (event, reason) => {
+  const closeSnackbar = (reason) => {
     if (reason === "clickaway") {
       return;
     }
