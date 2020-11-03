@@ -24,8 +24,8 @@ class LogIn extends Component {
     passWord: "",
     emailHelperText: " ",
     passwordHelperText: " ",
-    emailFlag: true,
-    passWordFlag: true,
+    emailFlag: false,
+    passWordFlag: false,
     snackbarActive: false,
     snackBarMesage: "LogIn Successfull",
     snackBarSeverity: "success",
@@ -36,13 +36,13 @@ class LogIn extends Component {
     if (e.target.value.match(pattern)) {
       this.setState({
         email: e.target.value,
-        emailFlag: true,
+        emailFlag: false,
         emailHelperText: " ",
       });
     } else {
       this.setState({
-        emailFlag: false,
         emailHelperText: "invalid e-mail",
+        emailFlag: true,
       });
     }
   };
@@ -52,7 +52,7 @@ class LogIn extends Component {
       "(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}";
     if (e.target.value.match(pattern)) {
       this.setState({
-        passWordFlag: true,
+        passWordFlag: false,
         passWord: e.target.value,
         passwordHelperText: " ",
       });
@@ -60,15 +60,13 @@ class LogIn extends Component {
       this.setState({
         passwordHelperText:
           "8 or more char with a mix of uppercase, lowercase, number and Spl. char",
-        passWordFlag: false,
+        passWordFlag: true,
       });
     }
   };
 
   logIn = async () => {
-    if (this.state.emailFlag && this.state.passWordFlag) {
-      localStorage.setItem("username", this.state.email);
-      console.log(localStorage.getItem("username"));
+    if (!this.state.emailFlag && !this.state.passWordFlag) {
       let logInObj = {
         username: this.state.email,
         password: this.state.passWord,
@@ -78,7 +76,7 @@ class LogIn extends Component {
         this.setState({
           snackbarActive: true,
         });
-        history.push("/dashBoard")
+        history.push("/dashBoard");
       } else {
         this.setState({
           snackbarActive: true,
@@ -106,7 +104,7 @@ class LogIn extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         <Card className="main-container log-in">
           <Grid container direction="row" wrap="nowrap" spacing={2}>
             <Grid container item md={12} sm={12} spacing={2}>
@@ -116,7 +114,7 @@ class LogIn extends Component {
                   Sing In
                 </Box>
                 <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
-                  to continue to FundooFotes
+                  to continue to FundooNotes
                 </Box>
               </Grid>
               <Grid item md={12} sm={12} xs={12} className="input-field">
@@ -128,7 +126,7 @@ class LogIn extends Component {
                   helperText={this.state.emailHelperText}
                   margin="dense"
                   variant="outlined"
-                  error={this.state.emailFlag === true ? false : true}
+                  error={this.state.emailFlag}
                   onChange={this.checkEmail}
                 />
               </Grid>
@@ -141,7 +139,7 @@ class LogIn extends Component {
                   margin="dense"
                   variant="outlined"
                   type={this.state.showPassword ? "text" : "password"}
-                  error={this.state.passWordFlag === true ? false : true}
+                  error={this.state.passWordFlag}
                   onChange={this.checkPassword}
                   InputProps={{
                     // <-- toggle button is added.
@@ -205,7 +203,7 @@ class LogIn extends Component {
             </Grid>
           </Grid>
         </Card>
-        </Fragment>
+      </>
     );
   }
 }

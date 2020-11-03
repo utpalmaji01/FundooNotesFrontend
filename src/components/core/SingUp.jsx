@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import image from "../../assets/account.png";
 import {
   Box,
@@ -31,29 +31,29 @@ class SingUp extends Component {
     emailHelperText: " ",
     passwordHelperText: " ",
     confirmPasswordHelperText: " ",
-    fiestNameFlag: true,
-    lastNameFlag: true,
-    emailFlag: true,
-    passWordFlag: true,
-    confirmPassWordFlag: true,
+    fiestNameFlag: false,
+    lastNameFlag: false,
+    emailFlag: false,
+    passWordFlag: false,
+    confirmPassWordFlag: false,
   };
 
   checkFirstName = (e) => {
     const pattern = "^[A-Za-z]{3,}$";
     if (e.target.value.length <= 0) {
       this.setState({
-        fiestNameFlag: false,
+        fiestNameFlag: true,
         firstNameHelperText: "require",
       });
     } else if (e.target.value.match(pattern)) {
       this.setState({
-        fiestNameFlag: true,
+        fiestNameFlag: false,
         firstName: e.target.value,
         firstNameHelperText: " ",
       });
     } else {
       this.setState({
-        fiestNameFlag: false,
+        fiestNameFlag: true,
         firstName: " ",
         firstNameHelperText: "3 or more char",
       });
@@ -64,18 +64,18 @@ class SingUp extends Component {
     const pattern = "^[A-Za-z]{3,}$";
     if (e.target.value.length <= 0) {
       this.setState({
-        lastNameFlag: false,
+        lastNameFlag: true,
         lastNameHelperText: "require",
       });
     } else if (e.target.value.match(pattern)) {
       this.setState({
-        lastNameFlag: true,
+        lastNameFlag: false,
         lastName: e.target.value,
         lastNameHelperText: " ",
       });
     } else {
       this.setState({
-        lastNameFlag: false,
+        lastNameFlag: true,
         lastName: "",
         lastNameHelperText: "3 or more char",
       });
@@ -86,12 +86,12 @@ class SingUp extends Component {
     if (e.target.value.match(pattern)) {
       this.setState({
         email: e.target.value,
-        emailFlag: true,
+        emailFlag: false,
         emailHelperText: " ",
       });
     } else {
       this.setState({
-        emailFlag: false,
+        emailFlag: true,
         emailHelperText: "invalid e-mail",
       });
     }
@@ -104,12 +104,12 @@ class SingUp extends Component {
       this.setState({
         passWord: e.target.value,
         passwordHelperText: " ",
-        passWordFlag: true,
+        passWordFlag: false,
       });
     } else {
       this.setState({
         passwordHelperText: "invalid password",
-        passWordFlag: false,
+        passWordFlag: true,
       });
     }
   };
@@ -120,19 +120,19 @@ class SingUp extends Component {
     if (e.target.value.match(pattern)) {
       if (e.target.value === this.state.passWord) {
         this.setState({
-          confirmPassWordFlag: true,
+          confirmPassWordFlag: false,
           confirmPassword: e.target.value,
           confirmPasswordHelperText: " ",
         });
       } else {
         this.setState({
-          confirmPassWordFlag: false,
+          confirmPassWordFlag: true,
           confirmPasswordHelperText: "both password did not match",
         });
       }
     } else {
       this.setState({
-        confirmPassWordFlag: false,
+        confirmPassWordFlag: true,
         confirmPasswordHelperText: "invalid password",
       });
     }
@@ -140,10 +140,10 @@ class SingUp extends Component {
 
   addPerson = async () => {
     if (
-      this.state.fiestNameFlag &&
-      this.state.lastNameFlag &&
-      this.state.emailFlag &&
-      this.state.passWordFlag
+      !this.state.fiestNameFlag &&
+      !this.state.lastNameFlag &&
+      !this.state.emailFlag &&
+      !this.state.passWordFlag
     ) {
       let singUpObjet = {
         firstName: this.state.firstName,
@@ -167,7 +167,7 @@ class SingUp extends Component {
 
   render() {
     return (
-      <Fragment>
+      <>
         <Card className="main-container sing-up">
           <Grid container direction="row" wrap="nowrap" spacing={2}>
             <Grid
@@ -179,7 +179,9 @@ class SingUp extends Component {
               className="main-module"
             >
               <Grid item md={12} sm={12}>
-                <div className='header-singup'><Header /></div>
+                <div className="header-singup">
+                  <Header />
+                </div>
                 <Box fontWeight="fontWeightBold" m={1}>
                   Create your Account
                 </Box>
@@ -193,7 +195,7 @@ class SingUp extends Component {
                   helperText={this.state.firstNameHelperText}
                   margin="dense"
                   variant="outlined"
-                  error={this.state.fiestNameFlag === true ? false : true}
+                  error={this.state.fiestNameFlag}
                   onChange={this.checkFirstName}
                 />
               </Grid>
@@ -205,7 +207,7 @@ class SingUp extends Component {
                   helperText={this.state.lastNameHelperText}
                   margin="dense"
                   variant="outlined"
-                  error={this.state.lastNameFlag === true ? false : true}
+                  error={this.state.lastNameFlag}
                   onChange={this.checkSecondName}
                 />
               </Grid>
@@ -218,7 +220,7 @@ class SingUp extends Component {
                   helperText={this.state.emailHelperText}
                   margin="dense"
                   variant="outlined"
-                  error={this.state.emailFlag === true ? false : true}
+                  error={this.state.emailFlag}
                   onChange={this.checkEmail}
                 />
               </Grid>
@@ -231,7 +233,7 @@ class SingUp extends Component {
                   margin="dense"
                   variant="outlined"
                   type={this.state.showPassword ? "text" : "password"}
-                  error={this.state.passWordFlag === true ? false : true}
+                  error={this.state.passWordFlag}
                   onChange={this.checkPassword}
                 />
               </Grid>
@@ -244,7 +246,7 @@ class SingUp extends Component {
                   margin="dense"
                   variant="outlined"
                   type={this.state.showPassword ? "text" : "password"}
-                  error={this.state.confirmPassWordFlag === true ? false : true}
+                  error={this.state.confirmPassWordFlag}
                   onChange={this.checkConfirmPassword}
                   InputProps={{
                     // <-- toggle button is added.
@@ -310,7 +312,7 @@ class SingUp extends Component {
             </Grid>
           </Grid>
         </Card>
-        </Fragment>
+      </>
     );
   }
 }

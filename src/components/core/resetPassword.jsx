@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import {
   Grid,
   TextField,
@@ -23,8 +23,8 @@ const ResetPassword = () => {
   const [confirmPasswordHelperText, setconfirmPasswordHelperText] = useState(
     " "
   );
-  const [passWordFlag, setpassWordFlag] = useState(true);
-  const [confirmPassWordFlag, setconfirmPassWordFlag] = useState(true);
+  const [passWordFlag, setpassWordFlag] = useState(false);
+  const [confirmPassWordFlag, setconfirmPassWordFlag] = useState(false);
   const [snackbarActive, setsnackbarActive] = useState(false);
 
   const checkPassword = (e) => {
@@ -33,10 +33,10 @@ const ResetPassword = () => {
     if (e.target.value.match(pattern)) {
       setpassWord(e.target.value);
       setpasswordHelperText(" ");
-      setpassWordFlag(true);
+      setpassWordFlag(false);
     } else {
       setpasswordHelperText("invalid password");
-      setpassWordFlag(false);
+      setpassWordFlag(true);
     }
   };
   const checkConfirmPassword = (e) => {
@@ -44,21 +44,21 @@ const ResetPassword = () => {
       "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}$";
     if (e.target.value.match(pattern)) {
       if (e.target.value === passWord) {
-        setconfirmPassWordFlag(true);
+        setconfirmPassWordFlag(false);
         setconfirmPassword(e.target.value);
         setconfirmPasswordHelperText(" ");
       } else {
-        setconfirmPassWordFlag(false);
+        setconfirmPassWordFlag(true);
         setconfirmPasswordHelperText("both password did not match");
       }
     } else {
-      setconfirmPassWordFlag(false);
+      setconfirmPassWordFlag(true);
       setconfirmPasswordHelperText("invalid password");
     }
   };
 
   const resetPassword = async () => {
-    if (passWordFlag && confirmPassWordFlag) {
+    if (!passWordFlag && !confirmPassWordFlag) {
       let token = window.location.pathname.slice(15);
       let resetPasswordObject = {
         newPassword: confirmPassword,
@@ -85,7 +85,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <Card className="main-container log-in">
         <Grid container direction="row" wrap="nowrap" spacing={2}>
           <Grid container item md={12} sm={12} spacing={2}>
@@ -107,7 +107,7 @@ const ResetPassword = () => {
                 margin="dense"
                 variant="outlined"
                 type={showPassword ? "text" : "password"}
-                error={passWordFlag === true ? false : true}
+                error={passWordFlag}
                 onChange={checkPassword}
               />
             </Grid>
@@ -120,7 +120,7 @@ const ResetPassword = () => {
                 margin="dense"
                 variant="outlined"
                 type={showPassword ? "text" : "password"}
-                error={confirmPassWordFlag === true ? false : true}
+                error={confirmPassWordFlag}
                 onChange={checkConfirmPassword}
                 InputProps={{
                   // <-- toggle button is added.
@@ -162,7 +162,7 @@ const ResetPassword = () => {
           </Grid>
         </Grid>
       </Card>
-      </Fragment>
+    </>
   );
 };
 

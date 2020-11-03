@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import {
   Grid,
   TextField,
@@ -15,23 +15,23 @@ import apiCalls from "../../sevices/apiCalls.js";
 const ForgetPassword = () => {
   const [email, setemail] = useState(" ");
   const [emailHelperText, setemailHelperText] = useState(" ");
-  const [emailFlag, setemailFlag] = useState(true);
+  const [emailFlag, setemailFlag] = useState(false);
   const [snackbarActive, setsnackbarActive] = useState(false);
 
   const checkEmail = (e) => {
     const pattern = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     if (e.target.value.match(pattern)) {
       setemail(e.target.value);
-      setemailFlag(true);
+      setemailFlag(false);
       setemailHelperText(" ");
     } else {
-      setemailFlag(false);
+      setemailFlag(true);
       setemailHelperText("invalid e-mail");
     }
   };
 
   const sensResetLink = async () => {
-    if (emailFlag) {
+    if (!emailFlag) {
       let resetObject = {
         email: email,
       };
@@ -50,7 +50,7 @@ const ForgetPassword = () => {
   };
 
   return (
-    <Fragment>
+    <>
       <Card className="main-container log-in">
         <Grid container direction="row" wrap="nowrap" spacing={2}>
           <Grid container item md={12} sm={12} spacing={2}>
@@ -73,7 +73,7 @@ const ForgetPassword = () => {
                 helperText={emailHelperText}
                 margin="dense"
                 variant="outlined"
-                error={!emailFlag}
+                error={emailFlag}
                 onChange={checkEmail}
               />
             </Grid>
@@ -111,7 +111,7 @@ const ForgetPassword = () => {
           </Grid>
         </Grid>
       </Card>
-    </Fragment>
+    </>
   );
 };
 
