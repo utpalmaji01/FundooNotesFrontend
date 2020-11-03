@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import image from "../../assets/account.png";
 import {
   Box,
@@ -167,7 +167,7 @@ class SingUp extends Component {
 
   render() {
     return (
-      <div>
+      <Fragment>
         <Card className="main-container sing-up">
           <Grid container direction="row" wrap="nowrap" spacing={2}>
             <Grid
@@ -310,7 +310,7 @@ class SingUp extends Component {
             </Grid>
           </Grid>
         </Card>
-      </div>
+        </Fragment>
     );
   }
 }

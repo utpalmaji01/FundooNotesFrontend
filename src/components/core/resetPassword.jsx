@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Grid,
   TextField,
@@ -85,7 +85,7 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="App">
+    <Fragment>
       <Card className="main-container log-in">
         <Grid container direction="row" wrap="nowrap" spacing={2}>
           <Grid container item md={12} sm={12} spacing={2}>
@@ -162,7 +162,7 @@ const ResetPassword = () => {
           </Grid>
         </Grid>
       </Card>
-    </div>
+      </Fragment>
   );
 };
 

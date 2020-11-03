@@ -106,7 +106,7 @@ class LogIn extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Fragment>
         <Card className="main-container log-in">
           <Grid container direction="row" wrap="nowrap" spacing={2}>
             <Grid container item md={12} sm={12} spacing={2}>
@@ -205,7 +205,7 @@ class LogIn extends Component {
             </Grid>
           </Grid>
         </Card>
-      </div>
+        </Fragment>
     );
   }
 }

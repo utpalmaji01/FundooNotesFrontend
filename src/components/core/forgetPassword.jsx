@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import {
   Grid,
   TextField,
@@ -40,7 +40,6 @@ const ForgetPassword = () => {
         setsnackbarActive(true);
       }
     }
-
   };
 
   const closeSnackbar = (reason) => {
@@ -51,17 +50,18 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="App">
+    <Fragment>
       <Card className="main-container log-in">
         <Grid container direction="row" wrap="nowrap" spacing={2}>
           <Grid container item md={12} sm={12} spacing={2}>
             <Grid item md={12} sm={12}>
               <Header />
-              <Box fontWeight="fontWeightBold" m={1} className='sub-heading'>
+              <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
                 Forget Your Password
               </Box>
-              <Box fontWeight="fontWeightBold" m={1} className='sub-heading'>
-                Enter your email address and we'll send you a link to reaset your password
+              <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
+                Enter your email address and we'll send you a link to reaset
+                your password
               </Box>
             </Grid>
             <Grid item md={12} sm={12} xs={12} className="input-field">
@@ -111,7 +111,7 @@ const ForgetPassword = () => {
           </Grid>
         </Grid>
       </Card>
-    </div>
+    </Fragment>
   );
 };
 
