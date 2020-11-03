@@ -4,6 +4,7 @@ import SingUp from "./components/core/SingUp.jsx";
 import LogIn from "./components/core/logIn.jsx";
 import ForgetPassword from "./components/core/forgetPassword.jsx";
 import ResetPassword from "./components/core/resetPassword.jsx";
+import DashBoard from "./components/dashBoard/dashBoard.jsx";
 import history from "./History";
 
 export default class Routes extends Component {
@@ -15,6 +16,7 @@ export default class Routes extends Component {
           <Route exact path="/logIn" component={LogIn} />
           <Route exact path="/forgetPassword" component={ForgetPassword} />
           <Route exact path="/resetpassword/*" component={ResetPassword} />
+          <Route exact path="/dashBoard" component={DashBoard} />
         </Switch>
       </Router>
     );

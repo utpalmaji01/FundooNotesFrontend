@@ -78,6 +78,7 @@ class LogIn extends Component {
         this.setState({
           snackbarActive: true,
         });
+        history.push("/dashBoard")
       } else {
         this.setState({
           snackbarActive: true,
