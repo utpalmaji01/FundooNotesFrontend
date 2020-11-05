@@ -12,19 +12,21 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+import {
+  Menu as MenuIcon,
+  ViewAgenda as ViewAgendaIcon,
+  Replay as ReplayIcon,
+  Search as SearchIcon,
+  Settings as SettingsIcon,
+  Apps as AppsIcon,
+  Person as PersonIcon,
+  EmojiObjectsOutlined as EmojiObjectsIcon,
+  NotificationsNone as NotificationsNoneIcon,
+  Create as CreateIcon,
+  ArchiveOutlined as ArchiveIcon,
+  DeleteOutline as DeleteOutlineIcon,
+} from "@material-ui/icons";
 import clsx from "clsx";
-import MenuIcon from "@material-ui/icons/Menu";
-import ViewAgendaIcon from "@material-ui/icons/ViewAgenda";
-import ReplayIcon from "@material-ui/icons/Replay";
-import SearchIcon from "@material-ui/icons/Search";
-import SettingsIcon from "@material-ui/icons/Settings";
-import AppsIcon from "@material-ui/icons/Apps";
-import PersonIcon from "@material-ui/icons/Person";
-import EmojiObjectsIcon from "@material-ui/icons/EmojiObjectsOutlined";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import CreateIcon from "@material-ui/icons/Create";
-import ArchiveIcon from "@material-ui/icons/ArchiveOutlined";
-import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import "../style/dashBoardHeader.scss";
 
 export default function DashBoard() {
