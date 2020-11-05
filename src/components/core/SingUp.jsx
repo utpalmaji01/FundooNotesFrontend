@@ -154,7 +154,7 @@ class SingUp extends Component {
       };
       let responce = await apiCalls.newUserSignUp(singUpObjet);
       if (responce.status === 200) {
-        history.push("/logIn");
+        history.push("/login");
       }
     }
   };
@@ -284,7 +284,7 @@ class SingUp extends Component {
                   <Button
                     color="primary"
                     className="log-in-button"
-                    onClick={() => history.push("/logIn")}
+                    onClick={() => history.push("/login")}
                   >
                     Log In Instead
                   </Button>

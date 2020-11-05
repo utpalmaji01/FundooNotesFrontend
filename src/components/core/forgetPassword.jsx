@@ -81,7 +81,7 @@ const ForgetPassword = () => {
             <Grid item>
               <Button
                 color="primary"
-                onClick={() => history.push("/logIn")}
+                onClick={() => history.push("/login")}
                 className="button-text"
               >
                 Remember Password
