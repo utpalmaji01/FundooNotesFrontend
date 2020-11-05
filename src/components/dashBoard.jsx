@@ -27,7 +27,7 @@ import {
   DeleteOutline as DeleteOutlineIcon,
 } from "@material-ui/icons";
 import clsx from "clsx";
-import "../style/dashBoardHeader.scss";
+import "../style/dashBoard.scss";
 
 export default function DashBoard() {
   const [isDrawerMin, setIsDrawerMin] = useState(true);
@@ -35,6 +35,14 @@ export default function DashBoard() {
   const setListSize = () => {
     setIsDrawerMin(!isDrawerMin);
   };
+
+  const expandList =() => {
+    setIsDrawerMin(false);
+  }
+
+  const minifyList =() => {
+    setIsDrawerMin(true);
+  }
   return (
     <>
       <AppBar position="fixed">
@@ -84,7 +92,7 @@ export default function DashBoard() {
       </AppBar>
 
       <Drawer variant="permanent">
-        <List>
+        <List onMouseEnter={expandList} onMouseLeave={minifyList}>
           <ListItem button className="list-item">
             <ListItemIcon>
               <EmojiObjectsIcon />

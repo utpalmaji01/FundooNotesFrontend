@@ -19,13 +19,19 @@
     min-width: 30px !important;
 }
 
-.listItemText{
-    margin-left: 10px;
-}
-
 .list-item{
     height: 50px !important;
+    border-radius: 0 50px 50px 0 !important;
+    &:hover{
+        background-color: rgb(234, 188, 127) !important;
+    }
 }
+
+.listItemText{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 
 .list-min {
     display: none;
