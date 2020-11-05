@@ -4,7 +4,7 @@ import SingUp from "./components/core/SingUp.jsx";
 import LogIn from "./components/core/logIn.jsx";
 import ForgetPassword from "./components/core/forgetPassword.jsx";
 import ResetPassword from "./components/core/resetPassword.jsx";
-import DashBoard from "./components/dashBoard/dashBoard.jsx";
+import DashBoard from "./components/dashBoard.jsx";
 import history from "./History";
 
 export default class Routes extends Component {
