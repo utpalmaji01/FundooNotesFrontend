@@ -15,6 +15,7 @@ import {
   Settings as SettingsIcon,
   Apps as AppsIcon,
   Person as PersonIcon,
+  ExitToApp as ExitToAppIcon,
 } from "@material-ui/icons";
 import "../style/dashBoardHeader.scss";
 
@@ -29,7 +30,7 @@ export default function DashBoardHeader({ setListSize }) {
           <Typography variant="h6" color="inherit">
             FundooNotes
           </Typography>
-          <div className="spacing"></div>
+          <div className="first-spacing"></div>
           <TextField
             className="search-bar"
             placeholder="Search"
@@ -47,7 +48,7 @@ export default function DashBoardHeader({ setListSize }) {
               ),
             }}
           />
-          <div className="spacing"></div>
+          <div className="second-spacing"></div>
           <IconButton color="inherit" aria-label="menu">
             <ReplayIcon fontSize="small" />
           </IconButton>
@@ -57,12 +58,15 @@ export default function DashBoardHeader({ setListSize }) {
           <IconButton color="inherit" aria-label="menu">
             <SettingsIcon fontSize="small" />
           </IconButton>
-          <div className="second-spacing"></div>
+          <div className="third-spacing"></div>
           <IconButton color="inherit" aria-label="menu">
             <AppsIcon fontSize="small" />
           </IconButton>
           <IconButton color="inherit" aria-label="menu">
             <PersonIcon fontSize="small" />
+          </IconButton>
+          <IconButton color="inherit" aria-label="menu">
+            <ExitToAppIcon fontSize="small" />
           </IconButton>
         </Toolbar>
       </AppBar>
