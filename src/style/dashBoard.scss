@@ -1,38 +1,36 @@
-.search-bar{
-    width: 35%;
-    background: rgba(253, 253, 253, 0.11);
+.search-bar {
+  width: 35%;
+  background: rgba(253, 253, 253, 0.11);
 }
 
 .spacing {
-    width: 13%;
+  width: 13%;
 }
 
 .second-spacing {
-    width: 2%;
+  width: 2%;
 }
-
 .MuiDrawer-paperAnchorDockedLeft {
-    margin-top: 52px;
+  margin-top: 52px;
 }
 
 .MuiListItemIcon-root {
-    min-width: 30px !important;
+  min-width: 30px !important;
 }
 
-.list-item{
-    height: 50px !important;
-    border-radius: 0 50px 50px 0 !important;
-    &:hover{
-        background-color: rgb(234, 188, 127) !important;
-    }
+.list-item {
+  height: 50px !important;
+  border-radius: 0 50px 50px 0 !important;
+  &:hover {
+    background-color: rgb(234, 188, 127) !important;
+  }
 }
 
-.listItemText{
-    margin-left: 10px;
-    margin-right: 10px;
+.listItemText {
+  margin-left: 10px;
+  margin-right: 10px;
 }
-
 
 .list-min {
-    display: none;
+  display: none;
 }
