@@ -16,6 +16,7 @@ import {
   Apps as AppsIcon,
   Person as PersonIcon,
 } from "@material-ui/icons";
+import "../style/dashBoardHeader.scss";
 
 export default function DashBoardHeader({ setListSize }) {
   return (

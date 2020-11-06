@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import DashBoardHeader from "./dashBoardHeader.jsx";
 import DashBoardSideNavBar from "./dashBoardSideNavBar";
 import Notes from "./dashBoardNotes.jsx";
-import "../style/dashBoard.scss";
 
 export default function DashBoard() {
   const [isDrawerMin, setIsDrawerMin] = useState(true);
