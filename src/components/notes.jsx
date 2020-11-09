@@ -28,6 +28,25 @@ export default function DashBoardNotes() {
   const [newNoteDescription, setNewNoteDescription] = useState("");
   const [allNotes, setAllNotes] = useState([]);
 
+  const addNote = async () => {
+    let newNoteObj = {
+      "title": newNoteTitle,
+      "description": newNoteDescription,
+    };
+    let responce = await apiCalls.addNewNote(
+      localStorage.getItem("id"),
+      newNoteObj
+    );
+    let newNote = {
+      "title": responce.data.status.details.title,
+      "description": responce.data.status.details.description,
+    }
+    if (responce.status === 200) {
+      let allNote = [...allNotes, newNote];
+      setAllNotes(allNote);
+    }
+  };
+
   useEffect(() => {
     apiCalls
       .getAllNotes(localStorage.getItem("id"))
@@ -36,7 +55,7 @@ export default function DashBoardNotes() {
 
   const note = allNotes.map((note) => {
     return (
-      <Card className="note">
+      <Card className="note" key={note.id}>
         <CardContent>
           <p>{note.title}</p>
           <p>{note.description}</p>
@@ -97,6 +116,9 @@ export default function DashBoardNotes() {
                 setIsAddNote(true);
                 setAddNotePlaceHolder("Title");
               }}
+              onChange={(e) => {
+                setNewNoteTitle(e.target.value);
+              }}
               endAdornment={
                 isAddNote && (
                   <InputAdornment position="end">
@@ -113,6 +135,9 @@ export default function DashBoardNotes() {
                 margin="dense"
                 multiline
                 placeholder="Take a note..."
+                onChange={(e) => {
+                  setNewNoteDescription(e.target.value);
+                }}
               />
             )}
           </CardContent>
@@ -134,7 +159,9 @@ export default function DashBoardNotes() {
                 <ArchiveOutlinedIcon fontSize="small" />
               </IconButton>
 
-              <Button className="close-button">Close</Button>
+              <Button className="close-button" onClick={addNote}>
+                Close
+              </Button>
             </CardActions>
           )}
         </Card>

@@ -85,9 +85,9 @@ class apiCalls {
    * @description service to log out for user
    * @params {token} data i.e. sent from the backend for authorization
    */
-  addNewNote = (noteObject) => {
+  addNewNote = (token, noteObject) => {
     return userAccountServices.userServicies(
-      process.env.REACT_APP_GET_ALL_NOTES_API_PATH + localStorage.getItem("id"),
+      process.env.REACT_APP_ADD_NEW_NOTE_API_PATH + token,
       noteObject
     );
   };
