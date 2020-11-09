@@ -10,10 +10,7 @@ import {
 import {
   Menu as MenuIcon,
   ViewAgenda as ViewAgendaIcon,
-  Replay as ReplayIcon,
   Search as SearchIcon,
-  Settings as SettingsIcon,
-  Apps as AppsIcon,
   Person as PersonIcon,
   ExitToApp as ExitToAppIcon,
 } from "@material-ui/icons";
