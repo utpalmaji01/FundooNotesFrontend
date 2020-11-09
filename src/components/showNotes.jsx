@@ -3,7 +3,9 @@ import {
   Card,
   CardActions,
   CardContent,
+  Grid,
   IconButton,
+  Typography,
 } from "@material-ui/core";
 import {
   AddAlertOutlined as AddAlertOutlinedIcon,
@@ -14,58 +16,64 @@ import {
 } from "@material-ui/icons";
 import "../style/showNotes.scss";
 
-export default function DashBoardNotes({allNotes}) {
-
+export default function DashBoardNotes({ allNotes }) {
   const note = allNotes.map((note) => {
     return (
-      <Card className="note" key={note.id}>
-        <CardContent>
-          <p>{note.title}</p>
-          <p>{note.description}</p>
-        </CardContent>
-        <CardActions className="note-actions">
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <AddAlertOutlinedIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <PersonOutlineOutlinedIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <PaletteOutlinedIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <InsertPhotoOutlinedIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <ArchiveOutlinedIcon fontSize="small" />
-          </IconButton>
+      <Grid item md={3} sm={5} key={note.id} className="note">
+        <Card className="each-note">
+          <CardContent>
+            <p>{note.title}</p>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {note.description}
+            </Typography>
+          </CardContent>
+          <CardActions className="note-actions">
+            <IconButton
+              color="inherit"
+              aria-label="reminder"
+              className="note-actions-item"
+            >
+              <AddAlertOutlinedIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="reminder"
+              className="note-actions-item"
+            >
+              <PersonOutlineOutlinedIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="reminder"
+              className="note-actions-item"
+            >
+              <PaletteOutlinedIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="reminder"
+              className="note-actions-item"
+            >
+              <InsertPhotoOutlinedIcon fontSize="small" />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="reminder"
+              className="note-actions-item"
+            >
+              <ArchiveOutlinedIcon fontSize="small" />
+            </IconButton>
           </CardActions>
-      </Card>
+        </Card>
+      </Grid>
     );
   });
 
   return (
-    <><div className="all-notes">{note}</div>
+    <>
+      <Grid container className="all-notes">
+        {note}
+      </Grid>
     </>
   );
 }

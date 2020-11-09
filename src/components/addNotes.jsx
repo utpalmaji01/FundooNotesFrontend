@@ -39,6 +39,7 @@ export default function DashBoardNotes(props) {
     let newNote = {
       "title": responce.data.status.details.title,
       "description": responce.data.status.details.description,
+      "id": responce.data.status.details.id,
     }
     if (responce.status === 200) {
       let allNote = [...props.allNotes, newNote];
