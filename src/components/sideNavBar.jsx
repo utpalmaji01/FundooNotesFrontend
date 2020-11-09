@@ -14,7 +14,7 @@ import {
   DeleteOutline as DeleteOutlineIcon,
 } from "@material-ui/icons";
 import clsx from "clsx";
-import "../style/dashBoardSideNavBar.scss";
+import "../style/sideNavBar.scss";
 
 export default function SideNavBar(props) {
   return (

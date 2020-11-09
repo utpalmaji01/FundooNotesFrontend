@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -17,16 +17,15 @@ import {
   ArchiveOutlined as ArchiveOutlinedIcon,
 } from "@material-ui/icons";
 import apiCalls from "../sevices/apiCalls.js";
-import "../style/dashBoardNotes.scss";
+import "../style/addNotes.scss";
 
-export default function DashBoardNotes() {
+export default function DashBoardNotes(props) {
   const [isAddNote, setIsAddNote] = useState(false);
   const [addNotePlaceHolder, setAddNotePlaceHolder] = useState(
     "Take a note..."
   );
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteDescription, setNewNoteDescription] = useState("");
-  const [allNotes, setAllNotes] = useState([]);
 
   const addNote = async () => {
     let newNoteObj = {
@@ -42,65 +41,11 @@ export default function DashBoardNotes() {
       "description": responce.data.status.details.description,
     }
     if (responce.status === 200) {
-      let allNote = [...allNotes, newNote];
-      setAllNotes(allNote);
+      let allNote = [...props.allNotes, newNote];
+      props.setAllNotes(allNote);
     }
   };
-
-  useEffect(() => {
-    apiCalls
-      .getAllNotes(localStorage.getItem("id"))
-      .then((res) => setAllNotes(res.data.data.data));
-  }, []);
-
-  const note = allNotes.map((note) => {
-    return (
-      <Card className="note" key={note.id}>
-        <CardContent>
-          <p>{note.title}</p>
-          <p>{note.description}</p>
-        </CardContent>
-        <CardActions className="note-actions">
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <AddAlertOutlinedIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <PersonOutlineOutlinedIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <PaletteOutlinedIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <InsertPhotoOutlinedIcon fontSize="small" />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            aria-label="reminder"
-            className="note-actions-item"
-          >
-            <ArchiveOutlinedIcon fontSize="small" />
-          </IconButton>
-          </CardActions>
-      </Card>
-    );
-  });
-
+  
   return (
     <>
       <div className="dashBoardNotes-container">
@@ -165,7 +110,6 @@ export default function DashBoardNotes() {
           )}
         </Card>
       </div>
-      <div className="all-notes">{note}</div>
     </>
   );
 }

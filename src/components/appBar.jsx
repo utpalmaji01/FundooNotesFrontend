@@ -16,7 +16,7 @@ import {
 } from "@material-ui/icons";
 import apiCalls from "../sevices/apiCalls.js";
 import history from "../History";
-import "../style/dashBoardHeader.scss";
+import "../style/appBar.scss";
 
 export default function AppHeader({ setListSize }) {
   const logout = async () => {
