@@ -29,7 +29,19 @@ class userAccountServices {
         return error;
       });
   };
+
+  getAllNoteList = (urlPath) => {
+    return axios
+      .get(urlPath)
+      .then((response) => {
+        console.log(response);
+        return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        return error;
+      });
+  };
 }
 
-
-export default new userAccountServices()
+export default new userAccountServices();

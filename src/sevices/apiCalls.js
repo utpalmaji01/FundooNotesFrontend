@@ -70,6 +70,27 @@ class apiCalls {
       process.env.REACT_APP_LOG_OUT_API_PATH + token
     );
   };
+
+  /*
+   * @description service to log out for user
+   * @params {token} data i.e. sent from the backend for authorization
+   */
+  getAllNotes = (token) => {
+    return userAccountServices.getAllNoteList(
+      process.env.REACT_APP_GET_ALL_NOTES_API_PATH + token
+    );
+  };
+
+  /*
+   * @description service to log out for user
+   * @params {token} data i.e. sent from the backend for authorization
+   */
+  addNewNote = (noteObject) => {
+    return userAccountServices.userServicies(
+      process.env.REACT_APP_GET_ALL_NOTES_API_PATH + localStorage.getItem("id"),
+      noteObject
+    );
+  };
 }
 
 export default new apiCalls();

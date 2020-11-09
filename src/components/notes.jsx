@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -16,7 +16,7 @@ import {
   InsertPhotoOutlined as InsertPhotoOutlinedIcon,
   ArchiveOutlined as ArchiveOutlinedIcon,
 } from "@material-ui/icons";
-
+import apiCalls from "../sevices/apiCalls.js";
 import "../style/dashBoardNotes.scss";
 
 export default function DashBoardNotes() {
@@ -24,6 +24,64 @@ export default function DashBoardNotes() {
   const [addNotePlaceHolder, setAddNotePlaceHolder] = useState(
     "Take a note..."
   );
+  const [newNoteTitle, setNewNoteTitle] = useState("");
+  const [newNoteDescription, setNewNoteDescription] = useState("");
+  const [allNotes, setAllNotes] = useState([]);
+
+  useEffect(() => {
+    apiCalls
+      .getAllNotes(localStorage.getItem("id"))
+      .then((res) => setAllNotes(res.data.data.data));
+  }, []);
+
+  const note = allNotes.map((note) => {
+    return (
+      <Card className="note">
+        <CardContent>
+          <p>{note.title}</p>
+          <p>{note.description}</p>
+        </CardContent>
+        <CardActions className="note-actions">
+          <IconButton
+            color="inherit"
+            aria-label="reminder"
+            className="note-actions-item"
+          >
+            <AddAlertOutlinedIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            aria-label="reminder"
+            className="note-actions-item"
+          >
+            <PersonOutlineOutlinedIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            aria-label="reminder"
+            className="note-actions-item"
+          >
+            <PaletteOutlinedIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            aria-label="reminder"
+            className="note-actions-item"
+          >
+            <InsertPhotoOutlinedIcon fontSize="small" />
+          </IconButton>
+          <IconButton
+            color="inherit"
+            aria-label="reminder"
+            className="note-actions-item"
+          >
+            <ArchiveOutlinedIcon fontSize="small" />
+          </IconButton>
+          <Button className="close-button">Close</Button>
+        </CardActions>
+      </Card>
+    );
+  });
 
   return (
     <>
@@ -81,32 +139,7 @@ export default function DashBoardNotes() {
           )}
         </Card>
       </div>
-      <div className="all-notes">
-        <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt
-          architecto atque fugit, beatae itaque aliquam temporibus corporis! Eum
-          quod nemo blanditiis. Laudantium saepe veniam et similique officiis
-          earum asperiores minima? Ex libero vitae facilis nobis mollitia quos,
-          distinctio delectus officiis corrupti! Eum deleniti minus quisquam
-          quae. Laudantium ea corporis soluta quibusdam consequatur totam
-          tempora! Dolorem possimus quam saepe et at, nulla id tenetur rerum,
-          aperiam facere, nesciunt quo mollitia soluta. Nihil fugit facilis
-          quisquam quo laboriosam atque omnis, culpa voluptatem numquam officiis
-          sint porro inventore soluta a deserunt aperiam? Eum in accusantium
-          natus distinctio quaerat reprehenderit quasi dolor fugit odio
-          repellendus. Eveniet, unde. Et assumenda deleniti laborum, expedita
-          sit doloremque architecto inventore pariatur rem corporis asperiores
-          enim obcaecati recusandae autem commodi animi ducimus eligendi! Porro
-          earum quae blanditiis repellendus repellat ducimus temporibus hic?
-          Voluptas omnis enim ex cum maxime nulla fugiat exercitationem, et nisi
-          odit, reprehenderit sit ut autem facilis architecto ea? Ipsum, dolorum
-          amet saepe ab, autem reprehenderit labore nesciunt impedit quia non,
-          dolorem animi recusandae aspernatur ipsa eum? Quasi ab aliquam error
-          minus nisi eius, ex hic dicta unde voluptas porro expedita quae
-          adipisci distinctio quas neque minima recusandae maiores fugit vitae
-          quaerat temporibus vel et. Cum, sunt?
-        </p>
-      </div>
+      <div className="all-notes">{note}</div>
     </>
   );
 }
