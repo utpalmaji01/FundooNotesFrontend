@@ -31,15 +31,15 @@ export default function AppHeader({ setListSize }) {
   };
   return (
     <>
-      <AppBar position="fixed">
-        <Toolbar variant="dense">
+      <AppBar position="fixed" className='app-bar'>
+        <Toolbar>
           <IconButton color="inherit" aria-label="menu" onClick={setListSize}>
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit">
             FundooNotes
           </Typography>
-          <div className="first-spacing"></div>
+          <div className="spacing"></div>
           <TextField
             className="search-bar"
             placeholder="Search"
@@ -57,19 +57,9 @@ export default function AppHeader({ setListSize }) {
               ),
             }}
           />
-          <div className="second-spacing"></div>
-          <IconButton color="inherit" aria-label="menu">
-            <ReplayIcon fontSize="small" />
-          </IconButton>
+          <div className="spacing"></div>
           <IconButton color="inherit" aria-label="menu">
             <ViewAgendaIcon fontSize="small" />
-          </IconButton>
-          <IconButton color="inherit" aria-label="menu">
-            <SettingsIcon fontSize="small" />
-          </IconButton>
-          <div className="third-spacing"></div>
-          <IconButton color="inherit" aria-label="menu">
-            <AppsIcon fontSize="small" />
           </IconButton>
           <IconButton color="inherit" aria-label="menu">
             <PersonIcon fontSize="small" />

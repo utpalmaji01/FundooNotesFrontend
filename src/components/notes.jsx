@@ -96,8 +96,7 @@ export default function DashBoardNotes() {
           >
             <ArchiveOutlinedIcon fontSize="small" />
           </IconButton>
-          <Button className="close-button">Close</Button>
-        </CardActions>
+          </CardActions>
       </Card>
     );
   });
