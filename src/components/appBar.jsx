@@ -19,7 +19,7 @@ import {
 } from "@material-ui/icons";
 import "../style/dashBoardHeader.scss";
 
-export default function DashBoardHeader({ setListSize }) {
+export default function AppHeader({ setListSize }) {
   return (
     <>
       <AppBar position="fixed">

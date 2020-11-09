@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import DashBoardHeader from "./dashBoardHeader.jsx";
-import DashBoardSideNavBar from "./dashBoardSideNavBar";
-import Notes from "./dashBoardNotes.jsx";
+import AppBar from "./appBar.jsx";
+import SideNavBar from "./sideNavBar.jsx";
+import Notes from "./notes.jsx";
 
 export default function DashBoard() {
   const [isDrawerMin, setIsDrawerMin] = useState(true);
@@ -19,8 +19,8 @@ export default function DashBoard() {
   };
   return (
     <>
-      <DashBoardHeader setListSize={setListSize} />
-      <DashBoardSideNavBar
+      <AppBar setListSize={setListSize} />
+      <SideNavBar
         expandList={expandList}
         minifyList={minifyList}
         isDrawerMin={isDrawerMin}

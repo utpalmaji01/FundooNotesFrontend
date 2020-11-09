@@ -16,7 +16,7 @@ import {
 import clsx from "clsx";
 import "../style/dashBoardSideNavBar.scss";
 
-export default function DashBoardSideNavBar(props) {
+export default function SideNavBar(props) {
   return (
     <>
       <Drawer variant="permanent">
