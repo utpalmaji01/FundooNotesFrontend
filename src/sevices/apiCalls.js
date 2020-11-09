@@ -60,6 +60,16 @@ class apiCalls {
       resetPasswordObject
     );
   };
+
+  /*
+   * @description service to log out for user
+   * @params {token} data i.e. sent from the backend for authorization
+   */
+  userLogOut = (token) => {
+    return userAccountServices.userServicies(
+      process.env.REACT_APP_LOG_OUT_API_PATH + token
+    );
+  };
 }
 
 export default new apiCalls();

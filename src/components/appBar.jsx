@@ -17,9 +17,18 @@ import {
   Person as PersonIcon,
   ExitToApp as ExitToAppIcon,
 } from "@material-ui/icons";
+import apiCalls from "../sevices/apiCalls.js";
+import history from "../History";
 import "../style/dashBoardHeader.scss";
 
 export default function AppHeader({ setListSize }) {
+  const logout = async () => {
+    let token = localStorage.getItem("id");
+    let responce = await apiCalls.userLogOut(token);
+    if (responce.status === 204) {
+      history.push("/login");
+    }
+  };
   return (
     <>
       <AppBar position="fixed">
@@ -65,7 +74,7 @@ export default function AppHeader({ setListSize }) {
           <IconButton color="inherit" aria-label="menu">
             <PersonIcon fontSize="small" />
           </IconButton>
-          <IconButton color="inherit" aria-label="menu">
+          <IconButton color="inherit" aria-label="menu" onClick={logout}>
             <ExitToAppIcon fontSize="small" />
           </IconButton>
         </Toolbar>
