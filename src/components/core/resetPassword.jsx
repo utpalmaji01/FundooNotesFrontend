@@ -57,19 +57,21 @@ const ResetPassword = () => {
     }
   };
 
-  const resetPassword = async () => {
+  const resetPassword = () => {
     if (!passWordFlag && !confirmPassWordFlag) {
       let token = window.location.pathname.slice(15);
       let resetPasswordObject = {
         newPassword: confirmPassword,
       };
-      let responce = await apiCalls.resetNewPassword(
+      apiCalls.resetNewPassword(
         resetPasswordObject,
         token
-      );
-      if (responce.status === 204) {
-        setsnackbarActive(true);
-      }
+      ).then((responce) => {
+        if (responce.status === 204) {
+          setsnackbarActive(true);
+        }
+      });
+      
     }
   };
 

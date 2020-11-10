@@ -19,12 +19,13 @@ import history from "../History";
 import "../style/appBar.scss";
 
 export default function AppHeader({ setListSize }) {
-  const logout = async () => {
+  const logout = () => {
     let token = localStorage.getItem("id");
-    let responce = await apiCalls.userLogOut(token);
-    if (responce.status === 204) {
-      history.push("/login");
-    }
+    apiCalls.userLogOut(token).then((responce) => {
+      if (responce.status === 204) {
+        history.push("/login");
+      }
+    });
   };
   return (
     <>

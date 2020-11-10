@@ -30,15 +30,16 @@ const ForgetPassword = () => {
     }
   };
 
-  const sensResetLink = async () => {
+  const sensResetLink = () => {
     if (!emailFlag) {
       let resetObject = {
         email: email,
       };
-      let responce = await apiCalls.sendResetLink(resetObject);
-      if (responce.status === 200) {
-        setsnackbarActive(true);
-      }
+      apiCalls.sendResetLink(resetObject).then((responce) => {
+        if (responce.status === 200) {
+          setsnackbarActive(true);
+        }
+      });
     }
   };
 
