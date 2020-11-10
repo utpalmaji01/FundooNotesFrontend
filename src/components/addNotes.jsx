@@ -8,6 +8,7 @@ import {
   InputAdornment,
   InputBase,
   Snackbar,
+  Tooltip,
 } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import {
@@ -24,7 +25,9 @@ import "../style/addNotes.scss";
 export default function DashBoardNotes(props) {
   const [snackbarActive, setSnackbarActive] = useState(false);
   const [snackBarSeverity, setSnackBarSeverity] = useState("success");
-  const [snackBarMesage, setSnackBarMesage] = useState("Note added successfully");
+  const [snackBarMesage, setSnackBarMesage] = useState(
+    "Note added successfully"
+  );
   const [isAddNote, setIsAddNote] = useState(false);
   const [addNotePlaceHolder, setAddNotePlaceHolder] = useState(
     "Take a note..."
@@ -34,31 +37,28 @@ export default function DashBoardNotes(props) {
 
   const addNote = () => {
     let newNoteObj = {
-      "title": newNoteTitle,
-      "description": newNoteDescription,
+      title: newNoteTitle,
+      description: newNoteDescription,
     };
 
-    apiCalls.addNewNote(
-      localStorage.getItem("id"),
-      newNoteObj
-    ).then((responce) => {
-      if (responce.status === 200) {
-        let newNote = {
-          "id": responce.data.status.details.id,
-          "title": responce.data.status.details.title,
-          "description": responce.data.status.details.description,
-        }    
-        let allNote = [...props.allNotes, newNote];
-        props.setAllNotes(allNote);
-        setSnackbarActive(true);
-      } else {
-        setSnackbarActive(true);
-        setSnackBarSeverity("error");
-        setSnackBarMesage("Something went wrong");
-      }
-    });
-    
-    
+    apiCalls
+      .addNewNote(localStorage.getItem("id"), newNoteObj)
+      .then((responce) => {
+        if (responce.status === 200) {
+          let newNote = {
+            id: responce.data.status.details.id,
+            title: responce.data.status.details.title,
+            description: responce.data.status.details.description,
+          };
+          let allNote = [...props.allNotes, newNote];
+          props.setAllNotes(allNote);
+          setSnackbarActive(true);
+        } else {
+          setSnackbarActive(true);
+          setSnackBarSeverity("error");
+          setSnackBarMesage("Something went wrong");
+        }
+      });
   };
 
   const closeSnackbar = (reason) => {
@@ -67,7 +67,7 @@ export default function DashBoardNotes(props) {
     }
     setSnackbarActive(false);
   };
-  
+
   return (
     <>
       <div className="dashBoardNotes-container">
@@ -88,9 +88,11 @@ export default function DashBoardNotes(props) {
               endAdornment={
                 isAddNote && (
                   <InputAdornment position="end">
-                    <IconButton aria-label="Pin Note">
-                      <PinDropOutlinedIcon />
-                    </IconButton>
+                    <Tooltip title="Pin Note">
+                      <IconButton aria-label="Pin Note">
+                        <PinDropOutlinedIcon />
+                      </IconButton>
+                    </Tooltip>
                   </InputAdornment>
                 )
               }
@@ -109,36 +111,43 @@ export default function DashBoardNotes(props) {
           </CardContent>
           {isAddNote && (
             <CardActions>
-              <IconButton color="inherit" aria-label="reminder">
-                <AddAlertOutlinedIcon fontSize="small" />
-              </IconButton>
-              <IconButton color="inherit" aria-label="reminder">
-                <PersonOutlineOutlinedIcon fontSize="small" />
-              </IconButton>
-              <IconButton color="inherit" aria-label="reminder">
-                <PaletteOutlinedIcon fontSize="small" />
-              </IconButton>
-              <IconButton color="inherit" aria-label="reminder">
-                <InsertPhotoOutlinedIcon fontSize="small" />
-              </IconButton>
-              <IconButton color="inherit" aria-label="reminder">
-                <ArchiveOutlinedIcon fontSize="small" />
-              </IconButton>
+              <Tooltip title="Reminder">
+                <IconButton color="inherit" aria-label="reminder">
+                  <AddAlertOutlinedIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Collaborator">
+                <IconButton color="inherit" aria-label="collaborator">
+                  <PersonOutlineOutlinedIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Change Color">
+                <IconButton color="inherit" aria-label="change color">
+                  <PaletteOutlinedIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Add Image">
+                <IconButton color="inherit" aria-label="add image">
+                  <InsertPhotoOutlinedIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Archive">
+                <IconButton color="inherit" aria-label="archive">
+                  <ArchiveOutlinedIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
               <Button className="close-button" onClick={addNote}>
                 Close
               </Button>
               <Snackbar
-                    open={snackbarActive}
-                    autoHideDuration={1000}
-                    onClose={closeSnackbar}
-                  >
-                    <Alert
-                      severity={snackBarSeverity}
-                      onClose={closeSnackbar}
-                    >
-                      {snackBarMesage}
-                    </Alert>
-                  </Snackbar>
+                open={snackbarActive}
+                autoHideDuration={1000}
+                onClose={closeSnackbar}
+              >
+                <Alert severity={snackBarSeverity} onClose={closeSnackbar}>
+                  {snackBarMesage}
+                </Alert>
+              </Snackbar>
             </CardActions>
           )}
         </Card>

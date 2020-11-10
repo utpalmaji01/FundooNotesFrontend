@@ -5,6 +5,7 @@ import {
   CardContent,
   Grid,
   IconButton,
+  Tooltip,
   Typography,
 } from "@material-ui/core";
 import {
@@ -28,41 +29,51 @@ export default function DashBoardNotes({ allNotes }) {
             </Typography>
           </CardContent>
           <CardActions className="note-actions">
-            <IconButton
-              color="inherit"
-              aria-label="reminder"
-              className="note-actions-item"
-            >
-              <AddAlertOutlinedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="reminder"
-              className="note-actions-item"
-            >
-              <PersonOutlineOutlinedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="reminder"
-              className="note-actions-item"
-            >
-              <PaletteOutlinedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="reminder"
-              className="note-actions-item"
-            >
-              <InsertPhotoOutlinedIcon fontSize="small" />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="reminder"
-              className="note-actions-item"
-            >
-              <ArchiveOutlinedIcon fontSize="small" />
-            </IconButton>
+            <Tooltip title="Reminder">
+              <IconButton
+                color="inherit"
+                aria-label="reminder"
+                className="note-actions-item"
+              >
+                <AddAlertOutlinedIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Collaborator">
+              <IconButton
+                color="inherit"
+                aria-label="collaborator"
+                className="note-actions-item"
+              >
+                <PersonOutlineOutlinedIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Change Color">
+              <IconButton
+                color="inherit"
+                aria-label="change color"
+                className="note-actions-item"
+              >
+                <PaletteOutlinedIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Add Image">
+              <IconButton
+                color="inherit"
+                aria-label="add image"
+                className="note-actions-item"
+              >
+                <InsertPhotoOutlinedIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Archive">
+              <IconButton
+                color="inherit"
+                aria-label="archive"
+                className="note-actions-item"
+              >
+                <ArchiveOutlinedIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
           </CardActions>
         </Card>
       </Grid>
