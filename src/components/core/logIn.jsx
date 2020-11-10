@@ -72,12 +72,14 @@ class LogIn extends Component {
         password: this.state.passWord,
       };
       apiCalls.userLogIn(logInObj).then((responce) => {
-        console.log('Responce: '+ responce);
         if (responce.status === 200) {
           this.setState({
             snackbarActive: true,
           });
           localStorage.setItem("id", responce.data.id);
+          localStorage.setItem("firstName", responce.data.firstName);
+          localStorage.setItem("lastName", responce.data.lastName);
+          localStorage.setItem("email", responce.data.email);
           history.push("/dashBoard");
         } else {
           this.setState({

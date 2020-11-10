@@ -102,6 +102,7 @@ export default function DashBoardNotes(props) {
                 fullWidth
                 margin="dense"
                 multiline
+                rowsMax={8}
                 placeholder="Take a note..."
                 onChange={(e) => {
                   setNewNoteDescription(e.target.value);

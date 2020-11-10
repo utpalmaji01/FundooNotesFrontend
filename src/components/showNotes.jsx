@@ -18,16 +18,25 @@ import {
 import "../style/showNotes.scss";
 
 export default function DashBoardNotes({ allNotes }) {
-  const note = allNotes.map((note) => {
+  // const [showNoteActions, setShowNoteActions] = useState(false);
+
+  const note = allNotes.reverse().map((note) => {
     return (
-      <Grid item md={3} sm={5} key={note.id} className="note">
-        <Card className="each-note">
+      <Grid item lg={2} md={3} sm={5} key={note.id}  className="note">
+        <Card
+          // onMouseEnter={() => setShowNoteActions(true)}
+          // onMouseLeave={() => setShowNoteActions(false)}
+          className="each-note"
+        >
           <CardContent>
             <p>{note.title}</p>
             <Typography variant="body2" color="textSecondary" component="p">
               {note.description}
             </Typography>
           </CardContent>
+          {/* {showNoteActions && (
+              
+              )} */}
           <CardActions className="note-actions">
             <Tooltip title="Reminder">
               <IconButton
@@ -82,7 +91,7 @@ export default function DashBoardNotes({ allNotes }) {
 
   return (
     <>
-      <Grid container className="all-notes">
+      <Grid container spacing={2} className="all-notes">
         {note}
       </Grid>
     </>
