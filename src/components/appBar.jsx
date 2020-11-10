@@ -14,6 +14,7 @@ import {
   Person as PersonIcon,
   ExitToApp as ExitToAppIcon,
 } from "@material-ui/icons";
+import notesLogo from "../assets/NotesLogo.png";
 import apiCalls from "../sevices/apiCalls.js";
 import history from "../History";
 import "../style/appBar.scss";
@@ -33,6 +34,9 @@ export default function AppHeader({ setListSize }) {
         <Toolbar>
           <IconButton color="inherit" aria-label="menu" onClick={setListSize}>
             <MenuIcon />
+          </IconButton>
+          <IconButton disabled>
+          <img src={notesLogo} alt="fundoo-logo" className="note-logo" />
           </IconButton>
           <Typography variant="h6" color="inherit">
             FundooNotes
