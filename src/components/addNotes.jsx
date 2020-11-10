@@ -7,7 +7,9 @@ import {
   IconButton,
   InputAdornment,
   InputBase,
+  Snackbar,
 } from "@material-ui/core";
+import Alert from "@material-ui/lab/Alert";
 import {
   PinDropOutlined as PinDropOutlinedIcon,
   AddAlertOutlined as AddAlertOutlinedIcon,
@@ -20,6 +22,9 @@ import apiCalls from "../sevices/apiCalls.js";
 import "../style/addNotes.scss";
 
 export default function DashBoardNotes(props) {
+  const [snackbarActive, setSnackbarActive] = useState(false);
+  const [snackBarSeverity, setSnackBarSeverity] = useState("success");
+  const [snackBarMesage, setSnackBarMesage] = useState("Note added successfully");
   const [isAddNote, setIsAddNote] = useState(false);
   const [addNotePlaceHolder, setAddNotePlaceHolder] = useState(
     "Take a note..."
@@ -27,24 +32,40 @@ export default function DashBoardNotes(props) {
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteDescription, setNewNoteDescription] = useState("");
 
-  const addNote = async () => {
+  const addNote = () => {
     let newNoteObj = {
       "title": newNoteTitle,
       "description": newNoteDescription,
     };
-    let responce = await apiCalls.addNewNote(
+
+    apiCalls.addNewNote(
       localStorage.getItem("id"),
       newNoteObj
-    );
-    let newNote = {
-      "title": responce.data.status.details.title,
-      "description": responce.data.status.details.description,
-      "id": responce.data.status.details.id,
+    ).then((responce) => {
+      if (responce.status === 200) {
+        let newNote = {
+          "id": responce.data.status.details.id,
+          "title": responce.data.status.details.title,
+          "description": responce.data.status.details.description,
+        }    
+        let allNote = [...props.allNotes, newNote];
+        props.setAllNotes(allNote);
+        setSnackbarActive(true);
+      } else {
+        setSnackbarActive(true);
+        setSnackBarSeverity("error");
+        setSnackBarMesage("Something went wrong");
+      }
+    });
+    
+    
+  };
+
+  const closeSnackbar = (reason) => {
+    if (reason === "clickaway") {
+      return;
     }
-    if (responce.status === 200) {
-      let allNote = [...props.allNotes, newNote];
-      props.setAllNotes(allNote);
-    }
+    setSnackbarActive(false);
   };
   
   return (
@@ -103,10 +124,21 @@ export default function DashBoardNotes(props) {
               <IconButton color="inherit" aria-label="reminder">
                 <ArchiveOutlinedIcon fontSize="small" />
               </IconButton>
-
               <Button className="close-button" onClick={addNote}>
                 Close
               </Button>
+              <Snackbar
+                    open={snackbarActive}
+                    autoHideDuration={1000}
+                    onClose={closeSnackbar}
+                  >
+                    <Alert
+                      severity={snackBarSeverity}
+                      onClose={closeSnackbar}
+                    >
+                      {snackBarMesage}
+                    </Alert>
+                  </Snackbar>
             </CardActions>
           )}
         </Card>
