@@ -8,6 +8,7 @@ import apiCalls from "../sevices/apiCalls.js";
 export default function DashBoard() {
   const [isDrawerMin, setIsDrawerMin] = useState(true);
   const [allNotes, setAllNotes] = useState([]);
+  const [selectedMenu, setSelectedMenu] = useState("Notes");
 
   const setListSize = () => {
     setIsDrawerMin(!isDrawerMin);
@@ -33,9 +34,10 @@ export default function DashBoard() {
         expandList={expandList}
         minifyList={minifyList}
         isDrawerMin={isDrawerMin}
+        setSelectedMenu={setSelectedMenu}
       />
       <Notes allNotes={allNotes} setAllNotes={setAllNotes}/>
-      <ShowNotes allNotes={allNotes}/>
+      <ShowNotes allNotes={allNotes} selectedMenu={selectedMenu}/>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Card,
   CardActions,
@@ -16,17 +16,32 @@ import {
   ArchiveOutlined as ArchiveOutlinedIcon,
 } from "@material-ui/icons";
 import "../style/showNotes.scss";
+import EditNote from "./editNote";
 
-export default function DashBoardNotes({ allNotes }) {
+export default function DashBoardNotes(props) {
   // const [showNoteActions, setShowNoteActions] = useState(false);
+  const [isEdit,setIsEdit] = useState(false);
+  const [currentNoteId,setCurrentNoteId] = useState("");
+  const [currentNoteDetails,setCurrentNoteDetails] = useState([]);
+  const editNote = (noteId) => {
+    props.allNotes.map((note) => {
+      if (note.id === noteId) {
+        setIsEdit(true);
+        setCurrentNoteDetails(note);
+        setCurrentNoteId(noteId);
+      }
+    });
+  }
 
-  const note = allNotes.reverse().map((note) => {
+
+  const note = props.allNotes.reverse().map((note) => {
     return (
       <Grid item lg={2} md={3} sm={5} key={note.id}  className="note">
         <Card
           // onMouseEnter={() => setShowNoteActions(true)}
           // onMouseLeave={() => setShowNoteActions(false)}
           className="each-note"
+          onClick={()=> editNote(note.id)}
         >
           <CardContent>
             <p>{note.title}</p>
@@ -94,6 +109,7 @@ export default function DashBoardNotes({ allNotes }) {
       <Grid container spacing={2} className="all-notes">
         {note}
       </Grid>
+      <EditNote currentNoteId={currentNoteId} currentNoteDetails={currentNoteDetails} isEdit={isEdit} setIsEdit={setIsEdit}/>
     </>
   );
 }

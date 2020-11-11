@@ -17,6 +17,9 @@ import clsx from "clsx";
 import "../style/sideNavBar.scss";
 
 export default function SideNavBar(props) {
+  const selectedMenu = (e) => {
+    props.setSelectedMenu(e.target.innerText);
+  }
   return (
     <>
       <Drawer variant="permanent">
@@ -24,7 +27,7 @@ export default function SideNavBar(props) {
           onMouseEnter={() => props.expandList(false)}
           onMouseLeave={() => props.minifyList(true)}
         >
-          <ListItem button className="list-item">
+          <ListItem button onClick={selectedMenu} className="list-item">
             <ListItemIcon>
               <EmojiObjectsIcon />
             </ListItemIcon>
@@ -35,7 +38,7 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button className="list-item">
+          <ListItem button onClick={selectedMenu} className="list-item">
             <ListItemIcon>
               <NotificationsNoneIcon />
             </ListItemIcon>
@@ -46,7 +49,7 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button className="list-item">
+          <ListItem button onClick={selectedMenu} className="list-item">
             <ListItemIcon>
               <CreateIcon />
             </ListItemIcon>
@@ -57,7 +60,7 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button className="list-item">
+          <ListItem button onClick={selectedMenu} className="list-item">
             <ListItemIcon>
               <ArchiveIcon />
             </ListItemIcon>
@@ -68,7 +71,7 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button className="list-item">
+          <ListItem button onClick={selectedMenu} className="list-item">
             <ListItemIcon>
               <DeleteOutlineIcon />
             </ListItemIcon>
