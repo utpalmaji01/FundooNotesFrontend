@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardActions,
@@ -19,11 +19,13 @@ import "../style/showNotes.scss";
 import EditNote from "./editNote";
 
 export default function DashBoardNotes(props) {
-  // const [showNoteActions, setShowNoteActions] = useState(false);
   const [isEdit,setIsEdit] = useState(false);
   const [currentNoteId,setCurrentNoteId] = useState("");
   const [currentNoteDetails,setCurrentNoteDetails] = useState([]);
+  // const [allTypeOfNotes,setAllTypeOfNotes] = useState(props.allNotes);
+  
   const editNote = (noteId) => {
+    // setAllTypeOfNotes(props.allNotes);
     props.allNotes.map((note) => {
       if (note.id === noteId) {
         setIsEdit(true);
@@ -33,25 +35,20 @@ export default function DashBoardNotes(props) {
     });
   }
 
-
   const note = props.allNotes.reverse().map((note) => {
     return (
       <Grid item lg={2} md={3} sm={5} key={note.id}  className="note">
         <Card
-          // onMouseEnter={() => setShowNoteActions(true)}
-          // onMouseLeave={() => setShowNoteActions(false)}
           className="each-note"
           onClick={()=> editNote(note.id)}
         >
           <CardContent>
             <p>{note.title}</p>
             <Typography variant="body2" color="textSecondary" component="p">
-              {note.description}
+              {note.description.slice(0,50)}
+              
             </Typography>
           </CardContent>
-          {/* {showNoteActions && (
-              
-              )} */}
           <CardActions className="note-actions">
             <Tooltip title="Reminder">
               <IconButton

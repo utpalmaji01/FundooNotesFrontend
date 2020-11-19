@@ -53,6 +53,8 @@ export default function DashBoardNotes(props) {
           let allNote = [...props.allNotes, newNote];
           props.setAllNotes(allNote);
           setSnackbarActive(true);
+          setIsAddNote(false);
+          setNewNoteTitle("");
         } else {
           setSnackbarActive(true);
           setSnackBarSeverity("error");

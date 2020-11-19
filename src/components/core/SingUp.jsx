@@ -152,12 +152,11 @@ class SingUp extends Component {
         password: this.state.passWord,
         service: "advance",
       };
-      apiCalls.newUserSignUp(singUpObjet)
-      .then((response) => {
+      apiCalls.newUserSignUp(singUpObjet).then((response) => {
         if (response.status === 200) {
           history.push("/login");
         }
-      })
+      });
     }
   };
 
@@ -175,8 +174,8 @@ class SingUp extends Component {
             <Grid
               container
               item
-              md={9}
-              sm={12}
+              md={7}
+              sm={8}
               spacing={2}
               className="main-module"
             >
@@ -189,7 +188,7 @@ class SingUp extends Component {
                 </Box>
               </Grid>
 
-              <Grid item md={6} sm={12} xs={12} className="input-field">
+              <Grid item md={6} sm={6} xs={12} className="input-field">
                 <TextField
                   fullWidth
                   required={true}
@@ -201,7 +200,7 @@ class SingUp extends Component {
                   onChange={this.checkFirstName}
                 />
               </Grid>
-              <Grid item md={6} sm={12} xs={12} py={4} className="input-field">
+              <Grid item md={6} sm={6} xs={12} py={4} className="input-field">
                 <TextField
                   fullWidth
                   required={true}
@@ -226,7 +225,7 @@ class SingUp extends Component {
                   onChange={this.checkEmail}
                 />
               </Grid>
-              <Grid item md={6} sm={12} xs={12} className="input-field">
+              <Grid item md={5} sm={5} xs={11} className="input-field">
                 <TextField
                   fullWidth
                   required={true}
@@ -239,35 +238,44 @@ class SingUp extends Component {
                   onChange={this.checkPassword}
                 />
               </Grid>
-              <Grid item md={6} sm={12} xs={12} className="input-field">
+              <Grid item md={6} sm={6} xs={11} className="input-field">
                 <TextField
                   fullWidth
                   required={true}
-                  label="Confirm Password"
+                  label="Confirm"
                   helperText={this.state.confirmPasswordHelperText}
                   margin="dense"
                   variant="outlined"
                   type={this.state.showPassword ? "text" : "password"}
                   error={this.state.confirmPassWordFlag}
                   onChange={this.checkConfirmPassword}
-                  InputProps={{
-                    // <-- toggle button is added.
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton
-                          aria-label="toggle password visibility"
-                          onClick={this.handleClickShowPassword}
-                        >
-                          {this.state.showPassword ? (
-                            <Visibility />
-                          ) : (
-                            <VisibilityOff />
-                          )}
-                        </IconButton>
-                      </InputAdornment>
-                    ),
-                  }}
+                  // InputProps={{
+                  //   // <-- toggle button is added.
+                  //   endAdornment: (
+                  //     <InputAdornment position="end">
+                  //       <IconButton
+                  //         aria-label="toggle password visibility"
+                  //         onClick={this.handleClickShowPassword}
+                  //       >
+                  //         {this.state.showPassword ? (
+                  //           <Visibility />
+                  //         ) : (
+                  //           <VisibilityOff />
+                  //         )}
+                  //       </IconButton>
+                  //     </InputAdornment>
+                  //   ),
+                  // }}
                 />
+              </Grid>
+              <Grid item md={1} sm={1} xs={1}>
+                <IconButton
+                className="eye-icon-button"
+                  aria-label="toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                >
+                  {this.state.showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
               </Grid>
               <Grid item md={12} sm={12} xs={12}>
                 <Typography>
@@ -296,7 +304,7 @@ class SingUp extends Component {
                     className="sing-up-button"
                     onClick={this.addPerson}
                   >
-                    Sing Up
+                    Sign Up
                   </Button>
                 </div>
               </Grid>
@@ -305,7 +313,8 @@ class SingUp extends Component {
               container
               alignContent="center"
               item
-              md={3}
+              md={5}
+              sm={4}
               className="secondery-module"
             >
               <Box>

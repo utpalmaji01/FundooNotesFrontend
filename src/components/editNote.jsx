@@ -22,8 +22,10 @@ import {
 import "../style/editNotes.scss";
 
 export default function EditNote(props) {
-    const [title, setTitle] = useState(props.currentNoteDetails.title);
-    const [description, setDescription] = useState(props.currentNoteDetails.description);
+  const [title, setTitle] = useState(props.currentNoteDetails.title);
+  const [description, setDescription] = useState(
+    props.currentNoteDetails.description
+  );
   const closeEdit = () => {
     props.setIsEdit(false);
   };
