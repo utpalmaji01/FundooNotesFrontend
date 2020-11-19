@@ -3,16 +3,21 @@
 .main-container.log-in {
     display: flex;
     margin: 0  auto !important;
-    margin-top: 140px !important;
-    width: 45% !important;
+    margin-top: 100px !important;
+    width: 30% !important;
+    padding: 40px 40px !important;
     height: 100%;
     padding: 15px;
     @media screen and (max-width: $break-small) {
-        width: 80% !important;
+        width: 70% !important;
       }
     @media screen and (max-width: $break-large) {
         margin-top: 100px !important;
     }
+}
+
+.heading.log-in {
+    margin: 0 auto;
 }
 
 .sub-heading {

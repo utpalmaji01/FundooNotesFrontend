@@ -113,7 +113,7 @@ class LogIn extends Component {
         <Card className="main-container log-in">
           <Grid container direction="row" wrap="nowrap" spacing={2}>
             <Grid container item md={12} sm={12} spacing={2}>
-              <Grid item md={12} sm={12}>
+              <Grid item md={12} sm={12} className='heading log-in'>
                 <Header />
                 <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
                   Sing In
