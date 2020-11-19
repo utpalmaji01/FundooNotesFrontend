@@ -58,21 +58,49 @@ const ResetPassword = () => {
     }
   };
 
+  const checkPasswordLength = () => {
+    if (document.getElementsByName("Password")[0].value.length > 0) {
+      return true;
+    } else {
+      setpassWordFlag(true);
+      setpasswordHelperText("Require");
+      return false;
+    }
+  };
+
+  const checkConfirmPasswordLength = () => {
+    if (document.getElementsByName("Password")[1].value.length > 0) {
+      return true;
+    } else {
+      setconfirmPassWordFlag(true);
+      setconfirmPasswordHelperText("Require");
+      return false;
+    }
+  };
+
+  const checkAuthentication = () => {
+    if (checkPasswordLength() && checkConfirmPasswordLength()) {
+      if (!passWordFlag && !confirmPassWordFlag) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
   const resetPassword = () => {
-    if (!passWordFlag && !confirmPassWordFlag) {
+    if (checkAuthentication()) {
       let token = window.location.pathname.slice(15);
       let resetPasswordObject = {
         newPassword: confirmPassword,
       };
-      apiCalls.resetNewPassword(
-        resetPasswordObject,
-        token
-      ).then((responce) => {
+      apiCalls.resetNewPassword(resetPasswordObject, token).then((responce) => {
         if (responce.status === 204) {
           setsnackbarActive(true);
         }
       });
-      
     }
   };
 
@@ -104,6 +132,7 @@ const ResetPassword = () => {
             <Grid item md={12} sm={12} xs={12} className="input-field">
               <TextField
                 fullWidth
+                name="Password"
                 required={true}
                 label="New Password"
                 helperText={passwordHelperText}
@@ -117,6 +146,7 @@ const ResetPassword = () => {
             <Grid item md={12} sm={12} xs={12} className="input-field">
               <TextField
                 fullWidth
+                name="Password"
                 required={true}
                 label="Confirm Password"
                 helperText={confirmPasswordHelperText}
