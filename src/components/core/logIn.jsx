@@ -65,8 +65,45 @@ class LogIn extends Component {
     }
   };
 
+  checkEmailLength = () => {
+    if (document.getElementsByName("Email")[0].value.length > 0) {
+      return true;
+    } else {
+      this.setState({
+        emailHelperText: "Require",
+        emailFlag: true,
+      });
+      return false;
+    }
+  };
+
+  checkPasswordLength = () => {
+    if (document.getElementsByName("Password")[0].value.length > 0) {
+      return true;
+    } else {
+      this.setState({
+        passwordHelperText: "Require",
+        passWordFlag: true,
+      });
+      return false;
+
+    }
+  };
+
+  checkAuthentication = () => {
+    if (this.checkEmailLength() && this.checkPasswordLength()) {
+      if (!this.state.emailFlag && !this.state.passWordFlag) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
   logIn = () => {
-    if (!this.state.emailFlag && !this.state.passWordFlag) {
+    if (this.checkAuthentication()) {
       let logInObj = {
         username: this.state.email,
         password: this.state.passWord,
@@ -113,18 +150,19 @@ class LogIn extends Component {
         <Card className="main-container log-in">
           <Grid container direction="row" wrap="nowrap" spacing={2}>
             <Grid container item md={12} sm={12} spacing={2}>
-              <Grid item md={12} sm={12} className='heading log-in'>
+              <Grid item md={12} sm={12} className="heading log-in">
                 <Header />
                 <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
                   Sing In
                 </Box>
-                <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
+                <Box fontWeight="fontWeightMedium" m={1} className="sub-heading">
                   to continue to FundooNotes
                 </Box>
               </Grid>
               <Grid item md={12} sm={12} xs={12} className="input-field">
                 <TextField
                   fullWidth
+                  name="Email"
                   required={true}
                   label="Email"
                   type="email"
@@ -138,6 +176,7 @@ class LogIn extends Component {
               <Grid item md={12} sm={12} xs={12} className="input-field">
                 <TextField
                   fullWidth
+                  name="Password"
                   required={true}
                   label="Password"
                   helperText={this.state.passwordHelperText}
