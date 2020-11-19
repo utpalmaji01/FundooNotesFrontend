@@ -11,6 +11,7 @@ import Alert from "@material-ui/lab/Alert";
 import Header from "./header.jsx";
 import history from "../../History";
 import apiCalls from "../../sevices/apiCalls.js";
+import "../../style/forgetPassword.scss";
 
 const ForgetPassword = () => {
   const [email, setemail] = useState(" ");
@@ -52,15 +53,15 @@ const ForgetPassword = () => {
 
   return (
     <>
-      <Card className="main-container log-in">
+      <Card className="main-container forget-password">
         <Grid container direction="row" wrap="nowrap" spacing={2}>
           <Grid container item md={12} sm={12} spacing={2}>
             <Grid item md={12} sm={12}>
               <Header />
-              <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
+              <Box fontWeight="fontWeightBold" m={2} className="sub-heading">
                 Forget Your Password
               </Box>
-              <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
+              <Box fontWeight="fontWeightMedium" m={1} className="sub-heading">
                 Enter your email address and we'll send you a link to reaset
                 your password
               </Box>
