@@ -31,8 +31,30 @@ const ForgetPassword = () => {
     }
   };
 
+  const checkEmailLength = () => {
+    if (document.getElementsByName("Email")[0].value.length > 0) {
+      return true;
+    } else {
+      setemailFlag(true);
+      setemailHelperText("Require");
+      return false;
+    }
+  };
+
+  const checkAuthentication = () => {
+    if (checkEmailLength()) {
+      if (!emailFlag) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
   const sensResetLink = () => {
-    if (!emailFlag) {
+    if (checkAuthentication()) {
       let resetObject = {
         email: email,
       };
@@ -69,6 +91,7 @@ const ForgetPassword = () => {
             <Grid item md={12} sm={12} xs={12} className="input-field">
               <TextField
                 fullWidth
+                name='Email'
                 required={true}
                 label="Email"
                 type="email"
