@@ -3,13 +3,10 @@ import Routes from "./Routes";
 import { BrowserRouter as Router } from "react-router-dom";
 
 class App extends Component {
-
   render() {
     return (
       <Router>
-        <div>
-          <Routes />
-        </div>
+        <Routes />
       </Router>
     );
   }

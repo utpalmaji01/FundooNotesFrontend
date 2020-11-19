@@ -14,6 +14,7 @@ import Header from "./header.jsx";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import apiCalls from "../../sevices/apiCalls.js";
+import "../../style/resetPassword.scss";
 
 const ResetPassword = () => {
   const [showPassword, setshowPassword] = useState(false);
@@ -88,7 +89,7 @@ const ResetPassword = () => {
 
   return (
     <>
-      <Card className="main-container log-in">
+      <Card className="main-container reset-password">
         <Grid container direction="row" wrap="nowrap" spacing={2}>
           <Grid container item md={12} sm={12} spacing={2}>
             <Grid item md={12} sm={12}>
@@ -96,7 +97,7 @@ const ResetPassword = () => {
               <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
                 Reset Your Password
               </Box>
-              <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
+              <Box fontWeight="fontWeightMedium" m={1} className="sub-heading">
                 Create a new password for your account
               </Box>
             </Grid>
