@@ -6,7 +6,7 @@
  *
  * @description    : Actions to be done when http methods are called.
  *
- * @file           : userAccountServices.js
+ * @file           : axiosServices.js
  * @overview       : Actions of http methods
  * @module         : service
  * @version        : 1.0
@@ -16,8 +16,21 @@
 
 import axios from "axios";
 
-class userAccountServices {
-  userServicies = (urlPath, object) => {
+class axiosServices {
+  getServices = (urlPath, object) => {
+    return axios
+      .get(urlPath, object)
+      .then((response) => {
+        console.log(response);
+        return response;
+      })
+      .catch((error) => {
+        console.log(error);
+        return error;
+      });
+  };
+
+  postServices = (urlPath, object) => {
     return axios
       .post(urlPath, object)
       .then((response) => {
@@ -29,19 +42,6 @@ class userAccountServices {
         return error;
       });
   };
-
-  getAllNoteList = (urlPath) => {
-    return axios
-      .get(urlPath)
-      .then((response) => {
-        console.log(response);
-        return response;
-      })
-      .catch((error) => {
-        console.log(error);
-        return error;
-      });
-  };
 }
 
-export default new userAccountServices();
+export default new axiosServices();

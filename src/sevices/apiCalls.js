@@ -13,16 +13,18 @@
  *
  * **********************************************************/
 
-import userAccountServices from "./userAccountServices";
-import noteServices from "./noteServices";
+import axiosServices from "./axiosServices";
 
 class apiCalls {
+
+  /********************************* User Services *********************************/
+
   /*
    * @description service to pass request to create new user
    * @params {signUpObject} data i.e. details of the user like name, email, password etc.
    */
   newUserSignUp = (signUpObject) => {
-    return userAccountServices.userServicies(
+    return axiosServices.postServices(
       process.env.REACT_APP_SIGN_UP_API_PATH,
       signUpObject
     );
@@ -33,7 +35,7 @@ class apiCalls {
    * @params {logInObject} data i.e. email and password of the user
    */
   userLogIn = (logInObject) => {
-    return userAccountServices.userServicies(
+    return axiosServices.postServices(
       process.env.REACT_APP_LOG_IN_API_PATH,
       logInObject
     );
@@ -44,7 +46,7 @@ class apiCalls {
    * @params {forgotPasswordObject} data i.e. email of the user
    */
   sendResetLink = (forgotPasswordObject) => {
-    return userAccountServices.userServicies(
+    return axiosServices.postServices(
       process.env.REACT_APP_RESET_API_PATH,
       forgotPasswordObject
     );
@@ -56,7 +58,7 @@ class apiCalls {
    * @params {token} data i.e. sent from the backend for authorization
    */
   resetNewPassword = (resetPasswordObject, token) => {
-    return userAccountServices.userServicies(
+    return axiosServices.postServices(
       process.env.REACT_APP_RESET_NEW_PASSWPRD_API_PATH + token,
       resetPasswordObject
     );
@@ -67,17 +69,20 @@ class apiCalls {
    * @params {token} data i.e. sent from the backend for authorization
    */
   userLogOut = (token) => {
-    return userAccountServices.userServicies(
+    return axiosServices.postServices(
       process.env.REACT_APP_LOG_OUT_API_PATH + token
     );
   };
+
+
+  /********************************* Note Services *********************************/
 
   /*
    * @description service to log out for user
    * @params {token} data i.e. sent from the backend for authorization
    */
   getAllNotes = (token) => {
-    return userAccountServices.getAllNoteList(
+    return axiosServices.getServices(
       process.env.REACT_APP_GET_ALL_NOTES_API_PATH + token
     );
   };
@@ -88,7 +93,7 @@ class apiCalls {
    * @params {noteObject} data i.e. details of note
    */
   addNewNote = (token, noteObject) => {
-    return userAccountServices.userServicies(
+    return axiosServices.postServices(
       process.env.REACT_APP_ADD_NEW_NOTE_API_PATH + token,
       noteObject
     );
@@ -99,7 +104,7 @@ class apiCalls {
    * @params {token} data i.e. sent from the backend for authorization
    */
   getNote = (token,noteId, noteIdObject) => {
-    return noteServices.getNoteDetails(
+    return axiosServices.getServices(
       process.env.REACT_APP_GET_NOTE_API_PATH + noteId + '?access_token=' + token,noteIdObject
     );
   };
