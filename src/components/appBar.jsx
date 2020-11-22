@@ -40,6 +40,7 @@ export default function AppHeader({ setListSize }) {
     let token = localStorage.getItem("id");
     apiCalls.userLogOut(token).then((responce) => {
       if (responce.status === 204) {
+        localStorage.clear();
         history.push("/login");
       }
     });
@@ -82,9 +83,6 @@ export default function AppHeader({ setListSize }) {
           <IconButton aria-label="menu" onClick={showProfile}>
             <PersonIcon fontSize="small" />
           </IconButton>
-          {/* <IconButton aria-label="menu" onClick={logout}>
-            <ExitToAppIcon fontSize="small" />
-          </IconButton> */}
         </Toolbar>
       </AppBar>
       {isProfileClicked && (

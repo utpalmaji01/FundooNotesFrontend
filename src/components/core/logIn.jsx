@@ -151,7 +151,7 @@ class LogIn extends Component {
               <Grid item md={12} sm={12} className="heading log-in">
                 <Header />
                 <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
-                  Sing In
+                  Sign In
                 </Box>
                 <Box
                   fontWeight="fontWeightMedium"
