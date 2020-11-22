@@ -15,6 +15,12 @@
     
 }
 
+.MuiPaper-elevation1 {
+    @media screen and (max-width: $break-small) {
+        box-shadow: none !important;
+      }
+}
+
 .header-singup{
     display: flex;
 }

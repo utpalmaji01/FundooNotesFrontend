@@ -18,8 +18,8 @@ import "../../style/resetPassword.scss";
 
 const ResetPassword = () => {
   const [showPassword, setshowPassword] = useState(false);
-  const [passWord, setpassWord] = useState(" ");
-  const [confirmPassword, setconfirmPassword] = useState(" ");
+  const [passWord, setpassWord] = useState("");
+  const [confirmPassword, setconfirmPassword] = useState("");
   const [passwordHelperText, setpasswordHelperText] = useState(" ");
   const [confirmPasswordHelperText, setconfirmPasswordHelperText] = useState(
     " "
@@ -29,10 +29,11 @@ const ResetPassword = () => {
   const [snackbarActive, setsnackbarActive] = useState(false);
 
   const checkPassword = (e) => {
+    setpassWord(e.target.value);
     const pattern =
       "(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}";
     if (e.target.value.match(pattern)) {
-      setpassWord(e.target.value);
+      
       setpasswordHelperText(" ");
       setpassWordFlag(false);
     } else {
@@ -41,12 +42,13 @@ const ResetPassword = () => {
     }
   };
   const checkConfirmPassword = (e) => {
+    setconfirmPassword(e.target.value);
     const pattern =
       "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}$";
     if (e.target.value.match(pattern)) {
       if (e.target.value === passWord) {
         setconfirmPassWordFlag(false);
-        setconfirmPassword(e.target.value);
+        
         setconfirmPasswordHelperText(" ");
       } else {
         setconfirmPassWordFlag(true);
@@ -58,28 +60,11 @@ const ResetPassword = () => {
     }
   };
 
-  const checkPasswordLength = () => {
-    if (document.getElementsByName("Password")[0].value.length > 0) {
-      return true;
-    } else {
-      setpassWordFlag(true);
-      setpasswordHelperText("Require");
-      return false;
-    }
-  };
-
-  const checkConfirmPasswordLength = () => {
-    if (document.getElementsByName("Password")[1].value.length > 0) {
-      return true;
-    } else {
-      setconfirmPassWordFlag(true);
-      setconfirmPasswordHelperText("Require");
-      return false;
-    }
-  };
-
   const checkAuthentication = () => {
-    if (checkPasswordLength() && checkConfirmPasswordLength()) {
+    let passwordLength = true;
+    let confirmPasswordLength = true;
+    
+    if (passwordLength && confirmPasswordLength) {
       if (!passWordFlag && !confirmPassWordFlag) {
         return true;
       } else {

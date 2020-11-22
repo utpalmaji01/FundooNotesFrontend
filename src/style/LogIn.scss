@@ -4,16 +4,16 @@
     display: flex;
     margin: 0  auto !important;
     margin-top: 100px !important;
-    width: 30% !important;
+    width: 24% !important;
     padding: 40px 40px !important;
     height: 100%;
     padding: 15px;
-    @media screen and (max-width: $break-small) {
-        width: 70% !important;
-      }
     @media screen and (max-width: $break-large) {
         margin-top: 100px !important;
     }
+    @media screen and (max-width: $break-small) {
+        width: 70% !important;
+      }
 }
 
 .heading.log-in {

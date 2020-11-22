@@ -102,7 +102,7 @@ const ForgetPassword = () => {
                 onChange={checkEmail}
               />
             </Grid>
-
+{/* 
             <Grid item>
               <Button
                 color="primary"
@@ -111,16 +111,23 @@ const ForgetPassword = () => {
               >
                 Remember Password
               </Button>
-            </Grid>
+            </Grid> */}
             <Grid item md={12} sm={12} xs={12} className="button-group">
               <div>
+              <Button
+                color="primary"
+                onClick={() => history.push("/login")}
+                className="remember-password-button"
+              >
+                Remember Password
+              </Button>
                 <Button
                   variant="contained"
                   color="primary"
-                  className="login-button"
+                  className="send-reset-link-button"
                   onClick={sensResetLink}
                 >
-                  submit
+                  Submit
                 </Button>
                 <Snackbar
                   open={snackbarActive}
