@@ -33,7 +33,6 @@ const ResetPassword = () => {
     const pattern =
       "(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}";
     if (e.target.value.match(pattern)) {
-      
       setpasswordHelperText(" ");
       setpassWordFlag(false);
     } else {
@@ -48,7 +47,7 @@ const ResetPassword = () => {
     if (e.target.value.match(pattern)) {
       if (e.target.value === passWord) {
         setconfirmPassWordFlag(false);
-        
+
         setconfirmPasswordHelperText(" ");
       } else {
         setconfirmPassWordFlag(true);
@@ -63,7 +62,19 @@ const ResetPassword = () => {
   const checkAuthentication = () => {
     let passwordLength = true;
     let confirmPasswordLength = true;
-    
+
+    if (passWord.length < 1) {
+      passwordLength = false;
+      setpassWordFlag(true);
+      setpasswordHelperText("Require");
+    }
+
+    if (confirmPassword.length < 1) {
+      confirmPasswordLength = false;
+      setconfirmPassWordFlag(true);
+      setconfirmPasswordHelperText("Require");
+    }
+
     if (passwordLength && confirmPasswordLength) {
       if (!passWordFlag && !confirmPassWordFlag) {
         return true;

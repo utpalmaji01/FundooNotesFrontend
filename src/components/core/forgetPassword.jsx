@@ -14,15 +14,15 @@ import apiCalls from "../../sevices/apiCalls.js";
 import "../../style/forgetPassword.scss";
 
 const ForgetPassword = () => {
-  const [email, setemail] = useState(" ");
+  const [email, setemail] = useState("");
   const [emailHelperText, setemailHelperText] = useState(" ");
   const [emailFlag, setemailFlag] = useState(false);
   const [snackbarActive, setsnackbarActive] = useState(false);
 
   const checkEmail = (e) => {
+    setemail(e.target.value);
     const pattern = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     if (e.target.value.match(pattern)) {
-      setemail(e.target.value);
       setemailFlag(false);
       setemailHelperText(" ");
     } else {
@@ -31,18 +31,16 @@ const ForgetPassword = () => {
     }
   };
 
-  const checkEmailLength = () => {
-    if (document.getElementsByName("Email")[0].value.length > 0) {
-      return true;
-    } else {
+  const checkAuthentication = () => {
+    let emailLength = true;
+
+    if (email.length < 1) {
+      emailLength = false;
       setemailFlag(true);
       setemailHelperText("Require");
-      return false;
     }
-  };
 
-  const checkAuthentication = () => {
-    if (checkEmailLength()) {
+    if (emailLength) {
       if (!emailFlag) {
         return true;
       } else {
@@ -91,7 +89,7 @@ const ForgetPassword = () => {
             <Grid item md={12} sm={12} xs={12} className="input-field">
               <TextField
                 fullWidth
-                name='Email'
+                name="Email"
                 required={true}
                 label="Email"
                 type="email"
@@ -102,7 +100,7 @@ const ForgetPassword = () => {
                 onChange={checkEmail}
               />
             </Grid>
-{/* 
+            {/* 
             <Grid item>
               <Button
                 color="primary"
@@ -114,13 +112,13 @@ const ForgetPassword = () => {
             </Grid> */}
             <Grid item md={12} sm={12} xs={12} className="button-group">
               <div>
-              <Button
-                color="primary"
-                onClick={() => history.push("/login")}
-                className="remember-password-button"
-              >
-                Remember Password
-              </Button>
+                <Button
+                  color="primary"
+                  onClick={() => history.push("/login")}
+                  className="remember-password-button"
+                >
+                  Remember Password
+                </Button>
                 <Button
                   variant="contained"
                   color="primary"

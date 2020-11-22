@@ -32,10 +32,12 @@ class LogIn extends Component {
   };
 
   checkEmail = (e) => {
+    this.setState({
+      email: e.target.value,
+    });
     const pattern = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     if (e.target.value.match(pattern)) {
       this.setState({
-        email: e.target.value,
         emailFlag: false,
         emailHelperText: " ",
       });
@@ -48,12 +50,14 @@ class LogIn extends Component {
   };
 
   checkPassword = (e) => {
+    this.setState({
+      passWord: e.target.value,
+    });
     const pattern =
       "(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}";
     if (e.target.value.match(pattern)) {
       this.setState({
         passWordFlag: false,
-        passWord: e.target.value,
         passwordHelperText: " ",
       });
     } else {
@@ -65,33 +69,27 @@ class LogIn extends Component {
     }
   };
 
-  checkEmailLength = () => {
-    if (document.getElementsByName("Email")[0].value.length > 0) {
-      return true;
-    } else {
+  checkAuthentication = () => {
+    let emailLength = true;
+    let passwordLength = true;
+
+    if (this.state.email.length < 1) {
+      emailLength = false;
       this.setState({
         emailHelperText: "Require",
         emailFlag: true,
       });
-      return false;
     }
-  };
 
-  checkPasswordLength = () => {
-    if (document.getElementsByName("Password")[0].value.length > 0) {
-      return true;
-    } else {
+    if (this.state.passWord.length < 1) {
+      passwordLength = false;
       this.setState({
         passwordHelperText: "Require",
         passWordFlag: true,
       });
-      return false;
-
     }
-  };
 
-  checkAuthentication = () => {
-    if (this.checkEmailLength() && this.checkPasswordLength()) {
+    if (emailLength && passwordLength) {
       if (!this.state.emailFlag && !this.state.passWordFlag) {
         return true;
       } else {
@@ -155,7 +153,11 @@ class LogIn extends Component {
                 <Box fontWeight="fontWeightBold" m={1} className="sub-heading">
                   Sing In
                 </Box>
-                <Box fontWeight="fontWeightMedium" m={1} className="sub-heading">
+                <Box
+                  fontWeight="fontWeightMedium"
+                  m={1}
+                  className="sub-heading"
+                >
                   to continue to FundooNotes
                 </Box>
               </Grid>

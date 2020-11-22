@@ -38,13 +38,11 @@ class SingUp extends Component {
   };
 
   checkFirstName = (e) => {
+    this.setState({
+      firstName: e.target.value,
+    });
     const pattern = "^[A-Za-z]{3,}$";
-    if (e.target.value.length <= 0) {
-      this.setState({
-        fiestNameFlag: true,
-        firstNameHelperText: "require",
-      });
-    } else if (e.target.value.match(pattern)) {
+    if (e.target.value.match(pattern)) {
       this.setState({
         fiestNameFlag: false,
         firstName: e.target.value,
@@ -60,16 +58,13 @@ class SingUp extends Component {
   };
 
   checkSecondName = (e) => {
+    this.setState({
+      lastName: e.target.value,
+    });
     const pattern = "^[A-Za-z]{3,}$";
-    if (e.target.value.length <= 0) {
-      this.setState({
-        lastNameFlag: true,
-        lastNameHelperText: "require",
-      });
-    } else if (e.target.value.match(pattern)) {
+    if (e.target.value.match(pattern)) {
       this.setState({
         lastNameFlag: false,
-        lastName: e.target.value,
         lastNameHelperText: " ",
       });
     } else {
@@ -81,10 +76,12 @@ class SingUp extends Component {
     }
   };
   checkEmail = (e) => {
+    this.setState({
+      email: e.target.value,
+    });
     const pattern = "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$";
     if (e.target.value.match(pattern)) {
       this.setState({
-        email: e.target.value,
         emailFlag: false,
         emailHelperText: " ",
       });
@@ -97,11 +94,13 @@ class SingUp extends Component {
   };
 
   checkPassword = (e) => {
+    this.setState({
+      passWord: e.target.value,
+    });
     const pattern =
       "(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}";
     if (e.target.value.match(pattern)) {
       this.setState({
-        passWord: e.target.value,
         passwordHelperText: " ",
         passWordFlag: false,
       });
@@ -114,13 +113,15 @@ class SingUp extends Component {
   };
 
   checkConfirmPassword = (e) => {
+    this.setState({
+      confirmPassword: e.target.value,
+    });
     const pattern =
       "^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[*.!@$%^&(){}:;<>,?/~_+=|]).{8,}$";
     if (e.target.value.match(pattern)) {
       if (e.target.value === this.state.passWord) {
         this.setState({
           confirmPassWordFlag: false,
-          confirmPassword: e.target.value,
           confirmPasswordHelperText: " ",
         });
       } else {
@@ -137,13 +138,78 @@ class SingUp extends Component {
     }
   };
 
-  addPerson = () => {
+  checkAuthentication = () => {
+    let firstNameLength = true;
+    let lastNameLength = true;
+    let emailLength = true;
+    let passwordLength = true;
+    let confirmPasswordLength = true;
+
+    if (this.state.firstName.length < 1) {
+      firstNameLength = false;
+      this.setState({
+        firstNameHelperText: "Require",
+        fiestNameFlag: true,
+      });
+    }
+
+    if (this.state.lastName.length < 1) {
+      lastNameLength = false;
+      this.setState({
+        lastNameHelperText: "Require",
+        lastNameFlag: true,
+      });
+    }
+
+    if (this.state.email.length < 1) {
+      emailLength = false;
+      this.setState({
+        emailHelperText: "Require",
+        emailFlag: true,
+      });
+    }
+
+    if (this.state.passWord.length < 1) {
+      passwordLength = false;
+      this.setState({
+        passwordHelperText: "Require",
+        passWordFlag: true,
+      });
+    }
+
+    if (this.state.passWord.length < 1) {
+      confirmPasswordLength = false;
+      this.setState({
+        confirmPasswordHelperText: "Require",
+        confirmPassWordFlag: true,
+      });
+    }
+
     if (
-      !this.state.fiestNameFlag &&
-      !this.state.lastNameFlag &&
-      !this.state.emailFlag &&
-      !this.state.passWordFlag
+      firstNameLength &&
+      lastNameLength &&
+      emailLength &&
+      passwordLength &&
+      confirmPasswordLength
     ) {
+      if (
+        !this.state.fiestNameFlag &&
+        !this.state.lastNameFlag &&
+        !this.state.emailFlag &&
+        !this.state.passWordFlag &&
+        !this.state.confirmPassWordFlag
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  };
+
+  addPerson = () => {
+    if (this.checkAuthentication()) {
       let singUpObjet = {
         firstName: this.state.firstName,
         lastName: this.state.lastName,
@@ -269,7 +335,7 @@ class SingUp extends Component {
               </Grid>
               <Grid item md={1} sm={1} xs={1}>
                 <IconButton
-                className="eye-icon-button"
+                  className="eye-icon-button"
                   aria-label="toggle password visibility"
                   onClick={this.handleClickShowPassword}
                 >
