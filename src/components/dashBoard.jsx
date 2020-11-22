@@ -36,8 +36,8 @@ export default function DashBoard() {
         isDrawerMin={isDrawerMin}
         setSelectedMenu={setSelectedMenu}
       />
-      <Notes allNotes={allNotes} setAllNotes={setAllNotes}/>
-      <ShowNotes allNotes={allNotes} selectedMenu={selectedMenu}/>
+      <Notes allNotes={allNotes} setAllNotes={setAllNotes} />
+      <ShowNotes allNotes={allNotes} selectedMenu={selectedMenu} />
     </>
   );
 }

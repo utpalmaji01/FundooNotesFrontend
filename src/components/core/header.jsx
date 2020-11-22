@@ -5,7 +5,7 @@ import "../../style/header.scss";
 
 function Header() {
   return (
-    <Box display="flex" flexDirection="row" m={1} className='heading'>
+    <Box display="flex" flexDirection="row" m={1} className="heading">
       <Box fontWeight="fontWeightBold" color="primary.main">
         F
       </Box>

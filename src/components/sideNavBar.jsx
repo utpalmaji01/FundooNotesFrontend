@@ -19,7 +19,7 @@ import "../style/sideNavBar.scss";
 export default function SideNavBar(props) {
   const selectedMenu = (e) => {
     props.setSelectedMenu(e.target.innerText);
-  }
+  };
   return (
     <>
       <Drawer variant="permanent">

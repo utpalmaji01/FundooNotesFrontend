@@ -19,11 +19,11 @@ import "../style/showNotes.scss";
 import EditNote from "./editNote";
 
 export default function DashBoardNotes(props) {
-  const [isEdit,setIsEdit] = useState(false);
-  const [currentNoteId,setCurrentNoteId] = useState("");
-  const [currentNoteDetails,setCurrentNoteDetails] = useState([]);
+  const [isEdit, setIsEdit] = useState(false);
+  const [currentNoteId, setCurrentNoteId] = useState("");
+  const [currentNoteDetails, setCurrentNoteDetails] = useState([]);
   // const [allTypeOfNotes,setAllTypeOfNotes] = useState(props.allNotes);
-  
+
   const editNote = (noteId) => {
     // setAllTypeOfNotes(props.allNotes);
     props.allNotes.map((note) => {
@@ -33,20 +33,16 @@ export default function DashBoardNotes(props) {
         setCurrentNoteId(noteId);
       }
     });
-  }
+  };
 
   const note = props.allNotes.reverse().map((note) => {
     return (
-      <Grid item lg={2} md={3} sm={5} key={note.id}  className="note">
-        <Card
-          className="each-note"
-          onClick={()=> editNote(note.id)}
-        >
+      <Grid item lg={2} md={3} sm={5} key={note.id} className="note">
+        <Card className="each-note" onClick={() => editNote(note.id)}>
           <CardContent>
             <p>{note.title}</p>
             <Typography variant="body2" color="textSecondary" component="p">
-              {note.description.slice(0,50)}
-              
+              {note.description.slice(0, 50)}
             </Typography>
           </CardContent>
           <CardActions className="note-actions">
@@ -106,7 +102,12 @@ export default function DashBoardNotes(props) {
       <Grid container spacing={2} className="all-notes">
         {note}
       </Grid>
-      <EditNote currentNoteId={currentNoteId} currentNoteDetails={currentNoteDetails} isEdit={isEdit} setIsEdit={setIsEdit}/>
+      <EditNote
+        currentNoteId={currentNoteId}
+        currentNoteDetails={currentNoteDetails}
+        isEdit={isEdit}
+        setIsEdit={setIsEdit}
+      />
     </>
   );
 }
