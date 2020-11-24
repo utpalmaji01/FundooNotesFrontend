@@ -40,7 +40,11 @@ export default function AppHeader({ setListSize }) {
     let token = localStorage.getItem("id");
     apiCalls.userLogOut(token).then((responce) => {
       if (responce.status === 204) {
-        localStorage.clear();
+        localStorage.setItem("id", "");
+        localStorage.setItem("firstName", "");
+        localStorage.setItem("lastName", "");
+        localStorage.setItem("email", "");
+        // localStorage.clear();
         history.push("/login");
       }
     });

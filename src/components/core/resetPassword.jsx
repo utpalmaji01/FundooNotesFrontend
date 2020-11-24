@@ -47,7 +47,6 @@ const ResetPassword = () => {
     if (e.target.value.match(pattern)) {
       if (e.target.value === passWord) {
         setconfirmPassWordFlag(false);
-
         setconfirmPasswordHelperText(" ");
       } else {
         setconfirmPassWordFlag(true);

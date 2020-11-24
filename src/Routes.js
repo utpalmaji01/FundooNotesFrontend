@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
 import SingUp from "./components/core/SingUp.jsx";
 import LogIn from "./components/core/logIn.jsx";
 import ForgetPassword from "./components/core/forgetPassword.jsx";
@@ -12,11 +12,22 @@ export default class Routes extends Component {
     return (
       <Router history={history}>
         <Switch>
-          <Route exact path="/" component={SingUp} />
+          <Route exact path="/">
+            <Redirect to="/singUp" component={SingUp} />
+          </Route>
+          <Route exact path="/singUp" component={SingUp} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/forgetPassword" component={ForgetPassword} />
           <Route exact path="/resetpassword/*" component={ResetPassword} />
-          <Route exact path="/dashBoard" component={DashBoard} />
+          {localStorage.getItem("id").length && (
+            <Route exact path="/dashBoard" component={DashBoard} />
+          )}
+          {!localStorage.getItem("id").length && (
+            <Route exact path="/dashBoard">
+              <Redirect to="/login" component={LogIn} />
+            </Route>
+          )}
+          {/* <Route exact path="/dashBoard" component={DashBoard} /> */}
         </Switch>
       </Router>
     );
