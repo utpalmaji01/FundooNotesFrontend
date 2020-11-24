@@ -3,8 +3,8 @@ import AppBar from "./appBar.jsx";
 import SideNavBar from "./sideNavBar.jsx";
 import Notes from "./addNotes.jsx";
 import ShowNotes from "./showNotes.jsx";
-import apiCalls from "../sevices/apiCalls.js";
-import history from "../History";
+import noteServices from "../sevices/noteServices.js";
+// import history from "../History";
 
 export default function DashBoard() {
   const [isDrawerMin, setIsDrawerMin] = useState(true);
@@ -25,7 +25,7 @@ export default function DashBoard() {
 
   useEffect(() => {
     if (localStorage.getItem("id").length > 1) {
-      apiCalls
+      noteServices
         .getAllNotes(localStorage.getItem("id"))
         .then((res) => setAllNotes(res.data.data.data));
     }

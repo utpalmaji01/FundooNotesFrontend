@@ -19,7 +19,7 @@ import {
   Person as PersonIcon,
 } from "@material-ui/icons";
 import notesLogo from "../assets/NotesLogo.png";
-import apiCalls from "../sevices/apiCalls.js";
+import userServices from "../sevices/userServices.js";
 import history from "../History";
 import "../style/appBar.scss";
 
@@ -38,7 +38,7 @@ export default function AppHeader({ setListSize }) {
 
   const logout = () => {
     let token = localStorage.getItem("id");
-    apiCalls.userLogOut(token).then((responce) => {
+    userServices.userLogOut(token).then((responce) => {
       if (responce.status === 204) {
         localStorage.setItem("id", "");
         localStorage.setItem("firstName", "");

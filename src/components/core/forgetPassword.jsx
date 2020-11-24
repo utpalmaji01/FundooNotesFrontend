@@ -10,7 +10,7 @@ import {
 import Alert from "@material-ui/lab/Alert";
 import Header from "./header.jsx";
 import history from "../../History";
-import apiCalls from "../../sevices/apiCalls.js";
+import userServices from "../../sevices/userServices.js";
 import "../../style/forgetPassword.scss";
 
 const ForgetPassword = () => {
@@ -56,7 +56,7 @@ const ForgetPassword = () => {
       let resetObject = {
         email: email,
       };
-      apiCalls.sendResetLink(resetObject).then((responce) => {
+      userServices.sendResetLink(resetObject).then((responce) => {
         if (responce.status === 200) {
           setsnackbarActive(true);
         }

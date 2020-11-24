@@ -13,7 +13,7 @@ import Alert from "@material-ui/lab/Alert";
 import Header from "./header.jsx";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
-import apiCalls from "../../sevices/apiCalls.js";
+import userServices from "../../sevices/userServices.js";
 import "../../style/resetPassword.scss";
 
 const ResetPassword = () => {
@@ -91,7 +91,7 @@ const ResetPassword = () => {
       let resetPasswordObject = {
         newPassword: confirmPassword,
       };
-      apiCalls.resetNewPassword(resetPasswordObject, token).then((responce) => {
+      userServices.resetNewPassword(resetPasswordObject, token).then((responce) => {
         if (responce.status === 204) {
           setsnackbarActive(true);
         }

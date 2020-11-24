@@ -27,7 +27,7 @@ export default class Routes extends Component {
               <Redirect to="/login" component={LogIn} />
             </Route>
           )}
-          {/* <Route exact path="/dashBoard" component={DashBoard} /> */}
+          <Route exact path="/dashBoard" component={DashBoard} />
         </Switch>
       </Router>
     );

@@ -14,8 +14,7 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import Header from "./header.jsx";
 import "../../style/SingUp.scss";
 import history from "../../History";
-
-import apiCalls from "../../sevices/apiCalls.js";
+import userServices from "../../sevices/userServices.js";
 
 class SingUp extends Component {
   state = {
@@ -217,7 +216,7 @@ class SingUp extends Component {
         password: this.state.passWord,
         service: "advance",
       };
-      apiCalls.newUserSignUp(singUpObjet).then((response) => {
+      userServices.newUserSignUp(singUpObjet).then((response) => {
         if (response.status === 200) {
           history.push("/login");
         }

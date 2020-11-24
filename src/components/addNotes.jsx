@@ -19,7 +19,7 @@ import {
   InsertPhotoOutlined as InsertPhotoOutlinedIcon,
   ArchiveOutlined as ArchiveOutlinedIcon,
 } from "@material-ui/icons";
-import apiCalls from "../sevices/apiCalls.js";
+import noteServices from "../sevices/noteServices.js";
 import "../style/addNotes.scss";
 
 export default function DashBoardNotes(props) {
@@ -41,7 +41,7 @@ export default function DashBoardNotes(props) {
       description: newNoteDescription,
     };
 
-    apiCalls
+    noteServices
       .addNewNote(localStorage.getItem("id"), newNoteObj)
       .then((responce) => {
         if (responce.status === 200) {

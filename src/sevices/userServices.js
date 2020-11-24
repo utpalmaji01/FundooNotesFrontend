@@ -5,7 +5,7 @@
  * @description    : Actions to be done when http methods are called.
  *
  *
- * @file           : apiCalls.js
+ * @file           : userServices.js
  * @overview       : Actions of http methods
  * @module         : service
  * @version        : 1.0
@@ -15,7 +15,7 @@
 
 import axiosServices from "./axiosServices";
 
-class apiCalls {
+class userServices {
 
   /********************************* User Services *********************************/
 
@@ -73,41 +73,6 @@ class apiCalls {
       process.env.REACT_APP_LOG_OUT_API_PATH + token
     );
   };
-
-
-  /********************************* Note Services *********************************/
-
-  /*
-   * @description service to log out for user
-   * @params {token} data i.e. sent from the backend for authorization
-   */
-  getAllNotes = (token) => {
-    return axiosServices.getServices(
-      process.env.REACT_APP_GET_ALL_NOTES_API_PATH + token
-    );
-  };
-
-  /*
-   * @description service to log out for user
-   * @params {token} data i.e. sent from the backend for authorization
-   * @params {noteObject} data i.e. details of note
-   */
-  addNewNote = (token, noteObject) => {
-    return axiosServices.postServices(
-      process.env.REACT_APP_ADD_NEW_NOTE_API_PATH + token,
-      noteObject
-    );
-  };
-
-  /*
-   * @description service to log out for user
-   * @params {token} data i.e. sent from the backend for authorization
-   */
-  getNote = (token,noteId, noteIdObject) => {
-    return axiosServices.getServices(
-      process.env.REACT_APP_GET_NOTE_API_PATH + noteId + '?access_token=' + token,noteIdObject
-    );
-  };
 }
 
-export default new apiCalls();
+export default new userServices();

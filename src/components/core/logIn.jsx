@@ -15,7 +15,7 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import history from "../../History";
 import "../../style//LogIn.scss";
-import apiCalls from "../../sevices/apiCalls.js";
+import userServices from "../../sevices/userServices.js";
 
 class LogIn extends Component {
   state = {
@@ -106,7 +106,7 @@ class LogIn extends Component {
         username: this.state.email,
         password: this.state.passWord,
       };
-      apiCalls.userLogIn(logInObj).then((responce) => {
+      userServices.userLogIn(logInObj).then((responce) => {
         if (responce.status === 200) {
           this.setState({
             snackbarActive: true,
