@@ -116,13 +116,14 @@ class LogIn extends Component {
           localStorage.setItem("lastName", responce.data.lastName);
           localStorage.setItem("email", responce.data.email);
           history.push("/dashBoard");
-        } else {
-          this.setState({
-            snackbarActive: true,
-            snackBarMesage: "LogIn un-successfull",
-            snackBarSeverity: "error",
-          });
         }
+      }).catch((error) => {
+        this.setState({
+          snackbarActive: true,
+          snackBarMesage: "LogIn un-successfull",
+          snackBarSeverity: "error",
+        });
+        console.log(error);
       });
     }
   };

@@ -27,6 +27,10 @@ const ResetPassword = () => {
   const [passWordFlag, setpassWordFlag] = useState(false);
   const [confirmPassWordFlag, setconfirmPassWordFlag] = useState(false);
   const [snackbarActive, setsnackbarActive] = useState(false);
+  const [snackBarSeverity, setSnackBarSeverity] = useState("success");
+  const [snackBarMesage, setsnackBarMesage] = useState(
+    "Reset link sent successfully"
+  );
 
   const checkPassword = (e) => {
     setpassWord(e.target.value);
@@ -91,11 +95,19 @@ const ResetPassword = () => {
       let resetPasswordObject = {
         newPassword: confirmPassword,
       };
-      userServices.resetNewPassword(resetPasswordObject, token).then((responce) => {
-        if (responce.status === 204) {
+      userServices
+        .resetNewPassword(resetPasswordObject, token)
+        .then((responce) => {
+          if (responce.status === 204) {
+            setsnackbarActive(true);
+          }
+        })
+        .catch((error) => {
           setsnackbarActive(true);
-        }
-      });
+          setSnackBarSeverity("error");
+          setsnackBarMesage("Some error occoured");
+          console.log(error);
+        });
     }
   };
 
@@ -181,8 +193,8 @@ const ResetPassword = () => {
                   autoHideDuration={1000}
                   onClose={closeSnackbar}
                 >
-                  <Alert onClose={closeSnackbar}>
-                    Reset link sent successfully
+                  <Alert onClose={closeSnackbar} severity={snackBarSeverity}>
+                    {snackBarMesage}
                   </Alert>
                 </Snackbar>
               </div>

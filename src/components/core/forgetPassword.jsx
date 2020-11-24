@@ -18,6 +18,8 @@ const ForgetPassword = () => {
   const [emailHelperText, setemailHelperText] = useState(" ");
   const [emailFlag, setemailFlag] = useState(false);
   const [snackbarActive, setsnackbarActive] = useState(false);
+  const [snackBarSeverity, setSnackBarSeverity] = useState("success");
+  const [snackBarMesage, setsnackBarMesage] = useState("Reset link sent successfully");
 
   const checkEmail = (e) => {
     setemail(e.target.value);
@@ -60,6 +62,11 @@ const ForgetPassword = () => {
         if (responce.status === 200) {
           setsnackbarActive(true);
         }
+      }).catch((error) => {
+        setsnackbarActive(true);
+        setSnackBarSeverity("error");
+        setsnackBarMesage("Some error occoured");
+        console.log(error);
       });
     }
   };
@@ -100,16 +107,6 @@ const ForgetPassword = () => {
                 onChange={checkEmail}
               />
             </Grid>
-            {/* 
-            <Grid item>
-              <Button
-                color="primary"
-                onClick={() => history.push("/login")}
-                className="button-text"
-              >
-                Remember Password
-              </Button>
-            </Grid> */}
             <Grid item md={12} sm={12} xs={12} className="button-group">
               <div>
                 <Button
@@ -132,8 +129,8 @@ const ForgetPassword = () => {
                   autoHideDuration={1000}
                   onClose={closeSnackbar}
                 >
-                  <Alert onClose={closeSnackbar}>
-                    Reset link sent successfully
+                  <Alert onClose={closeSnackbar} severity={snackBarSeverity}>
+                  {snackBarMesage}
                   </Alert>
                 </Snackbar>
               </div>

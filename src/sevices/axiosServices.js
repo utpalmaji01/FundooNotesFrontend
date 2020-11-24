@@ -19,28 +19,12 @@ import axios from "axios";
 class axiosServices {
   getServices = (urlPath, object) => {
     return axios
-      .get(urlPath, object)
-      .then((response) => {
-        console.log(response);
-        return response;
-      })
-      .catch((error) => {
-        console.log(error);
-        return error;
-      });
+      .get(urlPath, object);
   };
 
   postServices = (urlPath, object) => {
     return axios
-      .post(urlPath, object)
-      .then((response) => {
-        console.log(response);
-        return response;
-      })
-      .catch((error) => {
-        console.log(error);
-        return error;
-      });
+      .post(urlPath, object);
   };
 }
 

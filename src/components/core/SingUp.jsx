@@ -216,11 +216,16 @@ class SingUp extends Component {
         password: this.state.passWord,
         service: "advance",
       };
-      userServices.newUserSignUp(singUpObjet).then((response) => {
-        if (response.status === 200) {
-          history.push("/login");
-        }
-      });
+      userServices
+        .newUserSignUp(singUpObjet)
+        .then((response) => {
+          if (response.status === 200) {
+            history.push("/login");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 
