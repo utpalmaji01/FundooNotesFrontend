@@ -4,10 +4,14 @@ import SingUp from "./components/core/SingUp.jsx";
 import LogIn from "./components/core/logIn.jsx";
 import ForgetPassword from "./components/core/forgetPassword.jsx";
 import ResetPassword from "./components/core/resetPassword.jsx";
+import PrivateRoute from "./components/privateRoute.jsx";
 import DashBoard from "./components/dashBoard.jsx";
 import history from "./History";
 
 export default class Routes extends Component {
+  state = {
+    dashBoardShowCondition: localStorage.getItem("id").length,
+  };
   render() {
     return (
       <Router history={history}>
@@ -19,15 +23,13 @@ export default class Routes extends Component {
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/forgetPassword" component={ForgetPassword} />
           <Route exact path="/resetpassword/*" component={ResetPassword} />
-          {localStorage.getItem("id").length && (
-            <Route exact path="/dashBoard" component={DashBoard} />
-          )}
-          {!localStorage.getItem("id").length && (
-            <Route exact path="/dashBoard">
-              <Redirect to="/login" component={LogIn} />
-            </Route>
-          )}
-          <Route exact path="/dashBoard" component={DashBoard} />
+          <PrivateRoute
+            condition={this.state.dashBoardShowCondition}
+            path="/dashBoard"
+            redirectPath="/login"
+            component={DashBoard}
+            exact
+          />
         </Switch>
       </Router>
     );

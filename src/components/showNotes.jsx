@@ -50,7 +50,7 @@ export default function DashBoardNotes(props) {
               <IconButton
                 color="inherit"
                 aria-label="reminder"
-                className="note-actions-item"
+                className="note-actions-item-shownote"
               >
                 <AddAlertOutlinedIcon fontSize="small" />
               </IconButton>
@@ -59,7 +59,7 @@ export default function DashBoardNotes(props) {
               <IconButton
                 color="inherit"
                 aria-label="collaborator"
-                className="note-actions-item"
+                className="note-actions-item-shownote"
               >
                 <PersonOutlineOutlinedIcon fontSize="small" />
               </IconButton>
@@ -68,7 +68,7 @@ export default function DashBoardNotes(props) {
               <IconButton
                 color="inherit"
                 aria-label="change color"
-                className="note-actions-item"
+                className="note-actions-item-shownote"
               >
                 <PaletteOutlinedIcon fontSize="small" />
               </IconButton>
@@ -77,7 +77,7 @@ export default function DashBoardNotes(props) {
               <IconButton
                 color="inherit"
                 aria-label="add image"
-                className="note-actions-item"
+                className="note-actions-item-shownote"
               >
                 <InsertPhotoOutlinedIcon fontSize="small" />
               </IconButton>
@@ -86,7 +86,7 @@ export default function DashBoardNotes(props) {
               <IconButton
                 color="inherit"
                 aria-label="archive"
-                className="note-actions-item"
+                className="note-actions-item-shownote"
               >
                 <ArchiveOutlinedIcon fontSize="small" />
               </IconButton>

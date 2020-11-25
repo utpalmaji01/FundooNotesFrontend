@@ -115,27 +115,31 @@ export default function DashBoardNotes(props) {
           {isAddNote && (
             <CardActions>
               <Tooltip title="Reminder">
-                <IconButton color="inherit" aria-label="reminder">
+                <IconButton
+                  color="inherit"
+                  aria-label="reminder"
+                  className="note-actions-item-addnote"
+                >
                   <AddAlertOutlinedIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Collaborator">
-                <IconButton color="inherit" aria-label="collaborator">
+                <IconButton color="inherit" aria-label="collaborator" className="note-actions-item-addnote">
                   <PersonOutlineOutlinedIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Change Color">
-                <IconButton color="inherit" aria-label="change color">
+                <IconButton color="inherit" aria-label="change color" className="note-actions-item-addnote">
                   <PaletteOutlinedIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Add Image">
-                <IconButton color="inherit" aria-label="add image">
+                <IconButton color="inherit" aria-label="add image" className="note-actions-item-addnote">
                   <InsertPhotoOutlinedIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Archive">
-                <IconButton color="inherit" aria-label="archive">
+                <IconButton color="inherit" aria-label="archive" className="note-actions-item-addnote">
                   <ArchiveOutlinedIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
