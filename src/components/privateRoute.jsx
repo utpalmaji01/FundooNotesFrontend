@@ -8,3 +8,4 @@ export default function PrivateRoute(props) {
     <Redirect to={props.redirectPath} />
   );
 }
+

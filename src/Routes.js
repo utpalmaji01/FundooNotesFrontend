@@ -9,9 +9,7 @@ import DashBoard from "./components/dashBoard.jsx";
 import history from "./History";
 
 export default class Routes extends Component {
-  state = {
-    dashBoardShowCondition: localStorage.getItem("id").length,
-  };
+  
   render() {
     return (
       <Router history={history}>
@@ -24,11 +22,11 @@ export default class Routes extends Component {
           <Route exact path="/forgetPassword" component={ForgetPassword} />
           <Route exact path="/resetpassword/*" component={ResetPassword} />
           <PrivateRoute
-            condition={this.state.dashBoardShowCondition}
             path="/dashBoard"
             redirectPath="/login"
             component={DashBoard}
             exact
+            condition={localStorage.getItem("id").length}
           />
         </Switch>
       </Router>

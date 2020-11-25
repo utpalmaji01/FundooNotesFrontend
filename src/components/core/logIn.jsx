@@ -111,10 +111,10 @@ class LogIn extends Component {
           this.setState({
             snackbarActive: true,
           });
-          localStorage.setItem("id", responce.data.id);
           localStorage.setItem("firstName", responce.data.firstName);
           localStorage.setItem("lastName", responce.data.lastName);
           localStorage.setItem("email", responce.data.email);
+          localStorage.setItem("id", responce.data.id);
           history.push("/dashBoard");
         }
       }).catch((error) => {

@@ -14,6 +14,7 @@ import Header from "./header.jsx";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import userServices from "../../sevices/userServices.js";
+import history from "../../History";
 import "../../style/resetPassword.scss";
 
 const ResetPassword = () => {
@@ -100,6 +101,7 @@ const ResetPassword = () => {
         .then((responce) => {
           if (responce.status === 204) {
             setsnackbarActive(true);
+            history.push("/login");
           }
         })
         .catch((error) => {

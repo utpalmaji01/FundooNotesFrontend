@@ -1,47 +1,63 @@
-import React, { useState, useEffect } from "react";
+import React, { PureComponent } from "react";
 import AppBar from "./appBar.jsx";
 import SideNavBar from "./sideNavBar.jsx";
-import Notes from "./addNotes.jsx";
+import AddNotes from "./addNotes.jsx";
 import ShowNotes from "./showNotes.jsx";
 import noteServices from "../sevices/noteServices.js";
-// import history from "../History";
 
-export default function DashBoard() {
-  const [isDrawerMin, setIsDrawerMin] = useState(true);
-  const [allNotes, setAllNotes] = useState([]);
-  const [selectedMenu, setSelectedMenu] = useState("Notes");
-
-  const setListSize = () => {
-    setIsDrawerMin(!isDrawerMin);
+class DashBoard extends PureComponent {
+  state = {
+    isDrawerMin: true,
+    allNotes: [],
+    selectedMenu: "Notes",
   };
 
-  const expandList = (value) => {
-    setIsDrawerMin(value);
+  setListSize = () => {
+    this.setState({
+      isDrawerMin: !this.state.isDrawerMin,
+    });
   };
 
-  const minifyList = (value) => {
-    setIsDrawerMin(value);
+  expandList = (value) => {
+    this.setState({
+      isDrawerMin: value,
+    });
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("id").length > 1) {
-      noteServices
-        .getAllNotes(localStorage.getItem("id"))
-        .then((res) => setAllNotes(res.data.data.data));
-    }
-  }, []);
+  minifyList = (value) => {
+    this.setState({
+      isDrawerMin: value,
+    });
+  };
 
-  return (
-    <>
-      <AppBar setListSize={setListSize} />
-      <SideNavBar
-        expandList={expandList}
-        minifyList={minifyList}
-        isDrawerMin={isDrawerMin}
-        setSelectedMenu={setSelectedMenu}
-      />
-      <Notes allNotes={allNotes} setAllNotes={setAllNotes} />
-      <ShowNotes allNotes={allNotes} selectedMenu={selectedMenu} />
-    </>
-  );
+  componentDidMount() {
+    noteServices
+      .getAllNotes(localStorage.getItem("id"))
+      .then((responce) => {
+        this.setState({
+          allNotes: responce.data.data.data,
+        });
+      })
+      .catch((error) => {
+        console.log("some error occour");
+      });
+  }
+
+  render() {
+    return (
+        <>
+          <AppBar setListSize={this.setListSize} />
+          <SideNavBar
+            expandList={this.expandList}
+            minifyList={this.minifyList}
+            isDrawerMin={this.state.isDrawerMin}
+            setSelectedMenu={this.setSelectedMenu}
+          />
+          <AddNotes allNotes={this.state.allNotes} setAllNotes={this.setAllNotes} />
+          <ShowNotes allNotes={this.state.allNotes} selectedMenu={this.state.selectedMenu} />
+        </>
+      );
+  }
 }
+
+export default DashBoard;
