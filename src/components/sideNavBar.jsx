@@ -22,11 +22,14 @@ export default function SideNavBar(props) {
   };
   return (
     <>
-      <Drawer variant="permanent">
-        <List
-          onMouseEnter={() => props.expandList(false)}
-          onMouseLeave={() => props.minifyList(true)}
-        >
+      <Drawer
+        variant="permanent"
+        className={clsx("sideNav", {
+          "sideNav-inactive": props.isDrawerMin,
+          "sideNav-active": !props.isDrawerMin,
+        })}
+      >
+        <List className="sideNav-list">
           <ListItem button onClick={selectedMenu} className="list-item">
             <ListItemIcon>
               <EmojiObjectsIcon />

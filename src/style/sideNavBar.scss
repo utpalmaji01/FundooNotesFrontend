@@ -1,13 +1,35 @@
 .MuiDrawer-paperAnchorDockedLeft {
-  margin-top: 65px;
+  margin-top: 51px;
+  padding-top: 5px;
 }
 
+.MuiDrawer-paperAnchorDockedLeft {
+  border-right: none !important;
+}
+
+
+.sideNav:hover .MuiDrawer-paperAnchorDockedLeft {
+  border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.sideNav-active .MuiDrawer-paperAnchorDockedLeft {
+  border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
+}
+
+.sideNav:hover .list-min {
+  display: block;
+}
+
+.sideNav-list{
+  padding-top: 0 !important;
+}
 .MuiListItemIcon-root {
   min-width: 30px !important;
 }
 
 .list-item {
   height: 50px !important;
+  padding: 0 24px !important;
   border-radius: 0 50px 50px 0 !important;
   &:hover {
     background-color: rgb(234, 188, 127) !important;
@@ -15,8 +37,9 @@
 }
 
 .listItemText {
+  transition: display 2s;
   margin-left: 10px;
-  margin-right: 55px;
+  width: 150px !important;
 }
 
 .list-min {

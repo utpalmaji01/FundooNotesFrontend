@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import {
+  AppBar,
   Button,
   Card,
   CardActions,
@@ -8,6 +9,7 @@ import {
   Divider,
   InputAdornment,
   TextField,
+  Toolbar,
   Typography,
 } from "@material-ui/core";
 import {
@@ -49,18 +51,19 @@ export default function AppHeader({ setListSize }) {
   };
   return (
     <>
-      <div className="appBar-container">
-        <IconButton aria-label="menu" onClick={setListSize}>
-          <MenuIcon />
-        </IconButton>
-        <IconButton disabled className="note-logo-image">
-          <img src={notesLogo} alt="fundoo-logo" className="note-logo" />
-        </IconButton>
-        <Typography variant="h6" color="textPrimary" className="app-name">
-          FundooNotes
-        </Typography>
-        <div className="spacing"></div>
-        <TextField
+      <AppBar position="fixed" className="app-bar">
+        <Toolbar className="tool-bar">
+          <IconButton aria-label="menu" onClick={setListSize}>
+            <MenuIcon />
+          </IconButton>
+          <IconButton disabled>
+            <img src={notesLogo} alt="fundoo-logo" className="note-logo" />
+          </IconButton>
+          <Typography variant="h6" color="textPrimary">
+            FundooNotes
+          </Typography>
+          <div className="spacing"></div>
+          <TextField
             className="search-bar"
             placeholder="Search"
             margin="dense"
@@ -69,7 +72,7 @@ export default function AppHeader({ setListSize }) {
             InputProps={{
               // <-- toggle button is added.
               startAdornment: (
-                <InputAdornment position="start" className="search-icon">
+                <InputAdornment position="start">
                   <IconButton aria-label="search">
                     <SearchIcon />
                   </IconButton>
@@ -84,7 +87,8 @@ export default function AppHeader({ setListSize }) {
           <IconButton aria-label="menu" onClick={showProfile}>
             <PersonIcon fontSize="small" />
           </IconButton>
-      </div>
+        </Toolbar>
+      </AppBar>
       {isProfileClicked && (
         <Card className="profile">
           <CardContent>
