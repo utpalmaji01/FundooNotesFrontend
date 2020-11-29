@@ -59,7 +59,7 @@ export default function AppHeader({ setListSize }) {
         <Typography variant="h6" color="textPrimary" className="app-name">
           FundooNotes
         </Typography>
-        <div className="spacing"></div>
+        <div className="spacing-left"></div>
         <TextField
             className="search-bar"
             placeholder="Search"
@@ -77,7 +77,7 @@ export default function AppHeader({ setListSize }) {
               ),
             }}
           />
-          <div className="spacing"></div>
+          <div className="spacing-right"></div>
           <IconButton aria-label="menu">
             <ViewAgendaIcon fontSize="small" />
           </IconButton>

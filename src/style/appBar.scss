@@ -11,7 +11,7 @@
 }
 
 .note-logo-image {
-  padding: 12px 5px 12px 0 !important;
+  padding: 12px 10px 12px 0 !important;
 }
 
 .note-logo {
@@ -29,13 +29,6 @@
   margin-top: 4px !important;
   width: 38%;
   background: rgba(253, 253, 253, 0.11);
-  
-  // @media screen and (max-width: $break-medium) {
-  //   margin: 0 10% !important;
-  // }
-  // @media screen and (max-width: $break-small) {
-  //   margin: 0 5% !important;
-  // }
   @media screen and (max-width: $break-xsmall) {
     display: none !important;
   }
@@ -47,16 +40,28 @@
   }
 }
 
-.spacing {
-    width: 23%;
+.spacing-left {
+    width: 8%;
     @media screen and (max-width: $break-medium) {
-      width: 5% !important;
+      width: 6% !important;
     }
     @media screen and (max-width: $break-small) {
-      width: 2% !important;
+      width: 3% !important;
     }
     @media screen and (max-width: $break-xsmall) {
-      width: 3% !important;
+      width: 9% !important;
+    }
+  }
+.spacing-right {
+    width: 32%;
+    @media screen and (max-width: $break-medium) {
+      width: 17% !important;
+    }
+    @media screen and (max-width: $break-small) {
+      width: 7% !important;
+    }
+    @media screen and (max-width: $break-xsmall) {
+      width: 9% !important;
     }
   }
   

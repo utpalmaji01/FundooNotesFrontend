@@ -5,6 +5,7 @@ import {
   PaletteOutlined as PaletteOutlinedIcon,
   InsertPhotoOutlined as InsertPhotoOutlinedIcon,
   ArchiveOutlined as ArchiveOutlinedIcon,
+  MoreVert as MoreVertIcon,
 } from "@material-ui/icons";
 import "../style/cardAction.scss";
 import { IconButton, Tooltip } from "@material-ui/core";
@@ -55,6 +56,15 @@ export default function CardAction(props) {
           className={props.class}
         >
           <ArchiveOutlinedIcon fontSize="small" />
+        </IconButton>
+      </Tooltip>
+      <Tooltip title="More">
+        <IconButton
+          color="inherit"
+          aria-label="more"
+          className={props.class}
+        >
+          <MoreVertIcon fontSize="small" />
         </IconButton>
       </Tooltip>
     </>

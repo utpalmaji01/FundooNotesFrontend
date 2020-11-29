@@ -19,6 +19,7 @@ import {
   InsertPhotoOutlined as InsertPhotoOutlinedIcon,
   ArchiveOutlined as ArchiveOutlinedIcon,
 } from "@material-ui/icons";
+import CardAction from "./cardAction.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/addNotes.scss";
 
@@ -52,14 +53,15 @@ export default function DashBoardNotes(props) {
           };
           let allNote = [...props.allNotes, newNote];
           props.setAllNotes(allNote);
-          setSnackbarActive(true);
+          setSnackbarActive(true); 
           setIsAddNote(false);
           setNewNoteTitle("");
-        } else {
+        }
+      }).catch((error) => {
+        setIsAddNote(false);
           setSnackbarActive(true);
           setSnackBarSeverity("error");
           setSnackBarMesage("Something went wrong");
-        }
       });
   };
 
@@ -87,17 +89,17 @@ export default function DashBoardNotes(props) {
               onChange={(e) => {
                 setNewNoteTitle(e.target.value);
               }}
-              endAdornment={
-                isAddNote && (
-                  <InputAdornment position="end">
-                    <Tooltip title="Pin Note">
-                      <IconButton aria-label="Pin Note">
-                        <PinDropOutlinedIcon />
-                      </IconButton>
-                    </Tooltip>
-                  </InputAdornment>
-                )
-              }
+              // endAdornment={
+              //   isAddNote && (
+              //     <InputAdornment position="end">
+              //       <Tooltip title="Pin Note">
+              //         <IconButton aria-label="Pin Note">
+              //           <PinDropOutlinedIcon />
+              //         </IconButton>
+              //       </Tooltip>
+              //     </InputAdornment>
+              //   )
+              // }
             />
             {isAddNote && (
               <InputBase
@@ -114,35 +116,7 @@ export default function DashBoardNotes(props) {
           </CardContent>
           {isAddNote && (
             <CardActions>
-              <Tooltip title="Reminder">
-                <IconButton
-                  color="inherit"
-                  aria-label="reminder"
-                  className="note-actions-item-addnote"
-                >
-                  <AddAlertOutlinedIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Collaborator">
-                <IconButton color="inherit" aria-label="collaborator" className="note-actions-item-addnote">
-                  <PersonOutlineOutlinedIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Change Color">
-                <IconButton color="inherit" aria-label="change color" className="note-actions-item-addnote">
-                  <PaletteOutlinedIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Add Image">
-                <IconButton color="inherit" aria-label="add image" className="note-actions-item-addnote">
-                  <InsertPhotoOutlinedIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Archive">
-                <IconButton color="inherit" aria-label="archive" className="note-actions-item-addnote">
-                  <ArchiveOutlinedIcon fontSize="small" />
-                </IconButton>
-              </Tooltip>
+              <CardAction class="note-actions-item-addnote"/>
               <Button className="close-button" onClick={addNote}>
                 Close
               </Button>
