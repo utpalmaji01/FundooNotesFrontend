@@ -1,18 +1,29 @@
-.all-notes {
-  padding-top: 3%;
-  padding-left: 10%;
-  padding-right: 5%;
-  justify-content: center;
-}
-
-.note {
-  margin: 10px !important;
+.display-notes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-self: center;
 }
 
 .each-note {
-  width: inherit;
-  margin: 0 auto;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid rgb(192, 192, 192);
+  border-radius: 5px;
+  width: 202px;
+  min-height: 100px;
 }
-.note-actions-item-shownote {
-  padding: 5px !important;
+
+.note-body {
+  padding: 8px;
+}
+
+.note-titel {
+  height: 20px;
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+
+.note-description{
+  min-height: 32px;
+  padding: 5px 0;
 }

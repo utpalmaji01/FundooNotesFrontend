@@ -16,19 +16,19 @@
     }
   }
 .note-actions-item-shownote {
-    padding: 5px !important;
-    @media screen and (max-width: $break-large) {
-      padding: 5px !important;
-    }
-    @media screen and (max-width: $break-medium) {
-      padding: 5px !important;
-    }
-    @media screen and (max-width: $break-small) {
-      padding: 5px !important;
-    }
-    @media screen and (max-width: $break-xsmall) {
-      padding: 5px !important;
-    }
+    padding: 5px 8px !important;
+    // @media screen and (max-width: $break-large) {
+    //   padding: 5px !important;
+    // }
+    // @media screen and (max-width: $break-medium) {
+    //   padding: 5px !important;
+    // }
+    // @media screen and (max-width: $break-small) {
+    //   padding: 5px !important;
+    // }
+    // @media screen and (max-width: $break-xsmall) {
+    //   padding: 5px !important;
+    // }
   }
   
   .action-icon {

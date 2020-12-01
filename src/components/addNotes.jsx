@@ -33,6 +33,7 @@ export default function DashBoardNotes(props) {
     noteServices
       .addNewNote(localStorage.getItem("id"), newNoteObj)
       .then((responce) => {
+        console.log(responce);
         if (responce.status === 200) {
           let newNote = {
             id: responce.data.status.details.id,
@@ -46,6 +47,7 @@ export default function DashBoardNotes(props) {
           setNewNoteTitle("");
         }
       }).catch((error) => {
+        console.log(error);
         setIsAddNote(false);
           setSnackbarActive(true);
           setSnackBarSeverity("error");
