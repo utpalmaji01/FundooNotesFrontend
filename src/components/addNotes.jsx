@@ -1,24 +1,12 @@
 import React, { useState } from "react";
 import {
   Button,
-  Card,
   CardActions,
-  CardContent,
-  IconButton,
-  InputAdornment,
   InputBase,
   Snackbar,
-  Tooltip,
 } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import {
-  PinDropOutlined as PinDropOutlinedIcon,
-  AddAlertOutlined as AddAlertOutlinedIcon,
-  PersonOutlineOutlined as PersonOutlineOutlinedIcon,
-  PaletteOutlined as PaletteOutlinedIcon,
-  InsertPhotoOutlined as InsertPhotoOutlinedIcon,
-  ArchiveOutlined as ArchiveOutlinedIcon,
-} from "@material-ui/icons";
+
 import CardAction from "./cardAction.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/addNotes.scss";
@@ -75,13 +63,13 @@ export default function DashBoardNotes(props) {
   return (
     <>
       <div className="dashBoardNotes-container">
-        <Card className="add-note-from">
-          <CardContent>
+        <div className="add-note-from">
+          <div className="add-note-input">
             <InputBase
               fullWidth
               margin="dense"
               placeholder={addNotePlaceHolder}
-              style={{ fontSize: 20 }}
+              // style={{ fontSize: 20 }}
               onClick={() => {
                 setIsAddNote(true);
                 setAddNotePlaceHolder("Title");
@@ -89,6 +77,7 @@ export default function DashBoardNotes(props) {
               onChange={(e) => {
                 setNewNoteTitle(e.target.value);
               }}
+              className="add-note-title"
               // endAdornment={
               //   isAddNote && (
               //     <InputAdornment position="end">
@@ -113,7 +102,7 @@ export default function DashBoardNotes(props) {
                 }}
               />
             )}
-          </CardContent>
+          </div>
           {isAddNote && (
             <CardActions>
               <CardAction class="note-actions-item-addnote"/>
@@ -131,7 +120,7 @@ export default function DashBoardNotes(props) {
               </Snackbar>
             </CardActions>
           )}
-        </Card>
+        </div>
       </div>
     </>
   );

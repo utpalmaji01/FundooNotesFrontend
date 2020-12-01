@@ -14,7 +14,6 @@ import {
   Menu as MenuIcon,
   ViewAgenda as ViewAgendaIcon,
   Search as SearchIcon,
-  Person as PersonIcon,
 } from "@material-ui/icons";
 import notesLogo from "../assets/NotesLogo.png";
 import userServices from "../sevices/userServices.js";
@@ -38,6 +37,7 @@ export default function AppHeader({ setListSize }) {
     let token = localStorage.getItem("id");
     userServices.userLogOut(token).then((responce) => {
       if (responce.status === 204) {
+        console.log(responce);
         localStorage.setItem("id", "");
         localStorage.setItem("firstName", "");
         localStorage.setItem("lastName", "");
@@ -67,10 +67,9 @@ export default function AppHeader({ setListSize }) {
             variant="outlined"
             type="text"
             InputProps={{
-              // <-- toggle button is added.
               startAdornment: (
                 <InputAdornment position="start" className="search-icon">
-                  <IconButton aria-label="search">
+                  <IconButton disabled aria-label="search">
                     <SearchIcon />
                   </IconButton>
                 </InputAdornment>
@@ -81,8 +80,9 @@ export default function AppHeader({ setListSize }) {
           <IconButton aria-label="menu">
             <ViewAgendaIcon fontSize="small" />
           </IconButton>
-          <IconButton aria-label="menu" onClick={showProfile}>
-            <PersonIcon fontSize="small" />
+          <IconButton aria-label="menu" onClick={showProfile} className="profile-button">
+          <samp className="profile-icon">{localStorage.getItem("firstName").slice(0,1)}</samp>
+            {/* <PersonIcon fontSize="small" /> */}
           </IconButton>
       </div>
       {isProfileClicked && (

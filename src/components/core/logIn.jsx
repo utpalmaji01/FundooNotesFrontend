@@ -106,25 +106,30 @@ class LogIn extends Component {
         username: this.state.email,
         password: this.state.passWord,
       };
-      userServices.userLogIn(logInObj).then((responce) => {
-        if (responce.status === 200) {
+      userServices
+        .userLogIn(logInObj)
+        .then((responce) => {
+          console.log(responce);
+          if (responce.status === 200) {
+            this.setState({
+              snackbarActive: true,
+            });
+            localStorage.setItem("firstName", responce.data.firstName);
+            localStorage.setItem("lastName", responce.data.lastName);
+            localStorage.setItem("email", responce.data.email);
+            localStorage.setItem("id", responce.data.id);
+            history.push("/dashBoard");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
           this.setState({
             snackbarActive: true,
+            snackBarMesage: "LogIn un-successfull",
+            snackBarSeverity: "error",
           });
-          localStorage.setItem("firstName", responce.data.firstName);
-          localStorage.setItem("lastName", responce.data.lastName);
-          localStorage.setItem("email", responce.data.email);
-          localStorage.setItem("id", responce.data.id);
-          history.push("/dashBoard");
-        }
-      }).catch((error) => {
-        this.setState({
-          snackbarActive: true,
-          snackBarMesage: "LogIn un-successfull",
-          snackBarSeverity: "error",
+          console.log(error);
         });
-        console.log(error);
-      });
     }
   };
 

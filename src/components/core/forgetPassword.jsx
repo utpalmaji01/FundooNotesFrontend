@@ -19,7 +19,9 @@ const ForgetPassword = () => {
   const [emailFlag, setemailFlag] = useState(false);
   const [snackbarActive, setsnackbarActive] = useState(false);
   const [snackBarSeverity, setSnackBarSeverity] = useState("success");
-  const [snackBarMesage, setsnackBarMesage] = useState("Reset link sent successfully");
+  const [snackBarMesage, setsnackBarMesage] = useState(
+    "Reset link sent successfully"
+  );
 
   const checkEmail = (e) => {
     setemail(e.target.value);
@@ -58,16 +60,21 @@ const ForgetPassword = () => {
       let resetObject = {
         email: email,
       };
-      userServices.sendResetLink(resetObject).then((responce) => {
-        if (responce.status === 200) {
+      userServices
+        .sendResetLink(resetObject)
+        .then((responce) => {
+          console.log(responce);
+          if (responce.status === 200) {
+            setsnackbarActive(true);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
           setsnackbarActive(true);
-        }
-      }).catch((error) => {
-        setsnackbarActive(true);
-        setSnackBarSeverity("error");
-        setsnackBarMesage("Some error occoured");
-        console.log(error);
-      });
+          setSnackBarSeverity("error");
+          setsnackBarMesage("Some error occoured");
+          console.log(error);
+        });
     }
   };
 
@@ -130,7 +137,7 @@ const ForgetPassword = () => {
                   onClose={closeSnackbar}
                 >
                   <Alert onClose={closeSnackbar} severity={snackBarSeverity}>
-                  {snackBarMesage}
+                    {snackBarMesage}
                   </Alert>
                 </Snackbar>
               </div>

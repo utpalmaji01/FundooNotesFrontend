@@ -99,12 +99,14 @@ const ResetPassword = () => {
       userServices
         .resetNewPassword(resetPasswordObject, token)
         .then((responce) => {
+          console.log(responce);
           if (responce.status === 204) {
             setsnackbarActive(true);
             history.push("/login");
           }
         })
         .catch((error) => {
+          console.log(error);
           setsnackbarActive(true);
           setSnackBarSeverity("error");
           setsnackBarMesage("Some error occoured");

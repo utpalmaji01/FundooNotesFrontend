@@ -17,14 +17,24 @@
 import axios from "axios";
 
 class axiosServices {
-  getServices = (urlPath, object) => {
+  getServices = (urlPath, token) => {
+    console.log("reach get service");
     return axios
-      .get(urlPath, object);
+      .get(urlPath, {
+        headers: {
+          'Authorization' : token
+        }
+      });
   };
 
-  postServices = (urlPath, object) => {
+  postServices = (urlPath, object, token) => {
+    console.log("reach post service");
     return axios
-      .post(urlPath, object);
+      .post(urlPath, object, {
+        headers: {
+          'Authorization' : token,
+        }
+      });
   };
 }
 

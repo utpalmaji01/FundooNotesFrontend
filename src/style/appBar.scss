@@ -3,11 +3,10 @@
 .appBar-container {
   width: 97%;
   height: 50px;
-  
+
   padding: 0 14px;
   display: flex;
   flex-direction: row;
-  
 }
 
 .note-logo-image {
@@ -25,10 +24,10 @@
 }
 
 .search-bar {
+  background-color: rgba(0, 0, 0, 0.02);
   align-self: center;
   margin-top: 4px !important;
   width: 38%;
-  background: rgba(253, 253, 253, 0.11);
   @media screen and (max-width: $break-xsmall) {
     display: none !important;
   }
@@ -41,30 +40,40 @@
 }
 
 .spacing-left {
-    width: 8%;
-    @media screen and (max-width: $break-medium) {
-      width: 6% !important;
-    }
-    @media screen and (max-width: $break-small) {
-      width: 3% !important;
-    }
-    @media screen and (max-width: $break-xsmall) {
-      width: 9% !important;
-    }
+  width: 8%;
+  @media screen and (max-width: $break-medium) {
+    width: 6% !important;
   }
+  @media screen and (max-width: $break-small) {
+    width: 3% !important;
+  }
+  @media screen and (max-width: $break-xsmall) {
+    width: 18% !important;
+  }
+}
 .spacing-right {
-    width: 32%;
-    @media screen and (max-width: $break-medium) {
-      width: 17% !important;
-    }
-    @media screen and (max-width: $break-small) {
-      width: 7% !important;
-    }
-    @media screen and (max-width: $break-xsmall) {
-      width: 9% !important;
-    }
+  width: 32%;
+  @media screen and (max-width: $break-medium) {
+    width: 17% !important;
   }
-  
+  @media screen and (max-width: $break-small) {
+    width: 7% !important;
+  }
+  @media screen and (max-width: $break-xsmall) {
+    width: 18% !important;
+  }
+}
+
+.profile-button {
+  background-color: rgb(114, 71, 216) !important;
+  margin: 5px 0 !important;
+}
+
+.profile-icon {
+  text-transform: capitalize;
+  color: white;
+}
+
 .profile {
   position: absolute;
   z-index: 1100;

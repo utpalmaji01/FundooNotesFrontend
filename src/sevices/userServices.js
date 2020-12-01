@@ -16,7 +16,6 @@
 import axiosServices from "./axiosServices";
 
 class userServices {
-
   /********************************* User Services *********************************/
 
   /*
@@ -59,8 +58,9 @@ class userServices {
    */
   resetNewPassword = (resetPasswordObject, token) => {
     return axiosServices.postServices(
-      process.env.REACT_APP_RESET_NEW_PASSWPRD_API_PATH + token,
-      resetPasswordObject
+      process.env.REACT_APP_RESET_NEW_PASSWPRD_API_PATH,
+      resetPasswordObject,
+      token
     );
   };
 
@@ -70,7 +70,9 @@ class userServices {
    */
   userLogOut = (token) => {
     return axiosServices.postServices(
-      process.env.REACT_APP_LOG_OUT_API_PATH + token
+      process.env.REACT_APP_LOG_OUT_API_PATH,
+      null,
+      token
     );
   };
 }

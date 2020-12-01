@@ -19,7 +19,7 @@ export default function CardAction(props) {
           aria-label="reminder"
           className={props.class}
         >
-          <AddAlertOutlinedIcon fontSize="small" />
+          <AddAlertOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
       <Tooltip title="Collaborator">
@@ -28,7 +28,7 @@ export default function CardAction(props) {
           aria-label="collaborator"
           className={props.class}
         >
-          <PersonOutlineOutlinedIcon fontSize="small" />
+          <PersonOutlineOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
       <Tooltip title="Change Color">
@@ -37,7 +37,7 @@ export default function CardAction(props) {
           aria-label="change color"
           className={props.class}
         >
-          <PaletteOutlinedIcon fontSize="small" />
+          <PaletteOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
       <Tooltip title="Add Image">
@@ -46,7 +46,7 @@ export default function CardAction(props) {
           aria-label="add image"
           className={props.class}
         >
-          <InsertPhotoOutlinedIcon fontSize="small" />
+          <InsertPhotoOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
       <Tooltip title="Archive">
@@ -55,19 +55,14 @@ export default function CardAction(props) {
           aria-label="archive"
           className={props.class}
         >
-          <ArchiveOutlinedIcon fontSize="small" />
+          <ArchiveOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
       <Tooltip title="More">
-        <IconButton
-          color="inherit"
-          aria-label="more"
-          className={props.class}
-        >
-          <MoreVertIcon fontSize="small" />
+        <IconButton color="inherit" aria-label="more" className={props.class}>
+          <MoreVertIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
     </>
   );
 }
-

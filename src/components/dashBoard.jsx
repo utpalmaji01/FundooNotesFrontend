@@ -3,7 +3,7 @@ import clsx from "clsx";
 import AppBar from "./appBar.jsx";
 import SideNavBar from "./sideNavBar.jsx";
 import AddNotes from "./addNotes.jsx";
-import ShowNotes from "./showNotes.jsx";
+// import ShowNotes from "./showNotes.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/dashBoard.scss";
 
@@ -30,11 +30,14 @@ class DashBoard extends PureComponent {
     noteServices
       .getAllNotes(localStorage.getItem("id"))
       .then((responce) => {
+        console.log(responce);
         this.setState({
           allNotes: responce.data.data.data,
         });
+        console.log(this.state.allNotes);
       })
       .catch((error) => {
+        console.log(error);
         console.log("some error occour");
       });
   }

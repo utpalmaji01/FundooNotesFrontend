@@ -1,4 +1,37 @@
+@import "./master";
+
+.note-actions-item-addnote {
+    // padding: 5px !important;
+    @media screen and (max-width: $break-large) {
+      padding: 9px !important;
+    }
+    @media screen and (max-width: $break-medium) {
+      padding: 5px !important;
+    }
+    @media screen and (max-width: $break-small) {
+      padding: 5px !important;
+    }
+    @media screen and (max-width: $break-xsmall) {
+      padding: 5px !important;
+    }
+  }
 .note-actions-item-shownote {
     padding: 5px !important;
+    @media screen and (max-width: $break-large) {
+      padding: 5px !important;
+    }
+    @media screen and (max-width: $break-medium) {
+      padding: 5px !important;
+    }
+    @media screen and (max-width: $break-small) {
+      padding: 5px !important;
+    }
+    @media screen and (max-width: $break-xsmall) {
+      padding: 5px !important;
+    }
   }
   
+  .action-icon {
+    font-size: 1.1rem !important;
+    color: rgba(0, 0, 0, 0.85) !important;
+  }

@@ -16,7 +16,6 @@
 import axiosServices from "./axiosServices";
 
 class noteServices {
-
   /********************************* Note Services *********************************/
 
   /*
@@ -25,7 +24,8 @@ class noteServices {
    */
   getAllNotes = (token) => {
     return axiosServices.getServices(
-      process.env.REACT_APP_GET_ALL_NOTES_API_PATH + token
+      process.env.REACT_APP_GET_ALL_NOTES_API_PATH,
+      token
     );
   };
 
@@ -36,8 +36,9 @@ class noteServices {
    */
   addNewNote = (token, noteObject) => {
     return axiosServices.postServices(
-      process.env.REACT_APP_ADD_NEW_NOTE_API_PATH + token,
-      noteObject
+      process.env.REACT_APP_ADD_NEW_NOTE_API_PATH,
+      noteObject,
+      token
     );
   };
 
@@ -45,9 +46,11 @@ class noteServices {
    * @description service to log out for user
    * @params {token} data i.e. sent from the backend for authorization
    */
-  getNote = (token,noteId, noteIdObject) => {
+  getNote = (token, noteId, noteIdObject) => {
     return axiosServices.getServices(
-      process.env.REACT_APP_GET_NOTE_API_PATH + noteId + '?access_token=' + token,noteIdObject
+      process.env.REACT_APP_GET_NOTE_API_PATH + noteId + "?",
+      noteIdObject,
+      token
     );
   };
 }
