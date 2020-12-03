@@ -28,7 +28,11 @@
   align-self: center;
   margin-top: 4px !important;
   width: 38%;
+  @media screen and (max-width: $break-small) {
+    width: 28%;
+  }
   @media screen and (max-width: $break-xsmall) {
+    // width: 25%;
     display: none !important;
   }
 }
@@ -48,23 +52,34 @@
     width: 3% !important;
   }
   @media screen and (max-width: $break-xsmall) {
-    width: 18% !important;
+    width: 5% !important;
+    // display: none;
   }
 }
-.spacing-right {
-  width: 32%;
-  @media screen and (max-width: $break-medium) {
-    width: 17% !important;
-  }
-  @media screen and (max-width: $break-small) {
-    width: 7% !important;
-  }
-  @media screen and (max-width: $break-xsmall) {
-    width: 18% !important;
-  }
+// .spacing-right {
+//   width: 32%;
+//   @media screen and (max-width: $break-medium) {
+//     width: 17% !important;
+//   }
+//   @media screen and (max-width: $break-small) {
+//     width: 7% !important;
+//   }
+//   @media screen and (max-width: $break-xsmall) {
+//     width: 11% !important;
+//   }
+// }
+
+.toggle-view-mode {
+  position: absolute !important;
+  height: 40px;
+  right: 60px;
+  top: 5px;
 }
 
 .profile-button {
+  position: absolute !important;
+  height: 40px;
+  right: 20px;
   background-color: rgb(114, 71, 216) !important;
   margin: 5px 0 !important;
 }
@@ -77,10 +92,8 @@
 .profile {
   position: absolute;
   z-index: 1100;
-  left: 80%;
   right: 1%;
   top: 65px;
-  // background-color: rgba(196, 195, 195, 0.18) !important;
 }
 
 .logout-button {

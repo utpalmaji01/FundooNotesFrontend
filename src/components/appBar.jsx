@@ -76,8 +76,8 @@ export default function AppHeader({ setListSize }) {
               ),
             }}
           />
-          <div className="spacing-right"></div>
-          <IconButton aria-label="menu">
+          {/* <div className="spacing-right" /> */}
+          <IconButton aria-label="menu" className="toggle-view-mode">
             <ViewAgendaIcon fontSize="small" />
           </IconButton>
           <IconButton aria-label="menu" onClick={showProfile} className="profile-button">

@@ -26,6 +26,12 @@ class DashBoard extends PureComponent {
     });
   };
 
+  addNote = (noteObject) => {
+    this.setState({
+      allNotes: [...this.state.allNotes, noteObject],
+    });
+  }
+
   componentDidMount() {
     noteServices
       .getAllNotes(localStorage.getItem("id"))
@@ -69,7 +75,7 @@ class DashBoard extends PureComponent {
               <div className="addAnyNotes">
                 <AddNotes
                   allNotes={this.state.allNotes}
-                  setAllNotes={this.setAllNotes}
+                  addNote={this.addNote}
                 />
               </div>
               <div className="showNotes">

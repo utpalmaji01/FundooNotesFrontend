@@ -1,37 +1,88 @@
 @import "./master";
 
 .note-actions-item-addnote {
-    // padding: 5px !important;
-    @media screen and (max-width: $break-large) {
-      padding: 9px !important;
-    }
-    @media screen and (max-width: $break-medium) {
-      padding: 5px !important;
-    }
-    @media screen and (max-width: $break-small) {
-      padding: 5px !important;
-    }
-    @media screen and (max-width: $break-xsmall) {
-      padding: 5px !important;
-    }
+  // padding: 5px !important;
+  @media screen and (max-width: $break-large) {
+    padding: 9px !important;
   }
+  @media screen and (max-width: $break-medium) {
+    padding: 5px !important;
+  }
+  @media screen and (max-width: $break-small) {
+    padding: 5px !important;
+  }
+  @media screen and (max-width: $break-xsmall) {
+    padding: 5px !important;
+  }
+}
 .note-actions-item-shownote {
-    padding: 5px 8px !important;
-    // @media screen and (max-width: $break-large) {
-    //   padding: 5px !important;
-    // }
-    // @media screen and (max-width: $break-medium) {
-    //   padding: 5px !important;
-    // }
-    // @media screen and (max-width: $break-small) {
-    //   padding: 5px !important;
-    // }
-    // @media screen and (max-width: $break-xsmall) {
-    //   padding: 5px !important;
-    // }
-  }
-  
-  .action-icon {
-    font-size: 1.1rem !important;
-    color: rgba(0, 0, 0, 0.85) !important;
-  }
+  padding: 5px 8px !important;
+  // @media screen and (max-width: $break-large) {
+  //   padding: 5px !important;
+  // }
+  // @media screen and (max-width: $break-medium) {
+  //   padding: 5px !important;
+  // }
+  // @media screen and (max-width: $break-small) {
+  //   padding: 5px !important;
+  // }
+  // @media screen and (max-width: $break-xsmall) {
+  //   padding: 5px !important;
+  // }
+}
+
+.action-icon {
+  font-size: 1.1rem !important;
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.color-palette {
+  background: white;
+  border: 1px solid rgb(194, 194, 194);
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  visibility: hidden;
+  position: absolute;
+  height: 70px;
+  width: 90px;
+  z-index: 1;
+}
+
+.color-set-tooltip:hover ~ .color-palette {
+  visibility: visible;
+}
+
+.color-set-tooltip:focus ~ .color-palette {
+  visibility: visible;
+}
+
+.color {
+  border-radius: 50% !important;
+  margin: 5px !important;
+  padding: 5px !important;
+  width: 20px;
+  height: 20px;
+}
+.color-white {
+  border: 1px solid rgb(202, 202, 202) !important;
+}
+
+.color-green {
+  background-color: lightgreen !important;
+}
+
+.color-yellow {
+  background-color: yellow !important;
+}
+
+.color-red {
+  background-color: red !important;
+}
+.color-cyan {
+  background-color: cyan !important;
+}
+
+.color-pink {
+  background-color: pink !important;
+}

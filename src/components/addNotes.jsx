@@ -40,11 +40,11 @@ export default function DashBoardNotes(props) {
             title: responce.data.status.details.title,
             description: responce.data.status.details.description,
           };
-          let allNote = [...props.allNotes, newNote];
-          props.setAllNotes(allNote);
+          // props.allNotes = [...props.allNotes, newNote];
+          props.addNote(newNote);
           setSnackbarActive(true); 
           setIsAddNote(false);
-          setNewNoteTitle("");
+          // setNewNoteTitle("");
         }
       }).catch((error) => {
         console.log(error);
@@ -70,6 +70,8 @@ export default function DashBoardNotes(props) {
             <InputBase
               fullWidth
               margin="dense"
+              multiline
+                rowsMax={2}
               placeholder={addNotePlaceHolder}
               // style={{ fontSize: 20 }}
               onClick={() => {
@@ -102,6 +104,7 @@ export default function DashBoardNotes(props) {
                 onChange={(e) => {
                   setNewNoteDescription(e.target.value);
                 }}
+                className="add-note-description"
               />
             )}
           </div>

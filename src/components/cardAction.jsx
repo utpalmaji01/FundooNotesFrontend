@@ -31,15 +31,36 @@ export default function CardAction(props) {
           <PersonOutlineOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Change Color">
+      <Tooltip title="Change Color" className="color-set-tooltip">
         <IconButton
           color="inherit"
           aria-label="change color"
           className={props.class}
+          // className={`color-set ${props.class}`}
         >
           <PaletteOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
+      <div className="color-palette">
+        <Tooltip title="White">
+          <IconButton className="color color-white active" />
+        </Tooltip>
+        <Tooltip title="LightGreen">
+          <IconButton className="color color-green" />
+        </Tooltip>
+        <Tooltip title="Yellow">
+          <IconButton className="color color-yellow" />
+        </Tooltip>
+        <Tooltip title="Red">
+          <IconButton className="color color-red" />
+        </Tooltip>
+        <Tooltip title="Cyan">
+          <IconButton className="color color-cyan" />
+        </Tooltip>
+        <Tooltip title="Pink">
+          <IconButton className="color color-pink" />
+        </Tooltip>
+      </div>
       <Tooltip title="Add Image">
         <IconButton
           color="inherit"

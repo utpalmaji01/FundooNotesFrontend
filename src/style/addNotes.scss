@@ -32,6 +32,16 @@
   text-transform: none !important;
 }
 
+.add-note-title textarea {
+  font-weight: bold;
+  text-align: justify;
+}
+
+.add-note-description textarea {
+  text-align: justify;
+}
 .MuiCardContent-root:last-child {
   padding-bottom: 16px !important;
 }
+
+
