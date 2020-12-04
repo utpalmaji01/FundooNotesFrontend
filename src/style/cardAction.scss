@@ -1,4 +1,5 @@
-@import "./master";
+@import "./breakPoints";
+@import "./colors";
 
 .note-actions-item-addnote {
   // padding: 5px !important;
@@ -12,7 +13,7 @@
     padding: 5px !important;
   }
   @media screen and (max-width: $break-xsmall) {
-    padding: 5px !important;
+    padding: 3px !important;
   }
 }
 .note-actions-item-shownote {
@@ -37,16 +38,17 @@
 }
 
 .color-palette {
-  background: white;
-  border: 1px solid rgb(194, 194, 194);
+  background: $color-white;
+  border: 1px solid $color-gray;
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
   visibility: hidden;
   position: absolute;
-  height: 70px;
-  width: 90px;
+  height: 90px;
+  width: 120px;
   z-index: 1;
+  bottom: 25px;
 }
 
 .color-set-tooltip:hover ~ .color-palette {
@@ -65,24 +67,43 @@
   height: 20px;
 }
 .color-white {
-  border: 1px solid rgb(202, 202, 202) !important;
+  background-color: $color-white !important;
+  border: 1px solid $color-gray !important;
 }
 
-.color-green {
-  background-color: lightgreen !important;
+.color-orange {
+  background-color: $color-orange !important;
 }
 
 .color-yellow {
-  background-color: yellow !important;
+  background-color: $color-yellow !important;
 }
 
 .color-red {
-  background-color: red !important;
+  background-color: $color-red !important;
 }
-.color-cyan {
-  background-color: cyan !important;
+.color-green {
+  background-color: $color-green !important;
 }
 
+.color-teal {
+  background-color: $color-teal !important;
+}
+.color-blue {
+  background-color: $color-blue !important;
+}
+.color-dark-blue {
+  background-color: $color-dark-blue !important;
+}
+.color-purple {
+  background-color: $color-purple !important;
+}
 .color-pink {
-  background-color: pink !important;
+  background-color: $color-pink !important;
+}
+.color-brown {
+  background-color: $color-brown !important;
+}
+.color-gray {
+  background-color: $color-gray !important;
 }

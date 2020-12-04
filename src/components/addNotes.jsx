@@ -110,7 +110,7 @@ export default function DashBoardNotes(props) {
             )}
           </div>
           {isAddNote && (
-            <CardActions>
+            <CardActions className="add-note-footer">
               <CardAction class="note-actions-item-addnote"/>
               <Button className="close-button" onClick={addNote}>
                 Close

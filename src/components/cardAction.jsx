@@ -45,20 +45,38 @@ export default function CardAction(props) {
         <Tooltip title="White">
           <IconButton className="color color-white active" />
         </Tooltip>
-        <Tooltip title="LightGreen">
-          <IconButton className="color color-green" />
+        <Tooltip title="Red">
+          <IconButton className="color color-red" />
+        </Tooltip>
+        <Tooltip title="Orange">
+          <IconButton className="color color-orange" />
         </Tooltip>
         <Tooltip title="Yellow">
           <IconButton className="color color-yellow" />
         </Tooltip>
-        <Tooltip title="Red">
-          <IconButton className="color color-red" />
+        <Tooltip title="Green">
+          <IconButton className="color color-green" />
         </Tooltip>
-        <Tooltip title="Cyan">
-          <IconButton className="color color-cyan" />
+        <Tooltip title="Teal">
+          <IconButton className="color color-teal" />
+        </Tooltip>
+        <Tooltip title="Blue">
+          <IconButton className="color color-blue" />
+        </Tooltip>
+        <Tooltip title="Dark Blue">
+          <IconButton className="color color-dark-blue" />
+        </Tooltip>
+        <Tooltip title="Purple">
+          <IconButton className="color color-purple" />
         </Tooltip>
         <Tooltip title="Pink">
           <IconButton className="color color-pink" />
+        </Tooltip>
+        <Tooltip title="Brown">
+          <IconButton className="color color-brown" />
+        </Tooltip>
+        <Tooltip title="Gray">
+          <IconButton className="color color-gray" />
         </Tooltip>
       </div>
       <Tooltip title="Add Image">

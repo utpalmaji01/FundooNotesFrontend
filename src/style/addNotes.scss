@@ -1,13 +1,14 @@
-@import "./master";
+@import "./breakPoints";
+@import "./colors";
 
 .dashBoardNotes-container {
-  padding: 10px;
+  padding: 10px 30px;
   display: flex;
   justify-content: center;
 }
 
 .add-note-from {
-  box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 5px 2px $color-border;
   border-radius: 5px;
   width: 55%;
   @media screen and (max-width: $break-medium) {
@@ -17,7 +18,7 @@
     width: 95%;
   }
   @media screen and (max-width: $break-small) {
-    width: 100%;
+    width: 95%;
   }
 }
 
@@ -27,6 +28,14 @@
 
 .add-note-title {
   font-size: 20;
+}
+
+.add-note-description {
+  margin-bottom: 20px !important;
+}
+
+.add-note-footer {
+  position: relative;
 }
 
 .close-button {

@@ -15,7 +15,7 @@ export default class Routes extends Component {
       <Router history={history}>
         <Switch>
           <Route exact path="/">
-            <Redirect to="/singUp" component={SingUp} />
+            <Redirect to="/dashBoard" component={SingUp} />
           </Route>
           <Route exact path="/singUp" component={SingUp} />
           <Route exact path="/login" component={LogIn} />
