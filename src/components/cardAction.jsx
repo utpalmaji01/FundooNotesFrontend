@@ -8,9 +8,27 @@ import {
   MoreVert as MoreVertIcon,
 } from "@material-ui/icons";
 import "../style/cardAction.scss";
-import { IconButton, Tooltip } from "@material-ui/core";
+import { Button, IconButton, List, ListItem, Tooltip } from "@material-ui/core";
 
 export default function CardAction(props) {
+  const moreOptionDropdown = (name) => {
+    if (name === "note-actions-item-shownote") {
+      return (
+        <div className="more-options-dropdown more-options-dropdown-shownote">
+          <Button >Delete Note</Button>
+          <Button>Add Label</Button>
+        </div>
+      );
+    }
+    if (name === "note-actions-item-addnote") {
+      return (
+        <div className="more-options-dropdown more-options-dropdown-addnote">
+          <Button>Add Label</Button>
+        </div>
+      );
+    }
+  };
+
   return (
     <>
       <Tooltip title="Reminder">
@@ -97,11 +115,12 @@ export default function CardAction(props) {
           <ArchiveOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      <Tooltip title="More">
+      <Tooltip title="More" className="more-options-tooltip">
         <IconButton color="inherit" aria-label="more" className={props.class}>
           <MoreVertIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
+      {moreOptionDropdown(props.class)}
     </>
   );
 }

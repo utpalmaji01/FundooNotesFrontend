@@ -10,7 +10,7 @@ export default function DashBoardNotes(props) {
   // const [allTypeOfNotes,setAllTypeOfNotes] = useState(props.allNotes);
 
   const editNote = (noteId) => {
-    localStorage.setItem("currentNoteId", noteId)
+    localStorage.setItem("currentNoteId", noteId);
     console.log(noteId);
     // setAllTypeOfNotes(props.allNotes);
     // props.allNotes.map((note) => {
@@ -27,10 +27,9 @@ export default function DashBoardNotes(props) {
       <div
         className="each-note"
         key={note.id}
-        onClick={() => editNote(note.id)}
         onMouseEnter={() => localStorage.setItem("currentNoteId", note.id)}
       >
-        <div className="note-body">
+        <div className="note-body" onClick={() => editNote(note.id)}>
           <div className="note-titel">{note.title}</div>
           <div className="note-description">
             {note.description.slice(0, 25)}
