@@ -1,7 +1,10 @@
+@import "./master";
+
 .display-notes {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  justify-content: center;
+  
 }
 
 .each-note {
@@ -11,6 +14,15 @@
   border-radius: 5px;
   width: 202px;
   min-height: 100px;
+  @media screen and (max-width: $break-medium) {
+    width: 250px;
+  }
+  // @media screen and (max-width: $break-small) {
+    
+  // }
+  // @media screen and (max-width: $break-xsmall) {
+    
+  // }
 }
 
 .each-note:hover {

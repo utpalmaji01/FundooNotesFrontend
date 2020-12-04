@@ -40,11 +40,12 @@ export default function DashBoardNotes(props) {
             title: responce.data.status.details.title,
             description: responce.data.status.details.description,
           };
-          // props.allNotes = [...props.allNotes, newNote];
           props.addNote(newNote);
-          setSnackbarActive(true); 
+          setSnackbarActive(true);
+          setSnackBarMesage("Note added successfully"); 
           setIsAddNote(false);
-          // setNewNoteTitle("");
+          setNewNoteTitle("");
+          setAddNotePlaceHolder("Take a note...");
         }
       }).catch((error) => {
         console.log(error);

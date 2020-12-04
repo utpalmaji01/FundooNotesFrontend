@@ -26,7 +26,7 @@ export default class Routes extends Component {
             redirectPath="/login"
             component={DashBoard}
             exact
-            condition={localStorage.getItem("id").length}
+            condition={localStorage.getItem("id") && localStorage.getItem("id").length}
           />
         </Switch>
       </Router>

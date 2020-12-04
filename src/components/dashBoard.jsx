@@ -30,7 +30,7 @@ class DashBoard extends PureComponent {
     this.setState({
       allNotes: [...this.state.allNotes, noteObject],
     });
-  }
+  };
 
   componentDidMount() {
     noteServices
@@ -58,7 +58,11 @@ class DashBoard extends PureComponent {
           <div className="dashboard-header">
             <AppBar setListSize={this.setListSize} />
           </div>
-          <div className="dashboard-body">
+          <div
+            className={clsx("dashboard-body", {
+              "sidenav-open": !this.state.isDrawerMin,
+            })}
+          >
             <div className="dashboard-sideNavBar">
               <SideNavBar
                 expandList={this.expandList}

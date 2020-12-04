@@ -1,3 +1,5 @@
+@import "./master";
+
 .dashboard-container {
   width: 100%;
   display: flex;
@@ -19,6 +21,13 @@
   margin-top: 60px;
   display: flex;
   flex-direction: row;
+
+}
+
+.dashboard-body.sidenav-open {
+  @media screen and (max-width: $break-xsmall) {
+    flex-direction: column;
+  }
 }
 
 .dashboard-notes {
@@ -27,7 +36,15 @@
   padding: 10px 60px;
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: $break-xsmall) {
+    margin-left: 0;
+    padding: 10px 20px;
+  }
 }
+
 .dashboard-notes.drawer-open {
   margin-left: 240px;
+  @media screen and (max-width: $break-xsmall) {
+    margin-left: 0;
+  }
 }

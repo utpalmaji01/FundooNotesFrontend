@@ -1,6 +1,12 @@
+@import "./master";
+
 .MuiDrawer-paperAnchorDockedLeft {
   margin-top: 51px;
   padding-top: 5px;
+  @media screen and (max-width: $break-xsmall) {
+    margin-top: 0;
+    
+  }
 }
 
 .MuiDrawer-paperAnchorDockedLeft {
@@ -14,10 +20,20 @@
 
 .sideNav-active .MuiDrawer-paperAnchorDockedLeft {
   border-right: 1px solid rgba(0, 0, 0, 0.12) !important;
+  @media screen and (max-width: $break-xsmall) {
+    border-right: none !important;
+  }
 }
 
 .sideNav:hover .list-min {
   display: block;
+}
+
+.MuiDrawer-paper {
+  @media screen and (max-width: $break-xsmall) {
+    position: static !important;
+    height: fit-content !important;
+  }
 }
 
 .sideNav-list{
@@ -37,9 +53,11 @@
 }
 
 .listItemText {
-  transition: display 2s;
   margin-left: 10px;
   width: 150px !important;
+  @media screen and (max-width: $break-xsmall) {
+    width: 202px !important;
+  }
 }
 
 .list-min {
