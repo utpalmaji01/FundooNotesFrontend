@@ -23,9 +23,14 @@ class noteServices {
    * @params {token} data i.e. sent from the backend for authorization
    */
   getAllNotes = (token) => {
+    let header = {
+      headers: {
+        'Authorization' : token
+      }
+    };
     return axiosServices.getServices(
       process.env.REACT_APP_GET_ALL_NOTES_API_PATH,
-      token
+      header
     );
   };
 
@@ -35,10 +40,15 @@ class noteServices {
    * @params {noteObject} data i.e. details of note
    */
   addNewNote = (token, noteObject) => {
+    let header = {
+      headers: {
+        'Authorization' : token
+      }
+    };
     return axiosServices.postServices(
       process.env.REACT_APP_ADD_NEW_NOTE_API_PATH,
       noteObject,
-      token
+      header
     );
   };
 
@@ -47,10 +57,15 @@ class noteServices {
    * @params {token} data i.e. sent from the backend for authorization
    */
   getNote = (token, noteId, noteIdObject) => {
+    let header = {
+      headers: {
+        'Authorization' : token
+      }
+    };
     return axiosServices.getServices(
       process.env.REACT_APP_GET_NOTE_API_PATH + noteId + "?",
       noteIdObject,
-      token
+      header
     );
   };
 }

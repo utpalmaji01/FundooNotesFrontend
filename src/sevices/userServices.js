@@ -57,10 +57,15 @@ class userServices {
    * @params {token} data i.e. sent from the backend for authorization
    */
   resetNewPassword = (resetPasswordObject, token) => {
+    let header = {
+      headers: {
+        'Authorization' : token
+      }
+    };
     return axiosServices.postServices(
       process.env.REACT_APP_RESET_NEW_PASSWPRD_API_PATH,
       resetPasswordObject,
-      token
+      header
     );
   };
 
@@ -69,10 +74,15 @@ class userServices {
    * @params {token} data i.e. sent from the backend for authorization
    */
   userLogOut = (token) => {
+    let header = {
+      headers: {
+        'Authorization' : token
+      }
+    };
     return axiosServices.postServices(
       process.env.REACT_APP_LOG_OUT_API_PATH,
       null,
-      token
+      header
     );
   };
 }
