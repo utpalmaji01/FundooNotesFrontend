@@ -9,7 +9,7 @@ import {
 } from "@material-ui/icons";
 import clsx from "clsx";
 import "../style/cardAction.scss";
-import { Button, IconButton, Menu, MenuItem, Tooltip } from "@material-ui/core";
+import { IconButton, Menu, MenuItem, Tooltip } from "@material-ui/core";
 
 export default function CardAction(props) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -34,7 +34,6 @@ export default function CardAction(props) {
 
   const callDeleteFunction = (e) => {
     e.preventDefault();
-    console.log("callDeleteFunction reached");
     props.deleteNote();
     setAnchorEl(null);
   };

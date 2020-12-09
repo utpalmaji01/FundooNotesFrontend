@@ -18,6 +18,7 @@ export default function DashBoardNotes(props) {
   );
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteDescription, setNewNoteDescription] = useState("");
+  const [newNoteColor, setNewNoteColor] = useState("#FFFFFF");
 
   const addNote = () => {
     let newNoteObj = {
@@ -35,7 +36,7 @@ export default function DashBoardNotes(props) {
             id: responce.data.status.details.id,
             title: responce.data.status.details.title,
             description: responce.data.status.details.description,
-            color: "#FFFFFF",
+            color: newNoteColor,
             isArchived: false,
             isDeleted: false,
             isPined: false,
@@ -46,6 +47,7 @@ export default function DashBoardNotes(props) {
           setIsAddNote(false);
           setNewNoteTitle("");
           setAddNotePlaceHolder("Take a note...");
+          setNewNoteColor("#FFFFFF");
         }
       })
       .catch((error) => {
@@ -57,6 +59,10 @@ export default function DashBoardNotes(props) {
       });
   };
 
+  const addColor = (color) => {
+    setNewNoteColor(color);
+  }
+  
   const closeSnackbar = (reason) => {
     if (reason === "clickaway") {
       return;
@@ -67,7 +73,7 @@ export default function DashBoardNotes(props) {
   return (
     <>
       <div className="dashBoardNotes-container">
-        <div className="add-note-from">
+        <div className="add-note-from" style={{backgroundColor: newNoteColor}}>
           <div className="add-note-input">
             <InputBase
               fullWidth
@@ -112,7 +118,7 @@ export default function DashBoardNotes(props) {
           </div>
           {isAddNote && (
             <CardActions className="add-note-footer">
-              <CardAction class="note-actions-item-addnote" />
+              <CardAction class="note-actions-item-addnote"  addColor={addColor} />
               <Button className="close-button" onClick={addNote}>
                 Close
               </Button>

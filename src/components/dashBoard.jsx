@@ -6,7 +6,13 @@ import AddNotes from "./addNotes.jsx";
 // import ShowNotes from "./showNotes.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/dashBoard.scss";
-const ShowNotes = lazy(() => import("./showNotes.jsx"));
+// const ShowNotes = lazy(() => import("./showNotes.jsx"));
+
+const ShowNotes = lazy(() => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(import("./showNotes.jsx")), 1000);
+  });
+});
 
 class DashBoard extends PureComponent {
   state = {

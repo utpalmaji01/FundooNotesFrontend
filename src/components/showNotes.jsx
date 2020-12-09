@@ -10,7 +10,6 @@ export default function DashBoardNotes(props) {
   const [allTypeOfNotes, setAllTypeOfNotes] = useState([]);
 
   useEffect(() => {
-    console.log("hello");
     console.log(props.allNotes);
     if (props.selectedMenu === "Notes") {
       setAllTypeOfNotes(
@@ -29,11 +28,11 @@ export default function DashBoardNotes(props) {
         props.allNotes.filter((note) => note.isArchived === true)
       );
     }
+    console.log(props.allNotes);
   }, [
     props.allNotes,
     props.selectedMenu,
     setAllTypeOfNotes,
-    props.setAllNotes,
   ]);
 
   const editNote = (note) => {
@@ -47,7 +46,6 @@ export default function DashBoardNotes(props) {
   const deleteNote = () => {
     console.log("delete note reached :");
     let currentNoteId = localStorage.getItem("currentNoteId");
-    console.log("delete note reached :");
     let deleteNoteObject = {
       isDeleted: true,
       noteIdList: [currentNoteId],
@@ -60,11 +58,9 @@ export default function DashBoardNotes(props) {
           let currentNoteIndex = allTypeOfNotes.findIndex(
             (note) => note.id === currentNoteId
           );
-          let newNotesArray = [...allTypeOfNotes];
+          let newNotesArray = [...props.allNotes];
           newNotesArray[currentNoteIndex].isDeleted = true;
-          props.setAllNotes(newNotesArray);
-          console.log(allTypeOfNotes);
-          console.log(props.selectedMenu);
+          props.setAllNotes(newNotesArray.reverse());
         }
       })
       .catch((error) => {
@@ -85,9 +81,12 @@ export default function DashBoardNotes(props) {
           let currentNoteIndex = allTypeOfNotes.findIndex(
             (note) => note.id === localStorage.getItem("currentNoteId")
           );
-          let newNotesArray = [...allTypeOfNotes];
-          newNotesArray[currentNoteIndex].color = color;
-          props.setAllNotes(newNotesArray);
+          let newNotesArray = [...props.allNotes];
+          newNotesArray[currentNoteIndex] = {
+            ...newNotesArray[currentNoteIndex],
+            color: color,
+          };
+          props.setAllNotes(newNotesArray.reverse());
         }
       }).catch((error)=> {
         console.log(error);
