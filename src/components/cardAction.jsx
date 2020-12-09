@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AddAlertOutlined as AddAlertOutlinedIcon,
   PersonOutlineOutlined as PersonOutlineOutlinedIcon,
@@ -8,23 +8,62 @@ import {
   MoreVert as MoreVertIcon,
 } from "@material-ui/icons";
 import "../style/cardAction.scss";
-import { Button, IconButton, List, ListItem, Tooltip } from "@material-ui/core";
+import { Button, IconButton, Menu, MenuItem, Tooltip } from "@material-ui/core";
 
 export default function CardAction(props) {
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const showMoreOption = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const callDeleteFunction = (e) => {
+    e.preventDefault();
+    console.log("callDeleteFunction reached");
+    props.deleteNote();
+    setAnchorEl(null);
+  };
+
   const moreOptionDropdown = (name) => {
     if (name === "note-actions-item-shownote") {
       return (
-        <div className="more-options-dropdown more-options-dropdown-shownote">
-          <Button >Delete Note</Button>
-          <Button>Add Label</Button>
-        </div>
+        <Menu
+          className="more-options-dropdown more-options-dropdown-shownote"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={callDeleteFunction}
+        >
+          <MenuItem onClick={callDeleteFunction}>Delete</MenuItem>
+          <MenuItem>Add Label</MenuItem>
+        </Menu>
+      );
+    }
+    if (name === "note-actions-item-editnote") {
+      return (
+        <Menu
+          className="more-options-dropdown more-options-dropdown-editnote"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={callDeleteFunction}
+        >
+          <MenuItem onClick={callDeleteFunction}>Delete</MenuItem>
+          <MenuItem>Add Label</MenuItem>
+        </Menu>
       );
     }
     if (name === "note-actions-item-addnote") {
       return (
-        <div className="more-options-dropdown more-options-dropdown-addnote">
-          <Button>Add Label</Button>
-        </div>
+        <Menu
+          className="more-options-dropdown more-options-dropdown-addnote"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={callDeleteFunction}
+        >
+          <MenuItem>Add Label</MenuItem>
+        </Menu>
       );
     }
   };
@@ -115,7 +154,12 @@ export default function CardAction(props) {
           <ArchiveOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      <Tooltip title="More" className="more-options-tooltip">
+      <Tooltip
+        aria-controls="more-options-dropdown"
+        title="More"
+        className="more-options-tooltip"
+        onClick={showMoreOption}
+      >
         <IconButton color="inherit" aria-label="more" className={props.class}>
           <MoreVertIcon fontSize="small" className="action-icon" />
         </IconButton>

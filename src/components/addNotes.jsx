@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  CardActions,
-  InputBase,
-  Snackbar,
-} from "@material-ui/core";
+import { Button, CardActions, InputBase, Snackbar } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 
 import CardAction from "./cardAction.jsx";
@@ -39,20 +34,24 @@ export default function DashBoardNotes(props) {
             id: responce.data.status.details.id,
             title: responce.data.status.details.title,
             description: responce.data.status.details.description,
+            isArchived: false,
+            isDeleted: false,
+            isPined: false,
           };
           props.addNote(newNote);
           setSnackbarActive(true);
-          setSnackBarMesage("Note added successfully"); 
+          setSnackBarMesage("Note added successfully");
           setIsAddNote(false);
           setNewNoteTitle("");
           setAddNotePlaceHolder("Take a note...");
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
         setIsAddNote(false);
-          setSnackbarActive(true);
-          setSnackBarSeverity("error");
-          setSnackBarMesage("Something went wrong");
+        setSnackbarActive(true);
+        setSnackBarSeverity("error");
+        setSnackBarMesage("Something went wrong");
       });
   };
 
@@ -72,9 +71,9 @@ export default function DashBoardNotes(props) {
               fullWidth
               margin="dense"
               multiline
-                rowsMax={2}
+              value={newNoteTitle}
+              rowsMax={2}
               placeholder={addNotePlaceHolder}
-              // style={{ fontSize: 20 }}
               onClick={() => {
                 setIsAddNote(true);
                 setAddNotePlaceHolder("Title");
@@ -111,7 +110,7 @@ export default function DashBoardNotes(props) {
           </div>
           {isAddNote && (
             <CardActions className="add-note-footer">
-              <CardAction class="note-actions-item-addnote"/>
+              <CardAction class="note-actions-item-addnote" />
               <Button className="close-button" onClick={addNote}>
                 Close
               </Button>

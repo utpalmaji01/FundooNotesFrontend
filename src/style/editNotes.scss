@@ -3,6 +3,35 @@
 }
 .edit-note-from {
   margin: 0 auto;
-  margin-top: 8%;
-  width: 45%;
+  width: 37rem;
+}
+.edit-note-input{
+  padding: 5px 16px;
+}
+
+.edit-note-title {
+  font-size: 20;
+}
+
+.edit-note-description {
+  margin-bottom: 20px !important;
+}
+
+.edit-note-footer {
+  position: relative;
+}
+
+.close-button {
+  margin-left: auto !important;
+  font-size: 1rem !important;
+  text-transform: none !important;
+}
+
+.edit-note-title textarea {
+  font-weight: bold;
+  text-align: justify;
+}
+
+.edit-note-description textarea {
+  text-align: justify;
 }

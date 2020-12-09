@@ -1,98 +1,127 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
-  Card,
-  Modal,
   Button,
   CardActions,
-  CardContent,
-  IconButton,
-  InputAdornment,
+  Dialog,
   InputBase,
-  Tooltip,
+  Snackbar,
 } from "@material-ui/core";
-import {
-  PinDropOutlined as PinDropOutlinedIcon,
-  AddAlertOutlined as AddAlertOutlinedIcon,
-  PersonOutlineOutlined as PersonOutlineOutlinedIcon,
-  PaletteOutlined as PaletteOutlinedIcon,
-  InsertPhotoOutlined as InsertPhotoOutlinedIcon,
-  ArchiveOutlined as ArchiveOutlinedIcon,
-} from "@material-ui/icons";
-
+import CardAction from "./cardAction.jsx";
+import noteServices from "../sevices/noteServices.js";
 import "../style/editNotes.scss";
 
 export default function EditNote(props) {
-  const [title, setTitle] = useState(props.currentNoteDetails.title);
-  const [description, setDescription] = useState(
-    props.currentNoteDetails.description
-  );
+  const [editNoteIndex, setEditNoteIndex] = useState(null);
+  const [editNoteTitle, setEditNoteTitle] = useState("");
+  const [editNoteDescription, setEditNoteDescription] = useState("");
+
+  useEffect(() => {
+    setEditNoteIndex(
+      props.allNotes.findIndex(
+        (note) => note.id === props.currentNoteDetails.id
+      )
+    );
+    setEditNoteTitle(props.currentNoteDetails.title);
+    setEditNoteDescription(props.currentNoteDetails.description);
+  }, [props.currentNoteDetails, props.allNotes, editNoteIndex]);
+
+  const deleteNote = () => {
+    console.log("delete note reached : from edit");
+    let deleteNoteObject = {
+      isDeleted: true,
+      noteIdList: [props.currentNoteDetails.id],
+    };
+    noteServices
+      .deleteNote(localStorage.getItem("id"), deleteNoteObject)
+      .then((responce) => {
+        console.log(responce);
+        if (responce.status === 200) {
+          
+          let newNotesArray = [...props.allNotes];
+          newNotesArray[editNoteIndex].isDeleted = true;
+          props.setAllNotes(newNotesArray);
+          console.log("delete done from edit");
+          props.setIsEdit(false);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+
   const closeEdit = () => {
     props.setIsEdit(false);
   };
 
   const editNote = () => {
-    console.log(title);
-    console.log(description);
-    props.setIsEdit(false);
+    console.log("editNote reached");
+    let updateNoteObject = {
+      noteId: localStorage.getItem("currentNoteId"),
+      title: editNoteTitle,
+      description: editNoteDescription,
+    };
+    noteServices
+      .updateNote(localStorage.getItem("id"), updateNoteObject)
+      .then((responce) => {
+        console.log(responce);
+        if (responce.status === 200) {
+          let newNotesArray = [...props.allNotes];
+          newNotesArray[editNoteIndex] = {
+            ...newNotesArray[editNoteIndex],
+            title: editNoteTitle,
+            description: editNoteDescription,
+          };
+          props.setAllNotes(newNotesArray);
+          console.log("success");
+          props.setIsEdit(false);
+        }
+      }).catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <>
-      <Modal open={props.isEdit} onClose={closeEdit} className="modal">
-        <Card className="edit-note-from">
-          <CardContent>
+      <Dialog onClose={closeEdit} open={props.isEdit} className="edit-modal">
+        <div className="edit-note-from">
+          <div className="edit-note-input">
             <InputBase
               fullWidth
               margin="dense"
-              placeholder="hello"
-              defaultValue={props.currentNoteDetails.title}
-              style={{ fontSize: 20 }}
-              onChange={(e) => setTitle(e.target.value)}
-              endAdornment={
-                <InputAdornment position="end">
-                  <Tooltip title="Pin Note">
-                    <IconButton aria-label="Pin Note">
-                      <PinDropOutlinedIcon />
-                    </IconButton>
-                  </Tooltip>
-                </InputAdornment>
-              }
+              multiline
+              value={editNoteTitle}
+              rowsMax={2}
+              onChange={(e) => {
+                setEditNoteTitle(e.target.value);
+              }}
+              className="edit-note-title"
+              // endAdornment={
+              //   isAddNote && (
+              //     <InputAdornment position="end">
+              //       <Tooltip title="Pin Note">
+              //         <IconButton aria-label="Pin Note">
+              //           <PinDropOutlinedIcon />
+              //         </IconButton>
+              //       </Tooltip>
+              //     </InputAdornment>
+              //   )
+              // }
             />
             <InputBase
               fullWidth
               margin="dense"
               multiline
-              rowsMax={12}
+              rowsMax={8}
+              value={editNoteDescription}
               placeholder="Take a note..."
-              defaultValue={props.currentNoteDetails.description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {
+                setEditNoteDescription(e.target.value);
+              }}
+              className="edit-note-description"
             />
-          </CardContent>
-          <CardActions>
-            <Tooltip title="Reminder">
-              <IconButton color="inherit" aria-label="reminder">
-                <AddAlertOutlinedIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Collaborator">
-              <IconButton color="inherit" aria-label="collaborator">
-                <PersonOutlineOutlinedIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Change Color">
-              <IconButton color="inherit" aria-label="change color">
-                <PaletteOutlinedIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Add Image">
-              <IconButton color="inherit" aria-label="add image">
-                <InsertPhotoOutlinedIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Archive">
-              <IconButton color="inherit" aria-label="archive">
-                <ArchiveOutlinedIcon fontSize="small" />
-              </IconButton>
-            </Tooltip>
+          </div>
+          <CardActions className="edit-note-footer">
+            <CardAction class="note-actions-item-editnote"  deleteNote={deleteNote}/>
             <Button className="close-button" onClick={editNote}>
               Close
             </Button>
@@ -106,8 +135,9 @@ export default function EditNote(props) {
                 </Alert>
               </Snackbar> */}
           </CardActions>
-        </Card>
-      </Modal>
+        </div>
+      </Dialog>
+      
     </>
   );
 }

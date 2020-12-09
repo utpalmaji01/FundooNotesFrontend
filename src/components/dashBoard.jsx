@@ -1,11 +1,12 @@
-import React, { PureComponent } from "react";
+import React, { lazy, PureComponent, Suspense } from "react";
 import clsx from "clsx";
 import AppBar from "./appBar.jsx";
 import SideNavBar from "./sideNavBar.jsx";
 import AddNotes from "./addNotes.jsx";
-import ShowNotes from "./showNotes.jsx";
+// import ShowNotes from "./showNotes.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/dashBoard.scss";
+const ShowNotes = lazy(() => import("./showNotes.jsx"));
 
 class DashBoard extends PureComponent {
   state = {
@@ -26,10 +27,16 @@ class DashBoard extends PureComponent {
     });
   };
 
-  addNote = (noteObject) => {
+  setAllNotes = (newNoteObject) => {
     this.setState({
-      allNotes: [...this.state.allNotes, noteObject],
+      allNotes: [...newNoteObject],
     });
+    console.log("come to set all note");
+  }
+
+  addNote = (noteObject) => {
+    this.setAllNotes([...this.state.allNotes,noteObject]);
+    console.log("reached addnote");
   };
 
   componentDidMount() {
@@ -83,10 +90,13 @@ class DashBoard extends PureComponent {
                 />
               </div>
               <div className="showNotes">
-                <ShowNotes
-                  allNotes={this.state.allNotes}
-                  selectedMenu={this.state.selectedMenu}
-                />
+                <Suspense fallback={<h1>Loading</h1>}>
+                  <ShowNotes
+                    allNotes={this.state.allNotes}
+                    selectedMenu={this.state.selectedMenu}
+                    setAllNotes={this.setAllNotes}
+                  />
+                </Suspense>
               </div>
             </div>
           </div>
