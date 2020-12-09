@@ -7,15 +7,30 @@ import {
   ArchiveOutlined as ArchiveOutlinedIcon,
   MoreVert as MoreVertIcon,
 } from "@material-ui/icons";
+import clsx from "clsx";
 import "../style/cardAction.scss";
 import { Button, IconButton, Menu, MenuItem, Tooltip } from "@material-ui/core";
 
 export default function CardAction(props) {
   const [anchorEl, setAnchorEl] = useState(null);
+  const[isColorPaletteOpen,setIsColorPaletteOpen] = useState(false);
 
   const showMoreOption = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
+  const closeMoreAction = () => {
+    setAnchorEl(null);
+  }
+
+  const toggleColorPalette = () => {
+    setIsColorPaletteOpen(!isColorPaletteOpen);
+  }
+
+  const applyColor = (e,color) => {
+    e.preventDefault(); 
+    props.addColor(color);
+  }
 
   const callDeleteFunction = (e) => {
     e.preventDefault();
@@ -32,7 +47,7 @@ export default function CardAction(props) {
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
-          onClose={callDeleteFunction}
+          onClose={closeMoreAction}
         >
           <MenuItem onClick={callDeleteFunction}>Delete</MenuItem>
           <MenuItem>Add Label</MenuItem>
@@ -46,7 +61,7 @@ export default function CardAction(props) {
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
-          onClose={callDeleteFunction}
+          onClose={closeMoreAction}
         >
           <MenuItem onClick={callDeleteFunction}>Delete</MenuItem>
           <MenuItem>Add Label</MenuItem>
@@ -60,7 +75,7 @@ export default function CardAction(props) {
           anchorEl={anchorEl}
           keepMounted
           open={Boolean(anchorEl)}
-          onClose={callDeleteFunction}
+          onClose={closeMoreAction}
         >
           <MenuItem>Add Label</MenuItem>
         </Menu>
@@ -88,7 +103,7 @@ export default function CardAction(props) {
           <PersonOutlineOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Change Color" className="color-set-tooltip">
+      <Tooltip title="Change Color" className="color-set-tooltip" onClick={toggleColorPalette}>
         <IconButton
           color="inherit"
           aria-label="change color"
@@ -98,41 +113,44 @@ export default function CardAction(props) {
           <PaletteOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      <div className="color-palette">
-        <Tooltip title="White">
+      
+      <div className={clsx("color-palette", {
+                "color-palette-active": isColorPaletteOpen,
+              })}>
+        <Tooltip title="White" onClick={(e)=>applyColor(e,"#FFFFFF")}>
           <IconButton className="color color-white active" />
         </Tooltip>
-        <Tooltip title="Red">
+        <Tooltip title="Red" onClick={(e)=>applyColor(e,"#f28b82")}>
           <IconButton className="color color-red" />
         </Tooltip>
-        <Tooltip title="Orange">
+        <Tooltip title="Orange" onClick={(e)=>applyColor(e,"#fbbc04")}>
           <IconButton className="color color-orange" />
         </Tooltip>
-        <Tooltip title="Yellow">
+        <Tooltip title="Yellow" onClick={(e)=>applyColor(e,"#fff475")}>
           <IconButton className="color color-yellow" />
         </Tooltip>
-        <Tooltip title="Green">
+        <Tooltip title="Green" onClick={(e)=>applyColor(e,"#ccff90")}>
           <IconButton className="color color-green" />
         </Tooltip>
-        <Tooltip title="Teal">
+        <Tooltip title="Teal" onClick={(e)=>applyColor(e,"#a7ffeb")}>
           <IconButton className="color color-teal" />
         </Tooltip>
-        <Tooltip title="Blue">
+        <Tooltip title="Blue" onClick={(e)=>applyColor(e,"#ebebeb")}>
           <IconButton className="color color-blue" />
         </Tooltip>
-        <Tooltip title="Dark Blue">
+        <Tooltip title="Dark Blue" onClick={(e)=>applyColor(e,"#aecbfa")}>
           <IconButton className="color color-dark-blue" />
         </Tooltip>
-        <Tooltip title="Purple">
+        <Tooltip title="Purple" onClick={(e)=>applyColor(e,"#d7aefb")}>
           <IconButton className="color color-purple" />
         </Tooltip>
-        <Tooltip title="Pink">
+        <Tooltip title="Pink" onClick={(e)=>applyColor(e,"#fdcfe8")}>
           <IconButton className="color color-pink" />
         </Tooltip>
-        <Tooltip title="Brown">
+        <Tooltip title="Brown" onClick={(e)=>applyColor(e,"#e6c9a8")}>
           <IconButton className="color color-brown" />
         </Tooltip>
-        <Tooltip title="Gray">
+        <Tooltip title="Gray" onClick={(e)=>applyColor(e,"#e8eaed")}>
           <IconButton className="color color-gray" />
         </Tooltip>
       </div>

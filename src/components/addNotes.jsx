@@ -23,6 +23,7 @@ export default function DashBoardNotes(props) {
     let newNoteObj = {
       title: newNoteTitle,
       description: newNoteDescription,
+      color: "#FFFFFF",
     };
 
     noteServices
@@ -34,6 +35,7 @@ export default function DashBoardNotes(props) {
             id: responce.data.status.details.id,
             title: responce.data.status.details.title,
             description: responce.data.status.details.description,
+            color: "#FFFFFF",
             isArchived: false,
             isDeleted: false,
             isPined: false,

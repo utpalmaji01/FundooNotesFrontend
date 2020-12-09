@@ -18,18 +18,6 @@
 }
 .note-actions-item-shownote {
   padding: 5px 8px !important;
-  // @media screen and (max-width: $break-large) {
-  //   padding: 5px !important;
-  // }
-  // @media screen and (max-width: $break-medium) {
-  //   padding: 5px !important;
-  // }
-  // @media screen and (max-width: $break-small) {
-  //   padding: 5px !important;
-  // }
-  // @media screen and (max-width: $break-xsmall) {
-  //   padding: 5px !important;
-  // }
 }
 
 .action-icon {
@@ -43,7 +31,8 @@
   border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
-  visibility: hidden;
+  // visibility: hidden;
+  display: none;
   position: absolute;
   height: 90px;
   width: 120px;
@@ -51,13 +40,18 @@
   bottom: 25px;
 }
 
-.color-set-tooltip:hover ~ .color-palette {
-  visibility: visible;
+.color-palette-active {
+  display: block;
 }
+// .color-set-tooltip:hover ~ .color-palette {
+//   // visibility: visible;
+//   display: block;
+// }
 
-.color-set-tooltip:focus ~ .color-palette {
-  visibility: visible;
-}
+// .color-set-tooltip:focus ~ .color-palette {
+//   // visibility: visible;
+//   display: block;
+// }
 
 .color {
   border-radius: 50% !important;
@@ -73,6 +67,7 @@
 
 .color-orange {
   background-color: $color-orange !important;
+  
 }
 
 .color-yellow {

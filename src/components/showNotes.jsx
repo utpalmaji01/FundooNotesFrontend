@@ -72,12 +72,36 @@ export default function DashBoardNotes(props) {
       });
   };
 
+  const addColor = (color) => {
+    let colorNoteObject = {
+      color: color,
+      noteIdList: [localStorage.getItem("currentNoteId")],
+    };
+    noteServices
+      .changeNoteColor(localStorage.getItem("id"), colorNoteObject)
+      .then((responce) => {
+        console.log(responce);
+        if (responce.status === 200) {
+          let currentNoteIndex = allTypeOfNotes.findIndex(
+            (note) => note.id === localStorage.getItem("currentNoteId")
+          );
+          let newNotesArray = [...allTypeOfNotes];
+          newNotesArray[currentNoteIndex].color = color;
+          props.setAllNotes(newNotesArray);
+        }
+      }).catch((error)=> {
+        console.log(error);
+      });
+    console.log("reached add color from shownote " + color);
+  };
+
   const note = allTypeOfNotes.reverse().map((note) => {
     return (
       <div
         className="each-note"
         key={note.id}
         onMouseEnter={() => localStorage.setItem("currentNoteId", note.id)}
+        style={{backgroundColor: note.color}}
       >
         <div className="note-body" onClick={() => editNote(note)}>
           <div className="note-titel">{note.title}</div>
@@ -93,6 +117,7 @@ export default function DashBoardNotes(props) {
           <CardAction
             class="note-actions-item-shownote"
             deleteNote={deleteNote}
+            addColor={addColor}
           />
         </div>
       </div>
