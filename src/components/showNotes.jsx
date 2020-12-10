@@ -93,8 +93,30 @@ export default function DashBoardNotes(props) {
   };
 
   const addArchiveStatus = () => {
-    console.log("archive from shownote");
-  }
+    let currentNoteIndex = getCurrentNoteIndex();
+    let newNotesArray = [...props.allNotes];
+    let noteArchiveStatus = !newNotesArray[currentNoteIndex].isArchived;
+    let archiveNoteObject = {
+      isArchived: noteArchiveStatus,
+      noteIdList: [localStorage.getItem("currentNoteId")],
+    };
+    noteServices.changeNoteArchiveStatus(localStorage.getItem("id"),archiveNoteObject).then((responce) => {
+      console.log(responce);
+      if (responce.status === 200) {
+        newNotesArray[currentNoteIndex] = {
+          ...newNotesArray[currentNoteIndex],
+          isArchived: noteArchiveStatus,
+        };
+        props.setAllNotes(newNotesArray);
+        if (isEdit) {
+          setIsEdit(false);
+        }
+      }
+    }).catch((error) => {
+      console.log(error);
+    })
+    
+  };
 
   const note = allTypeOfNotes.reverse().map((note) => {
     return (
@@ -136,6 +158,7 @@ export default function DashBoardNotes(props) {
         setIsEdit={setIsEdit}
         allNotes={props.allNotes}
         setAllNotes={props.setAllNotes}
+        addArchiveStatus={addArchiveStatus}
       />
     </>
   );

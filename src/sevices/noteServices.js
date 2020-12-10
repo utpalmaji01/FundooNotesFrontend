@@ -123,6 +123,24 @@ class noteServices {
       header
     );
   };
+
+  /*
+   * @description service to color of a note
+   * @params {token} data i.e. sent from the backend for authorization
+   * @params {noteObject} data i.e. details of note
+   */
+  changeNoteArchiveStatus = (token, noteObject) => {
+    let header = {
+      headers: {
+        'Authorization' : token
+      }
+    };
+    return axiosServices.postServices(
+      process.env.REACT_APP_CHANGE_NOTE_ARCHIVE_STATUS_API_PATH,
+      noteObject,
+      header
+    );
+  };
 }
 
 export default new noteServices();

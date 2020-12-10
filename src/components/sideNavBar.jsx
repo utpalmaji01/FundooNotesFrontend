@@ -12,13 +12,16 @@ import {
   Create as CreateIcon,
   ArchiveOutlined as ArchiveIcon,
   DeleteOutline as DeleteOutlineIcon,
+  DeleteForeverOutlined as DeleteForeverOutlinedIcon,
+  RestoreFromTrashOutlined as RestoreFromTrashOutlinedIcon,
 } from "@material-ui/icons";
 import clsx from "clsx";
 import "../style/sideNavBar.scss";
 
 export default function SideNavBar(props) {
-  const selectedMenu = (e) => {
-    props.setSelectedMenu(e.target.innerText);
+  const selectedMenu = (e,currentMenu) => {
+    e.preventDefault();
+    props.setSelectedMenu(currentMenu);
   };
   return (
     <>
@@ -30,7 +33,7 @@ export default function SideNavBar(props) {
         })}
       >
         <List className="sideNav-list">
-          <ListItem button onClick={selectedMenu} className="list-item">
+          <ListItem button onClick={(e)=>selectedMenu(e,"Notes")} className="list-item">
             <ListItemIcon
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Notes",
@@ -45,7 +48,7 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button onClick={selectedMenu} className="list-item">
+          <ListItem button onClick={(e)=>selectedMenu(e,"Reminders")} className="list-item">
             <ListItemIcon
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Reminders",
@@ -60,7 +63,7 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button onClick={selectedMenu} className="list-item">
+          <ListItem button onClick={(e)=>selectedMenu(e,"Edit Labels")} className="list-item">
             <ListItemIcon
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Edit Labels",
@@ -75,7 +78,7 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button onClick={selectedMenu} className="list-item">
+          <ListItem button onClick={(e)=>selectedMenu(e,"Archives")} className="list-item">
             <ListItemIcon
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Archives",
@@ -90,7 +93,7 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button onClick={selectedMenu} className="list-item">
+          <ListItem button onClick={(e)=>selectedMenu(e,"Trash")} className="list-item">
             <ListItemIcon className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Trash",
               })}>

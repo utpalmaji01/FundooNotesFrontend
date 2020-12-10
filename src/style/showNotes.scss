@@ -13,10 +13,10 @@
   padding: 5px;
   border: 1px solid  $color-border;
   border-radius: 5px;
-  width: 202px;
-  min-height: 125px;
+  width: 240px;
+  min-height: 122px;
   @media screen and (max-width: $break-medium) {
-    width: 250px;
+    width: 240px;
   }
   @media screen and (max-width: $break-small) {
     width: 230px;

@@ -15,6 +15,7 @@ export default function EditNote(props) {
   const [editNoteTitle, setEditNoteTitle] = useState("");
   const [editNoteDescription, setEditNoteDescription] = useState("");
   const [editNoteColor, setEditNoteColor] = useState("");
+  const [editNoteArchiveStatus, setEditNoteArchiveStatus] = useState(null);
 
   useEffect(() => {
     setEditNoteIndex(
@@ -25,12 +26,18 @@ export default function EditNote(props) {
     setEditNoteTitle(props.currentNoteDetails.title);
     setEditNoteDescription(props.currentNoteDetails.description);
     setEditNoteColor(props.currentNoteDetails.color);
+    setEditNoteArchiveStatus(props.currentNoteDetails.isArchived)
   }, [props.currentNoteDetails, props.allNotes, editNoteIndex]);
 
   const deleteNote = () => {
     props.deleteNote();
     props.setIsEdit(false);
   };
+
+  const addArchiveStatus = () => {
+    setEditNoteArchiveStatus(!props.currentNoteDetails.isArchived);
+    props.addArchiveStatus();
+  }
 
   const closeEdit = () => {
     props.setIsEdit(false);
@@ -57,6 +64,7 @@ export default function EditNote(props) {
             color: editNoteColor,
           };
           props.setAllNotes(newNotesArray);
+          console.log(editNoteArchiveStatus);
           console.log("success");
           props.setIsEdit(false);
         }
@@ -118,6 +126,7 @@ export default function EditNote(props) {
               class="note-actions-item-editnote"
               deleteNote={deleteNote}
               addColor={addColor}
+              addArchiveStatus={addArchiveStatus}
             />
             <Button className="close-button" onClick={editNote}>
               Close
