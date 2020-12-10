@@ -20,6 +20,15 @@
   padding: 5px 8px !important;
 }
 
+.note-actions-item-editnote {
+  @media screen and (max-width: $break-small) {
+    padding: 5px !important;
+  }
+  @media screen and (max-width: $break-xsmall) {
+    padding: 3px !important;
+  }
+}
+
 .action-icon {
   font-size: 1.1rem !important;
   color: rgba(0, 0, 0, 0.85) !important;

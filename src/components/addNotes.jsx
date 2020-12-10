@@ -19,12 +19,16 @@ export default function DashBoardNotes(props) {
   const [newNoteTitle, setNewNoteTitle] = useState("");
   const [newNoteDescription, setNewNoteDescription] = useState("");
   const [newNoteColor, setNewNoteColor] = useState("#FFFFFF");
+  const [newNoteArchiveStatus, setNewNoteArchiveStatus] = useState(false);
 
   const addNote = () => {
     let newNoteObj = {
       title: newNoteTitle,
       description: newNoteDescription,
-      color: "#FFFFFF",
+      color: newNoteColor,
+      isArchived: newNoteArchiveStatus,
+      isDeleted: false,
+      isPined: false,
     };
 
     noteServices
@@ -37,7 +41,7 @@ export default function DashBoardNotes(props) {
             title: responce.data.status.details.title,
             description: responce.data.status.details.description,
             color: newNoteColor,
-            isArchived: false,
+            isArchived: newNoteArchiveStatus,
             isDeleted: false,
             isPined: false,
           };
@@ -61,8 +65,12 @@ export default function DashBoardNotes(props) {
 
   const addColor = (color) => {
     setNewNoteColor(color);
-  }
-  
+  };
+
+  const addArchiveStatus = () => {
+    setNewNoteArchiveStatus(!newNoteArchiveStatus);
+  };
+
   const closeSnackbar = (reason) => {
     if (reason === "clickaway") {
       return;
@@ -73,7 +81,10 @@ export default function DashBoardNotes(props) {
   return (
     <>
       <div className="dashBoardNotes-container">
-        <div className="add-note-from" style={{backgroundColor: newNoteColor}}>
+        <div
+          className="add-note-from"
+          style={{ backgroundColor: newNoteColor }}
+        >
           <div className="add-note-input">
             <InputBase
               fullWidth
@@ -118,7 +129,11 @@ export default function DashBoardNotes(props) {
           </div>
           {isAddNote && (
             <CardActions className="add-note-footer">
-              <CardAction class="note-actions-item-addnote"  addColor={addColor} />
+              <CardAction
+                class="note-actions-item-addnote"
+                addColor={addColor}
+                addArchiveStatus={addArchiveStatus}
+              />
               <Button className="close-button" onClick={addNote}>
                 Close
               </Button>

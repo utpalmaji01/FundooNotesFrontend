@@ -31,7 +31,11 @@ export default function SideNavBar(props) {
       >
         <List className="sideNav-list">
           <ListItem button onClick={selectedMenu} className="list-item">
-            <ListItemIcon>
+            <ListItemIcon
+              className={clsx("sidenav-icon", {
+                "sidenav-icon-active": props.selectedMenu === "Notes",
+              })}
+            >
               <EmojiObjectsIcon />
             </ListItemIcon>
             <ListItemText
@@ -42,7 +46,11 @@ export default function SideNavBar(props) {
             />
           </ListItem>
           <ListItem button onClick={selectedMenu} className="list-item">
-            <ListItemIcon>
+            <ListItemIcon
+              className={clsx("sidenav-icon", {
+                "sidenav-icon-active": props.selectedMenu === "Reminders",
+              })}
+            >
               <NotificationsNoneIcon />
             </ListItemIcon>
             <ListItemText
@@ -53,7 +61,11 @@ export default function SideNavBar(props) {
             />
           </ListItem>
           <ListItem button onClick={selectedMenu} className="list-item">
-            <ListItemIcon>
+            <ListItemIcon
+              className={clsx("sidenav-icon", {
+                "sidenav-icon-active": props.selectedMenu === "Edit Labels",
+              })}
+            >
               <CreateIcon />
             </ListItemIcon>
             <ListItemText
@@ -64,7 +76,11 @@ export default function SideNavBar(props) {
             />
           </ListItem>
           <ListItem button onClick={selectedMenu} className="list-item">
-            <ListItemIcon>
+            <ListItemIcon
+              className={clsx("sidenav-icon", {
+                "sidenav-icon-active": props.selectedMenu === "Archives",
+              })}
+            >
               <ArchiveIcon />
             </ListItemIcon>
             <ListItemText
@@ -75,7 +91,9 @@ export default function SideNavBar(props) {
             />
           </ListItem>
           <ListItem button onClick={selectedMenu} className="list-item">
-            <ListItemIcon>
+            <ListItemIcon className={clsx("sidenav-icon", {
+                "sidenav-icon-active": props.selectedMenu === "Trash",
+              })}>
               <DeleteOutlineIcon />
             </ListItemIcon>
             <ListItemText

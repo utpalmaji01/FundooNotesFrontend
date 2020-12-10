@@ -29,11 +29,13 @@ export default function DashBoardNotes(props) {
       );
     }
     console.log(props.allNotes);
-  }, [
-    props.allNotes,
-    props.selectedMenu,
-    setAllTypeOfNotes,
-  ]);
+  }, [props.allNotes, props.selectedMenu, setAllTypeOfNotes]);
+
+  const getCurrentNoteIndex = () => {
+    return props.allNotes.findIndex(
+      (note) => note.id === localStorage.getItem("currentNoteId")
+    );
+  };
 
   const editNote = (note) => {
     localStorage.setItem("currentNoteId", note.id);
@@ -45,19 +47,16 @@ export default function DashBoardNotes(props) {
 
   const deleteNote = () => {
     console.log("delete note reached :");
-    let currentNoteId = localStorage.getItem("currentNoteId");
     let deleteNoteObject = {
       isDeleted: true,
-      noteIdList: [currentNoteId],
+      noteIdList: [localStorage.getItem("currentNoteId")],
     };
     noteServices
       .deleteNote(localStorage.getItem("id"), deleteNoteObject)
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {
-          let currentNoteIndex = allTypeOfNotes.findIndex(
-            (note) => note.id === currentNoteId
-          );
+          let currentNoteIndex = getCurrentNoteIndex();
           let newNotesArray = [...props.allNotes];
           newNotesArray[currentNoteIndex].isDeleted = true;
           props.setAllNotes(newNotesArray.reverse());
@@ -78,21 +77,24 @@ export default function DashBoardNotes(props) {
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {
-          let currentNoteIndex = allTypeOfNotes.findIndex(
-            (note) => note.id === localStorage.getItem("currentNoteId")
-          );
+          let currentNoteIndex = getCurrentNoteIndex();
           let newNotesArray = [...props.allNotes];
           newNotesArray[currentNoteIndex] = {
             ...newNotesArray[currentNoteIndex],
             color: color,
           };
-          props.setAllNotes(newNotesArray.reverse());
+          props.setAllNotes(newNotesArray);
         }
-      }).catch((error)=> {
+      })
+      .catch((error) => {
         console.log(error);
       });
     console.log("reached add color from shownote " + color);
   };
+
+  const addArchiveStatus = () => {
+    console.log("archive from shownote");
+  }
 
   const note = allTypeOfNotes.reverse().map((note) => {
     return (
@@ -100,10 +102,10 @@ export default function DashBoardNotes(props) {
         className="each-note"
         key={note.id}
         onMouseEnter={() => localStorage.setItem("currentNoteId", note.id)}
-        style={{backgroundColor: note.color}}
+        style={{ backgroundColor: note.color }}
       >
         <div className="note-body" onClick={() => editNote(note)}>
-          <div className="note-titel">{note.title}</div>
+          <div className="note-titel">{note.title.slice(0, 20)}</div>
           <div className="note-description">
             {note.description.slice(0, 25)}
             <br />
@@ -117,6 +119,7 @@ export default function DashBoardNotes(props) {
             class="note-actions-item-shownote"
             deleteNote={deleteNote}
             addColor={addColor}
+            addArchiveStatus={addArchiveStatus}
           />
         </div>
       </div>
@@ -127,6 +130,7 @@ export default function DashBoardNotes(props) {
     <>
       <div className="display-notes">{note}</div>
       <EditNote
+        deleteNote={deleteNote}
         currentNoteDetails={currentNoteDetails}
         isEdit={isEdit}
         setIsEdit={setIsEdit}

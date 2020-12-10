@@ -32,6 +32,11 @@ export default function CardAction(props) {
     props.addColor(color);
   }
 
+  const applyArchive = (e) => {
+    e.preventDefault(); 
+    props.addArchiveStatus();
+  }
+
   const callDeleteFunction = (e) => {
     e.preventDefault();
     props.deleteNote();
@@ -162,7 +167,7 @@ export default function CardAction(props) {
           <InsertPhotoOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Archive">
+      <Tooltip title="Archive" onClick={applyArchive}>
         <IconButton
           color="inherit"
           aria-label="archive"

@@ -3,13 +3,13 @@ import clsx from "clsx";
 import AppBar from "./appBar.jsx";
 import SideNavBar from "./sideNavBar.jsx";
 import AddNotes from "./addNotes.jsx";
-// import ShowNotes from "./showNotes.jsx";
+import Loader from "./Loading.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/dashBoard.scss";
 // const ShowNotes = lazy(() => import("./showNotes.jsx"));
 
 const ShowNotes = lazy(() => {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(import("./showNotes.jsx")), 1000);
   });
 });
@@ -21,6 +21,16 @@ class DashBoard extends PureComponent {
     selectedMenu: "Notes",
   };
 
+  showAddNotes = () => {
+    if (
+      this.state.selectedMenu === "Archives" ||
+      this.state.selectedMenu === "Trash"
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  };
   setSelectedMenu = (value) => {
     this.setState({
       selectedMenu: value,
@@ -38,10 +48,10 @@ class DashBoard extends PureComponent {
       allNotes: [...newNoteObject],
     });
     console.log("come to set all note");
-  }
+  };
 
   addNote = (noteObject) => {
-    this.setAllNotes([...this.state.allNotes,noteObject]);
+    this.setAllNotes([...this.state.allNotes, noteObject]);
     console.log("reached addnote");
   };
 
@@ -81,6 +91,7 @@ class DashBoard extends PureComponent {
                 expandList={this.expandList}
                 minifyList={this.minifyList}
                 isDrawerMin={this.state.isDrawerMin}
+                selectedMenu={this.state.selectedMenu}
                 setSelectedMenu={this.setSelectedMenu}
               />
             </div>
@@ -89,14 +100,16 @@ class DashBoard extends PureComponent {
                 "drawer-open": !this.state.isDrawerMin,
               })}
             >
-              <div className="addAnyNotes">
-                <AddNotes
-                  allNotes={this.state.allNotes}
-                  addNote={this.addNote}
-                />
-              </div>
+              {this.showAddNotes() && (
+                <div className="addAnyNotes">
+                  <AddNotes
+                    allNotes={this.state.allNotes}
+                    addNote={this.addNote}
+                  />
+                </div>
+              )}
               <div className="showNotes">
-                <Suspense fallback={<h1>Loading</h1>}>
+                <Suspense fallback={<Loader />}>
                   <ShowNotes
                     allNotes={this.state.allNotes}
                     selectedMenu={this.state.selectedMenu}

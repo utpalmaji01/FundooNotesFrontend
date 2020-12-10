@@ -28,35 +28,9 @@ export default function EditNote(props) {
   }, [props.currentNoteDetails, props.allNotes, editNoteIndex]);
 
   const deleteNote = () => {
-    console.log("delete note reached : from edit");
-    let deleteNoteObject = {
-      isDeleted: true,
-      noteIdList: [props.currentNoteDetails.id],
-    };
-    noteServices
-      .deleteNote(localStorage.getItem("id"), deleteNoteObject)
-      .then((responce) => {
-        console.log(responce);
-        if (responce.status === 200) {
-          
-          let newNotesArray = [...props.allNotes];
-          newNotesArray[editNoteIndex] = {
-            ...newNotesArray[editNoteIndex],
-            isDeleted: true,
-          };
-          props.setAllNotes(newNotesArray.reverse());
-
-          newNotesArray[editNoteIndex].isDeleted = true;
-          props.setAllNotes(newNotesArray);
-          console.log("delete done from edit");
-          props.setIsEdit(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    props.deleteNote();
+    props.setIsEdit(false);
   };
-
 
   const closeEdit = () => {
     props.setIsEdit(false);
@@ -68,7 +42,7 @@ export default function EditNote(props) {
       noteId: localStorage.getItem("currentNoteId"),
       title: editNoteTitle,
       description: editNoteDescription,
-      color : editNoteColor,
+      color: editNoteColor,
     };
     noteServices
       .updateNote(localStorage.getItem("id"), updateNoteObject)
@@ -80,25 +54,29 @@ export default function EditNote(props) {
             ...newNotesArray[editNoteIndex],
             title: editNoteTitle,
             description: editNoteDescription,
-            color : editNoteColor,
+            color: editNoteColor,
           };
           props.setAllNotes(newNotesArray);
           console.log("success");
           props.setIsEdit(false);
         }
-      }).catch((error) => {
+      })
+      .catch((error) => {
         console.log(error);
       });
   };
 
   const addColor = (color) => {
     setEditNoteColor(color);
-  }
-  
+  };
+
   return (
     <>
       <Dialog onClose={closeEdit} open={props.isEdit} className="edit-modal">
-        <div className="edit-note-from" style={{backgroundColor: editNoteColor}}>
+        <div
+          className="edit-note-from"
+          style={{ backgroundColor: editNoteColor }}
+        >
           <div className="edit-note-input">
             <InputBase
               fullWidth
@@ -136,7 +114,11 @@ export default function EditNote(props) {
             />
           </div>
           <CardActions className="edit-note-footer">
-            <CardAction class="note-actions-item-editnote"  deleteNote={deleteNote} addColor={addColor}/>
+            <CardAction
+              class="note-actions-item-editnote"
+              deleteNote={deleteNote}
+              addColor={addColor}
+            />
             <Button className="close-button" onClick={editNote}>
               Close
             </Button>
@@ -152,7 +134,6 @@ export default function EditNote(props) {
           </CardActions>
         </div>
       </Dialog>
-      
     </>
   );
 }

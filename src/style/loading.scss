@@ -1,0 +1,32 @@
+.loading-page {
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.loader {
+    border: 15px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 15px solid aqua;
+    border-bottom: 15px solid aqua;
+    width: 70px;
+    height: 65px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .loading-title {
+      color: deepskyblue;
+      letter-spacing: 3px;
+  }

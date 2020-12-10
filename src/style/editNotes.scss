@@ -1,12 +1,25 @@
+@import "./breakPoints";
+@import "./colors";
+
 .modal {
   border: none !important;
 }
 .edit-note-from {
   margin: 0 auto;
   width: 37rem;
+  @media screen and (max-width: $break-medium) {
+    width: 32rem;
+  }
+  @media screen and (max-width: $break-small) {
+    width: 24rem;
+  }
+  @media screen and (max-width: $break-xsmall) {
+    width: 17rem;
+  }
+
 }
 .edit-note-input{
-  padding: 5px 16px;
+  padding: 5px 16px 15px;
 }
 
 .edit-note-title {
@@ -14,7 +27,9 @@
 }
 
 .edit-note-description {
-  margin-bottom: 20px !important;
+  // margin-bottom: 10px !important;
+  min-height: 70px;
+  display: block;
 }
 
 .edit-note-footer {
