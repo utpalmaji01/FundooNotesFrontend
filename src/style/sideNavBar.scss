@@ -21,9 +21,9 @@
 
 .sideNav-active .MuiDrawer-paperAnchorDockedLeft {
   border-right: 1px solid  $color-border !important;
-  @media screen and (max-width: $break-xsmall) {
-    border-right: none !important;
-  }
+  // @media screen and (max-width: $break-xsmall) {
+  //   border-right: none !important;
+  // }
 }
 
 .sideNav:hover .list-min {
@@ -32,8 +32,9 @@
 
 .MuiDrawer-paper {
   @media screen and (max-width: $break-xsmall) {
-    position: static !important;
-    height: fit-content !important;
+    margin-top: 51px;
+    // position: static !important;
+    // height: fit-content !important;
   }
 }
 

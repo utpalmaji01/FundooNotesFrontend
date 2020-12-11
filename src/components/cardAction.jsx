@@ -51,6 +51,10 @@ export default function CardAction(props) {
     props.deleteNote();
   }
 
+  const deleteParmanently = () => {
+    props.deleteNoteForever();
+  }
+
   const callDeleteFunction = (e) => {
     e.preventDefault();
     props.deleteNote();
@@ -105,7 +109,7 @@ export default function CardAction(props) {
     <>
       {isSelectedMenuTrash() ? (
         <>
-        <Tooltip title="Delete Forever">
+        <Tooltip title="Delete Forever" onClick={deleteParmanently}>
           <IconButton
             color="inherit"
             aria-label="reminder"

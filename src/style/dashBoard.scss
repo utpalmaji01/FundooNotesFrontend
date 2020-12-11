@@ -25,20 +25,13 @@
 
 }
 
-.dashboard-body.sidenav-open {
-  @media screen and (max-width: $break-xsmall) {
-    flex-direction: column;
-  }
-}
-
 .dashboard-notes {
   width: 100%;
   margin-left: 80px;
-  padding: 10px 40px;
+  padding: 10px 70px;
   display: flex;
   flex-direction: column;
   @media screen and (max-width: $break-xsmall) {
-    margin-left: 0;
     padding: 10px 0;
   }
 }
@@ -46,7 +39,7 @@
 .dashboard-notes.drawer-open {
   margin-left: 240px;
   @media screen and (max-width: $break-xsmall) {
-    margin-left: 0;
+    margin-left: 80px;
   }
 }
 

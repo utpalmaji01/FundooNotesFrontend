@@ -2,7 +2,6 @@
 @import "./colors";
 
 .dashBoardNotes-container {
-  padding: 10px 30px;
   display: flex;
   justify-content: center;
 }
@@ -15,7 +14,7 @@
     width: 70%;
   }
   @media screen and (max-width: $break-small) {
-    width: 230px;
+    width: 245px;
   }
 }
 
@@ -49,6 +48,7 @@
 .add-note-description textarea {
   text-align: justify;
 }
+
 .MuiCardContent-root:last-child {
   padding-bottom: 16px !important;
 }

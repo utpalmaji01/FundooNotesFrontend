@@ -2,7 +2,6 @@
 @import "./colors";
 
 .note-actions-item-addnote {
-  // padding: 5px !important;
   @media screen and (max-width: $break-large) {
     padding: 9px !important;
   }
@@ -13,7 +12,7 @@
     padding: 5px !important;
   }
   @media screen and (max-width: $break-xsmall) {
-    padding: 3px !important;
+    padding: 2px !important;
   }
 }
 .note-actions-item-shownote {

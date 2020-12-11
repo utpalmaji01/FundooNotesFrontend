@@ -19,6 +19,7 @@ class DashBoard extends PureComponent {
     isDrawerMin: true,
     allNotes: [],
     selectedMenu: "Notes",
+    gridViewMode: true,
   };
 
   showAddNotes = () => {
@@ -31,6 +32,12 @@ class DashBoard extends PureComponent {
       return true;
     }
   };
+  setViewMode = () => {
+    this.setState({
+      gridViewMode: !this.state.gridViewMode,
+    });
+  };
+
   setSelectedMenu = (value) => {
     this.setState({
       selectedMenu: value,
@@ -79,7 +86,11 @@ class DashBoard extends PureComponent {
       <>
         <div className="dashboard-container">
           <div className="dashboard-header">
-            <AppBar setListSize={this.setListSize} />
+            <AppBar
+              setListSize={this.setListSize}
+              gridViewMode={this.state.gridViewMode}
+              setViewMode={this.setViewMode}
+            />
           </div>
           <div
             className={clsx("dashboard-body", {
@@ -114,6 +125,7 @@ class DashBoard extends PureComponent {
                     allNotes={this.state.allNotes}
                     selectedMenu={this.state.selectedMenu}
                     setAllNotes={this.setAllNotes}
+                    gridViewMode={this.state.gridViewMode}
                   />
                 </Suspense>
               </div>

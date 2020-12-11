@@ -22,6 +22,10 @@
 
 .app-name {
   align-self: center;
+  @media screen and (max-width: $break-xsmall) {
+    // width: 25%;
+    display: none !important;
+  }
 }
 
 .search-bar {
@@ -34,8 +38,7 @@
     width: 28%;
   }
   @media screen and (max-width: $break-xsmall) {
-    // width: 25%;
-    display: none !important;
+    width: 30%;
   }
 }
 
@@ -59,21 +62,8 @@ fieldset {
   }
   @media screen and (max-width: $break-xsmall) {
     width: 5% !important;
-    // display: none;
   }
 }
-// .spacing-right {
-//   width: 32%;
-//   @media screen and (max-width: $break-medium) {
-//     width: 17% !important;
-//   }
-//   @media screen and (max-width: $break-small) {
-//     width: 7% !important;
-//   }
-//   @media screen and (max-width: $break-xsmall) {
-//     width: 11% !important;
-//   }
-// }
 
 .toggle-view-mode {
   position: absolute !important;

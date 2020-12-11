@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import CardAction from "./cardAction.jsx";
-import "../style/showNotes.scss";
 import noteServices from "../sevices/noteServices.js";
 import EditNote from "./editNote";
+import clsx from "clsx";
+import "../style/showNotes.scss";
 
 export default function DashBoardNotes(props) {
   const [isEdit, setIsEdit] = useState(false);
@@ -10,7 +11,6 @@ export default function DashBoardNotes(props) {
   const [allTypeOfNotes, setAllTypeOfNotes] = useState([]);
 
   useEffect(() => {
-    console.log(props.allNotes);
     if (props.selectedMenu === "Notes") {
       setAllTypeOfNotes(
         props.allNotes.filter(
@@ -37,36 +37,6 @@ export default function DashBoardNotes(props) {
     );
   };
 
-  const editNote = (note) => {
-    localStorage.setItem("currentNoteId", note.id);
-    console.log(note);
-    setCurrentNoteDetails(note);
-    console.log(currentNoteDetails);
-    setIsEdit(true);
-  };
-
-  const deleteNote = () => {
-    console.log("delete note reached :");
-    let currentNoteIndex = getCurrentNoteIndex();
-    let newNotesArray = [...props.allNotes];
-    let deleteNoteObject = {
-      isDeleted: !newNotesArray[currentNoteIndex].isDeleted,
-      noteIdList: [localStorage.getItem("currentNoteId")],
-    };
-    noteServices
-      .deleteNote(localStorage.getItem("id"), deleteNoteObject)
-      .then((responce) => {
-        console.log(responce);
-        if (responce.status === 200) {
-          newNotesArray[currentNoteIndex].isDeleted = !newNotesArray[currentNoteIndex].isDeleted;
-          props.setAllNotes(newNotesArray.reverse());
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   const addColor = (color) => {
     let colorNoteObject = {
       color: color,
@@ -90,6 +60,59 @@ export default function DashBoardNotes(props) {
         console.log(error);
       });
     console.log("reached add color from shownote " + color);
+  };
+
+  const editNote = (note) => {
+    localStorage.setItem("currentNoteId", note.id);
+    console.log(note);
+    setCurrentNoteDetails(note);
+    console.log(currentNoteDetails);
+    setIsEdit(true);
+  };
+
+  const deleteNote = () => {
+    console.log("delete note reached :");
+    let currentNoteIndex = getCurrentNoteIndex();
+    let newNotesArray = [...props.allNotes];
+    let deleteNoteObject = {
+      isDeleted: !newNotesArray[currentNoteIndex].isDeleted,
+      noteIdList: [localStorage.getItem("currentNoteId")],
+    };
+    noteServices
+      .deleteNote(localStorage.getItem("id"), deleteNoteObject)
+      .then((responce) => {
+        console.log(responce);
+        if (responce.status === 200) {
+          newNotesArray[currentNoteIndex].isDeleted = !newNotesArray[
+            currentNoteIndex
+          ].isDeleted;
+          props.setAllNotes(newNotesArray.reverse());
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const deleteNoteForever = () => {
+    console.log("delete note reached :");
+    let currentNoteIndex = getCurrentNoteIndex();
+    let newNotesArray = [...props.allNotes];
+    let deletedNoteForever = {
+      noteIdList: [localStorage.getItem("currentNoteId")],
+    };
+    noteServices
+      .deleteNoteForever(localStorage.getItem("id"), deletedNoteForever)
+      .then((responce) => {
+        console.log(responce);
+        if (responce.status === 200) {
+          newNotesArray.splice(currentNoteIndex, 1);
+          props.setAllNotes(newNotesArray);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const addArchiveStatus = () => {
@@ -146,6 +169,7 @@ export default function DashBoardNotes(props) {
             addArchiveStatus={addArchiveStatus}
             noteArchiveStatus={note.isArchived}
             selectedMenu={props.selectedMenu}
+            deleteNoteForever={deleteNoteForever}
           />
         </div>
       </div>
@@ -154,7 +178,14 @@ export default function DashBoardNotes(props) {
 
   return (
     <>
-      <div className="display-notes">{note}</div>
+      <div
+        className={clsx({
+          "display-notes-grid-view": props.gridViewMode,
+          "display-notes-list-view": !props.gridViewMode,
+        })}
+      >
+        {note}
+      </div>
       <EditNote
         deleteNote={deleteNote}
         currentNoteDetails={currentNoteDetails}

@@ -69,7 +69,6 @@ class noteServices {
     );
   };
 
-
   /*
    * @description service to update a note
    * @params {token} data i.e. sent from the backend for authorization
@@ -83,24 +82,6 @@ class noteServices {
     };
     return axiosServices.postServices(
       process.env.REACT_APP_UPDATE_NOTE_API_PATH,
-      noteObject,
-      header
-    );
-  };
-
-  /*
-   * @description service to delete a note
-   * @params {token} data i.e. sent from the backend for authorization
-   * @params {noteObject} data i.e. details of note
-   */
-  deleteNote = (token, noteObject) => {
-    let header = {
-      headers: {
-        'Authorization' : token
-      }
-    };
-    return axiosServices.postServices(
-      process.env.REACT_APP_DELETE_NOTE_API_PATH,
       noteObject,
       header
     );
@@ -137,6 +118,42 @@ class noteServices {
     };
     return axiosServices.postServices(
       process.env.REACT_APP_CHANGE_NOTE_ARCHIVE_STATUS_API_PATH,
+      noteObject,
+      header
+    );
+  };
+
+  /*
+   * @description service to delete a note
+   * @params {token} data i.e. sent from the backend for authorization
+   * @params {noteObject} data i.e. details of note
+   */
+  deleteNote = (token, noteObject) => {
+    let header = {
+      headers: {
+        'Authorization' : token
+      }
+    };
+    return axiosServices.postServices(
+      process.env.REACT_APP_DELETE_NOTE_API_PATH,
+      noteObject,
+      header
+    );
+  };
+
+  /*
+   * @description service to delete a note
+   * @params {token} data i.e. sent from the backend for authorization
+   * @params {noteObject} data i.e. details of note
+   */
+  deleteNoteForever = (token, noteObject) => {
+    let header = {
+      headers: {
+        'Authorization' : token
+      }
+    };
+    return axiosServices.postServices(
+      process.env.REACT_APP_DELETE_NOTE_FOREVER_API_PATH,
       noteObject,
       header
     );

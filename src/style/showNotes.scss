@@ -1,19 +1,29 @@
 @import "./breakPoints";
 @import "./colors";
 
-.display-notes {
+.display-notes-grid-view {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  
+  justify-content: space-between;
+  @media screen and (max-width: $break-xsmall) {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-.each-note {
-  margin: 5px;
+.display-notes-list-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.display-notes-grid-view .each-note {
+  margin: 3px;
   padding: 10px;
-  border: 1px solid  $color-border;
+  border: 1px solid $color-border;
   border-radius: 5px;
-  width: 240px;
+  width: 230px;
   min-height: 122px;
   @media screen and (max-width: $break-medium) {
     width: 240px;
@@ -21,9 +31,21 @@
   @media screen and (max-width: $break-small) {
     width: 230px;
   }
-  // @media screen and (max-width: $break-xsmall) {
-  //   width: 200px;
-  // }
+}
+
+.display-notes-list-view .each-note {
+  margin: 3px;
+  padding: 10px;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  width: 55%;
+  min-height: 122px;
+  @media screen and (max-width: $break-medium) {
+    width: 70%;
+  }
+  @media screen and (max-width: $break-small) {
+    width: 230px;
+  }
 }
 
 .each-note:hover {
@@ -39,7 +61,7 @@
   font-size: 1.2rem;
 }
 
-.note-description{
+.note-description {
   min-height: 50px;
   padding: 5px 0;
 }

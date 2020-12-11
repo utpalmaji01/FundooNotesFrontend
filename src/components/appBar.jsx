@@ -14,13 +14,14 @@ import {
   Menu as MenuIcon,
   ViewAgenda as ViewAgendaIcon,
   Search as SearchIcon,
+  DashboardOutlined as DashboardOutlinedIcon,
 } from "@material-ui/icons";
 import notesLogo from "../assets/NotesLogo.png";
 import userServices from "../sevices/userServices.js";
 import history from "../History";
 import "../style/appBar.scss";
 
-export default function AppHeader({ setListSize }) {
+export default function AppHeader(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isProfileClicked, setIsProfileClicked] = useState(false);
@@ -50,7 +51,7 @@ export default function AppHeader({ setListSize }) {
   return (
     <>
       <div className="appBar-container">
-        <IconButton aria-label="menu" onClick={setListSize}>
+        <IconButton aria-label="menu" onClick={props.setListSize}>
           <MenuIcon />
         </IconButton>
         <IconButton disabled className="note-logo-image">
@@ -61,28 +62,48 @@ export default function AppHeader({ setListSize }) {
         </Typography>
         <div className="spacing-left"></div>
         <TextField
-            className="search-bar"
-            placeholder="Search"
-            margin="dense"
-            variant="outlined"
-            type="text"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start" className="search-icon">
-                  <IconButton disabled aria-label="search">
-                    <SearchIcon />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <IconButton aria-label="menu" className="toggle-view-mode">
+          className="search-bar"
+          placeholder="Search"
+          margin="dense"
+          variant="outlined"
+          type="text"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start" className="search-icon">
+                <IconButton disabled aria-label="search">
+                  <SearchIcon />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
+        {props.gridViewMode ? (
+          <IconButton
+            aria-label="menu"
+            className="toggle-view-mode"
+            onClick={props.setViewMode}
+          >
             <ViewAgendaIcon fontSize="small" />
           </IconButton>
-          <IconButton aria-label="menu" onClick={showProfile} className="profile-button">
-          <samp className="profile-icon">{localStorage.getItem("firstName").slice(0,1)}</samp>
-            {/* <PersonIcon fontSize="small" /> */}
+        ) : (
+          <IconButton
+            aria-label="menu"
+            className="toggle-view-mode"
+            onClick={props.setViewMode}
+          >
+            <DashboardOutlinedIcon fontSize="small" />
           </IconButton>
+        )}
+        
+        <IconButton
+          aria-label="menu"
+          onClick={showProfile}
+          className="profile-button"
+        >
+          <samp className="profile-icon">
+            {localStorage.getItem("firstName").slice(0, 1)}
+          </samp>
+        </IconButton>
       </div>
       {isProfileClicked && (
         <Card className="profile">
