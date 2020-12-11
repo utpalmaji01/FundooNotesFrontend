@@ -4,7 +4,7 @@
 .display-notes-grid-view {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   @media screen and (max-width: $break-xsmall) {
     flex-wrap: nowrap;
     flex-direction: column;

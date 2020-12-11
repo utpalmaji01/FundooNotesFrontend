@@ -17,7 +17,7 @@ import clsx from "clsx";
 import "../style/sideNavBar.scss";
 
 export default function SideNavBar(props) {
-  const selectedMenu = (e,currentMenu) => {
+  const selectedMenu = (e, currentMenu) => {
     e.preventDefault();
     props.setSelectedMenu(currentMenu);
   };
@@ -31,7 +31,13 @@ export default function SideNavBar(props) {
         })}
       >
         <List className="sideNav-list">
-          <ListItem button onClick={(e)=>selectedMenu(e,"Notes")} className="list-item">
+          <ListItem
+            button
+            onClick={(e) => selectedMenu(e, "Notes")}
+            className={clsx("list-item", {
+              "list-item-active": props.selectedMenu === "Notes" && !props.isDrawerMin,
+            })}
+          >
             <ListItemIcon
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Notes",
@@ -46,7 +52,13 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button onClick={(e)=>selectedMenu(e,"Reminders")} className="list-item">
+          <ListItem
+            button
+            onClick={(e) => selectedMenu(e, "Reminders")}
+            className={clsx("list-item", {
+              "list-item-active": props.selectedMenu === "Reminders" && !props.isDrawerMin,
+            })}
+          >
             <ListItemIcon
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Reminders",
@@ -61,7 +73,13 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button onClick={(e)=>selectedMenu(e,"Edit Labels")} className="list-item">
+          <ListItem
+            button
+            onClick={(e) => selectedMenu(e, "Edit Labels")}
+            className={clsx("list-item", {
+              "list-item-active": props.selectedMenu === "Edit Labels" && !props.isDrawerMin,
+            })}
+          >
             <ListItemIcon
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Edit Labels",
@@ -76,7 +94,13 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button onClick={(e)=>selectedMenu(e,"Archives")} className="list-item">
+          <ListItem
+            button
+            onClick={(e) => selectedMenu(e, "Archives")}
+            className={clsx("list-item", {
+              "list-item-active": props.selectedMenu === "Archives" && !props.isDrawerMin,
+            })}
+          >
             <ListItemIcon
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Archives",
@@ -91,10 +115,18 @@ export default function SideNavBar(props) {
               })}
             />
           </ListItem>
-          <ListItem button onClick={(e)=>selectedMenu(e,"Trash")} className="list-item">
-            <ListItemIcon className={clsx("sidenav-icon", {
+          <ListItem
+            button
+            onClick={(e) => selectedMenu(e, "Trash")}
+            className={clsx("list-item", {
+              "list-item-active": props.selectedMenu === "Trash" && !props.isDrawerMin,
+            })}
+          >
+            <ListItemIcon
+              className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Trash",
-              })}>
+              })}
+            >
               <DeleteOutlineIcon />
             </ListItemIcon>
             <ListItemText

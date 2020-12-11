@@ -68,6 +68,10 @@
   }
 }
 
+.list-item.list-item-active {
+  background-color: $color-selection !important;
+}
+
 .listItemText {
   margin-left: 10px;
   width: 150px !important;
