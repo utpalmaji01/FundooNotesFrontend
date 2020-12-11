@@ -69,6 +69,7 @@ export default function DashBoardNotes(props) {
 
   const addArchiveStatus = () => {
     setNewNoteArchiveStatus(!newNoteArchiveStatus);
+    console.log(newNoteArchiveStatus);
   };
 
   const closeSnackbar = (reason) => {
@@ -133,6 +134,7 @@ export default function DashBoardNotes(props) {
                 class="note-actions-item-addnote"
                 addColor={addColor}
                 addArchiveStatus={addArchiveStatus}
+                noteArchiveStatus={newNoteArchiveStatus}
               />
               <Button className="close-button" onClick={addNote}>
                 Close

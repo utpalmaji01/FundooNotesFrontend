@@ -127,6 +127,8 @@ export default function EditNote(props) {
               deleteNote={deleteNote}
               addColor={addColor}
               addArchiveStatus={addArchiveStatus}
+              noteArchiveStatus={props.currentNoteDetails.isArchived}
+              selectedMenu="EditNote"
             />
             <Button className="close-button" onClick={editNote}>
               Close

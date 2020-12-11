@@ -47,8 +47,10 @@ export default function DashBoardNotes(props) {
 
   const deleteNote = () => {
     console.log("delete note reached :");
+    let currentNoteIndex = getCurrentNoteIndex();
+    let newNotesArray = [...props.allNotes];
     let deleteNoteObject = {
-      isDeleted: true,
+      isDeleted: !newNotesArray[currentNoteIndex].isDeleted,
       noteIdList: [localStorage.getItem("currentNoteId")],
     };
     noteServices
@@ -56,9 +58,7 @@ export default function DashBoardNotes(props) {
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {
-          let currentNoteIndex = getCurrentNoteIndex();
-          let newNotesArray = [...props.allNotes];
-          newNotesArray[currentNoteIndex].isDeleted = true;
+          newNotesArray[currentNoteIndex].isDeleted = !newNotesArray[currentNoteIndex].isDeleted;
           props.setAllNotes(newNotesArray.reverse());
         }
       })
@@ -100,22 +100,24 @@ export default function DashBoardNotes(props) {
       isArchived: noteArchiveStatus,
       noteIdList: [localStorage.getItem("currentNoteId")],
     };
-    noteServices.changeNoteArchiveStatus(localStorage.getItem("id"),archiveNoteObject).then((responce) => {
-      console.log(responce);
-      if (responce.status === 200) {
-        newNotesArray[currentNoteIndex] = {
-          ...newNotesArray[currentNoteIndex],
-          isArchived: noteArchiveStatus,
-        };
-        props.setAllNotes(newNotesArray);
-        if (isEdit) {
-          setIsEdit(false);
+    noteServices
+      .changeNoteArchiveStatus(localStorage.getItem("id"), archiveNoteObject)
+      .then((responce) => {
+        console.log(responce);
+        if (responce.status === 200) {
+          newNotesArray[currentNoteIndex] = {
+            ...newNotesArray[currentNoteIndex],
+            isArchived: noteArchiveStatus,
+          };
+          props.setAllNotes(newNotesArray);
+          if (isEdit) {
+            setIsEdit(false);
+          }
         }
-      }
-    }).catch((error) => {
-      console.log(error);
-    })
-    
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const note = allTypeOfNotes.reverse().map((note) => {
@@ -142,6 +144,8 @@ export default function DashBoardNotes(props) {
             deleteNote={deleteNote}
             addColor={addColor}
             addArchiveStatus={addArchiveStatus}
+            noteArchiveStatus={note.isArchived}
+            selectedMenu={props.selectedMenu}
           />
         </div>
       </div>

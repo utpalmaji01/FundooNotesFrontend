@@ -6,6 +6,9 @@ import {
   InsertPhotoOutlined as InsertPhotoOutlinedIcon,
   ArchiveOutlined as ArchiveOutlinedIcon,
   MoreVert as MoreVertIcon,
+  DeleteForeverOutlined as DeleteForeverOutlinedIcon,
+  RestoreFromTrashOutlined as RestoreFromTrashOutlinedIcon,
+  UnarchiveOutlined as UnarchiveOutlinedIcon,
 } from "@material-ui/icons";
 import clsx from "clsx";
 import "../style/cardAction.scss";
@@ -13,28 +16,39 @@ import { IconButton, Menu, MenuItem, Tooltip } from "@material-ui/core";
 
 export default function CardAction(props) {
   const [anchorEl, setAnchorEl] = useState(null);
-  const[isColorPaletteOpen,setIsColorPaletteOpen] = useState(false);
+  const [isColorPaletteOpen, setIsColorPaletteOpen] = useState(false);
 
+  const isSelectedMenuTrash = () => {
+    if (props.selectedMenu === "Trash") {
+      return true;
+    } else {
+      return false;
+    }
+  };
   const showMoreOption = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const closeMoreAction = () => {
     setAnchorEl(null);
-  }
+  };
 
   const toggleColorPalette = () => {
     setIsColorPaletteOpen(!isColorPaletteOpen);
-  }
+  };
 
-  const applyColor = (e,color) => {
-    e.preventDefault(); 
+  const applyColor = (e, color) => {
+    e.preventDefault();
     props.addColor(color);
-  }
+  };
 
   const applyArchive = (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
     props.addArchiveStatus();
+  };
+
+  const restoreFromTrash = () => {
+    props.deleteNote();
   }
 
   const callDeleteFunction = (e) => {
@@ -89,6 +103,30 @@ export default function CardAction(props) {
 
   return (
     <>
+      {isSelectedMenuTrash() ? (
+        <>
+        <Tooltip title="Delete Forever">
+          <IconButton
+            color="inherit"
+            aria-label="reminder"
+            className={props.class}
+          >
+            <DeleteForeverOutlinedIcon fontSize="small" className="action-icon" />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Restore" onClick={restoreFromTrash}>
+        <IconButton
+          color="inherit"
+          aria-label="reminder"
+          className={props.class}
+        >
+          <RestoreFromTrashOutlinedIcon fontSize="small" className="action-icon" />
+        </IconButton>
+      </Tooltip>
+      </>
+      ) : (
+        <>
+      
       <Tooltip title="Reminder">
         <IconButton
           color="inherit"
@@ -107,7 +145,11 @@ export default function CardAction(props) {
           <PersonOutlineOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Change Color" className="color-set-tooltip" onClick={toggleColorPalette}>
+      <Tooltip
+        title="Change Color"
+        className="color-set-tooltip"
+        onClick={toggleColorPalette}
+      >
         <IconButton
           color="inherit"
           aria-label="change color"
@@ -117,44 +159,46 @@ export default function CardAction(props) {
           <PaletteOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      
-      <div className={clsx("color-palette", {
-                "color-palette-active": isColorPaletteOpen,
-              })}>
-        <Tooltip title="White" onClick={(e)=>applyColor(e,"#FFFFFF")}>
+
+      <div
+        className={clsx("color-palette", {
+          "color-palette-active": isColorPaletteOpen,
+        })}
+      >
+        <Tooltip title="White" onClick={(e) => applyColor(e, "#FFFFFF")}>
           <IconButton className="color color-white active" />
         </Tooltip>
-        <Tooltip title="Red" onClick={(e)=>applyColor(e,"#f28b82")}>
+        <Tooltip title="Red" onClick={(e) => applyColor(e, "#f28b82")}>
           <IconButton className="color color-red" />
         </Tooltip>
-        <Tooltip title="Orange" onClick={(e)=>applyColor(e,"#fbbc04")}>
+        <Tooltip title="Orange" onClick={(e) => applyColor(e, "#fbbc04")}>
           <IconButton className="color color-orange" />
         </Tooltip>
-        <Tooltip title="Yellow" onClick={(e)=>applyColor(e,"#fff475")}>
+        <Tooltip title="Yellow" onClick={(e) => applyColor(e, "#fff475")}>
           <IconButton className="color color-yellow" />
         </Tooltip>
-        <Tooltip title="Green" onClick={(e)=>applyColor(e,"#ccff90")}>
+        <Tooltip title="Green" onClick={(e) => applyColor(e, "#ccff90")}>
           <IconButton className="color color-green" />
         </Tooltip>
-        <Tooltip title="Teal" onClick={(e)=>applyColor(e,"#a7ffeb")}>
+        <Tooltip title="Teal" onClick={(e) => applyColor(e, "#a7ffeb")}>
           <IconButton className="color color-teal" />
         </Tooltip>
-        <Tooltip title="Blue" onClick={(e)=>applyColor(e,"#ebebeb")}>
+        <Tooltip title="Blue" onClick={(e) => applyColor(e, "#ebebeb")}>
           <IconButton className="color color-blue" />
         </Tooltip>
-        <Tooltip title="Dark Blue" onClick={(e)=>applyColor(e,"#aecbfa")}>
+        <Tooltip title="Dark Blue" onClick={(e) => applyColor(e, "#aecbfa")}>
           <IconButton className="color color-dark-blue" />
         </Tooltip>
-        <Tooltip title="Purple" onClick={(e)=>applyColor(e,"#d7aefb")}>
+        <Tooltip title="Purple" onClick={(e) => applyColor(e, "#d7aefb")}>
           <IconButton className="color color-purple" />
         </Tooltip>
-        <Tooltip title="Pink" onClick={(e)=>applyColor(e,"#fdcfe8")}>
+        <Tooltip title="Pink" onClick={(e) => applyColor(e, "#fdcfe8")}>
           <IconButton className="color color-pink" />
         </Tooltip>
-        <Tooltip title="Brown" onClick={(e)=>applyColor(e,"#e6c9a8")}>
+        <Tooltip title="Brown" onClick={(e) => applyColor(e, "#e6c9a8")}>
           <IconButton className="color color-brown" />
         </Tooltip>
-        <Tooltip title="Gray" onClick={(e)=>applyColor(e,"#e8eaed")}>
+        <Tooltip title="Gray" onClick={(e) => applyColor(e, "#e8eaed")}>
           <IconButton className="color color-gray" />
         </Tooltip>
       </div>
@@ -167,15 +211,28 @@ export default function CardAction(props) {
           <InsertPhotoOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>
       </Tooltip>
-      <Tooltip title="Archive" onClick={applyArchive}>
-        <IconButton
-          color="inherit"
-          aria-label="archive"
-          className={props.class}
-        >
-          <ArchiveOutlinedIcon fontSize="small" className="action-icon" />
-        </IconButton>
-      </Tooltip>
+      {props.noteArchiveStatus ? (
+        <Tooltip title="Unarchive" onClick={applyArchive}>
+          <IconButton
+            color="inherit"
+            aria-label="archive"
+            className={props.class}
+          >
+            <UnarchiveOutlinedIcon fontSize="small" className="action-icon" />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        <Tooltip title="Archive" onClick={applyArchive}>
+          <IconButton
+            color="inherit"
+            aria-label="archive"
+            className={props.class}
+          >
+            <ArchiveOutlinedIcon fontSize="small" className="action-icon" />
+          </IconButton>
+        </Tooltip>
+      )}
+
       <Tooltip
         aria-controls="more-options-dropdown"
         title="More"
@@ -187,6 +244,8 @@ export default function CardAction(props) {
         </IconButton>
       </Tooltip>
       {moreOptionDropdown(props.class)}
+    </>
+    )}
     </>
   );
 }

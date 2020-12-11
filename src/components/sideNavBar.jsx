@@ -12,8 +12,6 @@ import {
   Create as CreateIcon,
   ArchiveOutlined as ArchiveIcon,
   DeleteOutline as DeleteOutlineIcon,
-  DeleteForeverOutlined as DeleteForeverOutlinedIcon,
-  RestoreFromTrashOutlined as RestoreFromTrashOutlinedIcon,
 } from "@material-ui/icons";
 import clsx from "clsx";
 import "../style/sideNavBar.scss";

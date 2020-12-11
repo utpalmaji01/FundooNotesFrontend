@@ -29,6 +29,7 @@
   align-self: center;
   margin-top: 4px !important;
   width: 38%;
+  border-radius: 8px;
   @media screen and (max-width: $break-small) {
     width: 28%;
   }
@@ -42,6 +43,10 @@
   @media screen and (max-width: $break-small) {
     display: none !important;
   }
+}
+
+fieldset {
+  border: none !important;
 }
 
 .spacing-left {
@@ -79,10 +84,10 @@
 
 .profile-button {
   position: absolute !important;
-  height: 40px;
+  height: 35px;
   right: 20px;
   background-color: $color-teal !important;
-  margin: 5px 0 !important;
+  margin: 8px 0 !important;
 }
 
 .profile-icon {
