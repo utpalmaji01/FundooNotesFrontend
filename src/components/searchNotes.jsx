@@ -1,5 +1,4 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
-import AddNotes from "./addNotes.jsx";
 import Loader from "./Loading.jsx";
 
 const ShowNotes = lazy(() => {
@@ -7,20 +6,19 @@ const ShowNotes = lazy(() => {
     setTimeout(() => resolve(import("./showNotes.jsx")), 1000);
   });
 });
-export default function Notes(props) {
+export default function Search(props) {
   const [note, setNote] = useState([]);
   useEffect(() => {
     setNote(
       props.allNotes.filter(
-        (note) => note.isDeleted === false && note.isArchived === false
+        (note) =>
+          note.title.toLowerCase().includes(props.searchNote.toLowerCase()) ||
+          note.description.toLowerCase().includes(props.searchNote.toLowerCase())
       )
     );
-  }, [props.allNotes, setNote]);
+  }, [props.allNotes, setNote, props.searchNote]);
   return (
     <>
-      <div className="addAnyNotes">
-        <AddNotes allNotes={props.allNotes} addNote={props.addNote} />
-      </div>
       <Suspense fallback={<Loader />}>
         <ShowNotes
           allNotes={props.allNotes}

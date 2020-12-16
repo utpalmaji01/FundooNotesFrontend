@@ -31,6 +31,7 @@ export default function AppHeader(props) {
       // console.log("setsearchKeyword reached");
       props.setSelectedMenu("Search");
       props.setSearchNote(e.target.value);
+      history.push("/dashBoard/Search")
     }
   }
   const showProfile = () => {

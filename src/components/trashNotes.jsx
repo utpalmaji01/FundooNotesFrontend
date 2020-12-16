@@ -15,7 +15,8 @@ export default function Trash(props) {
     <>
       <Suspense fallback={<Loader />}>
         <ShowNotes
-          allNotes={note}
+          allNotes={props.allNotes}
+          filterNotes={note}
           selectedMenu={props.selectedMenu}
           setAllNotes={props.setAllNotes}
           gridViewMode={props.gridViewMode}

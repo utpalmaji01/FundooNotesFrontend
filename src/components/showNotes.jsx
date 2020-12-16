@@ -39,7 +39,7 @@ export default function DashBoardNotes(props) {
             ...newNotesArray[currentNoteIndex],
             color: color,
           };
-          props.setAllNotes(newNotesArray.reverse());
+          props.setAllNotes(newNotesArray);
         }
       })
       .catch((error) => {
@@ -129,7 +129,7 @@ export default function DashBoardNotes(props) {
       });
   };
 
-  const note = props.allNotes.reverse().map((note) => {
+  const note = props.filterNotes.reverse().map((note) => {
     return (
       <div
         className="each-note"

@@ -10,6 +10,7 @@ import Loader from "./Loading.jsx";
 import Notes from "./notes.jsx";
 import Trash from "./trashNotes.jsx";
 import Archive from "./archiveNotes.jsx";
+import Search from "./searchNotes.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/dashBoard.scss";
 // const ShowNotes = lazy(() => import("./showNotes.jsx"));
@@ -165,6 +166,18 @@ class DashBoard extends PureComponent {
                     path="/dashBoard/Archives"
                     component={() => (
                       <Archive
+                        allNotes={this.state.allNotes}
+                        selectedMenu={this.state.selectedMenu}
+                        setAllNotes={this.setAllNotes}
+                        gridViewMode={this.state.gridViewMode}
+                        searchNote={this.state.searchNote}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/dashBoard/Search"
+                    component={() => (
+                      <Search
                         allNotes={this.state.allNotes}
                         selectedMenu={this.state.selectedMenu}
                         setAllNotes={this.setAllNotes}

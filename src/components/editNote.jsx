@@ -123,9 +123,10 @@ export default function EditNote(props) {
               className="edit-note-description"
             />
           </div>
+         
           <CardActions className="edit-note-footer">
             <CardAction
-              class="note-actions-item-editnote"
+              class={props.isDisabledEdit ? "note-actions-item-deletenote" : "note-actions-item-editnote"}
               deleteNote={deleteNote}
               addColor={addColor}
               addArchiveStatus={addArchiveStatus}
