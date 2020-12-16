@@ -2,34 +2,20 @@ import React, { useEffect, useState } from "react";
 import CardAction from "./cardAction.jsx";
 import noteServices from "../sevices/noteServices.js";
 import EditNote from "./editNote";
-import clsx from "clsx";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+// import clsx from "clsx";
 import "../style/showNotes.scss";
 
 export default function DashBoardNotes(props) {
   const [isEdit, setIsEdit] = useState(false);
   const [currentNoteDetails, setCurrentNoteDetails] = useState([]);
-  const [allTypeOfNotes, setAllTypeOfNotes] = useState([]);
-
+  // const [allTypeOfNotes, setAllTypeOfNotes] = useState([]);
+  const [disabledEdit, setDisabledEdit] = useState(false);
   useEffect(() => {
-    if (props.selectedMenu === "Notes") {
-      setAllTypeOfNotes(
-        props.allNotes.filter(
-          (note) => note.isDeleted === false && note.isArchived === false
-        )
-      );
-    }
     if (props.selectedMenu === "Trash") {
-      setAllTypeOfNotes(
-        props.allNotes.filter((note) => note.isDeleted === true)
-      );
+      setDisabledEdit(true);
     }
-    if (props.selectedMenu === "Archives") {
-      setAllTypeOfNotes(
-        props.allNotes.filter((note) => note.isArchived === true)
-      );
-    }
-    console.log(props.allNotes);
-  }, [props.allNotes, props.selectedMenu, setAllTypeOfNotes]);
+  }, [props.selectedMenu, setDisabledEdit]);
 
   const getCurrentNoteIndex = () => {
     return props.allNotes.findIndex(
@@ -43,7 +29,7 @@ export default function DashBoardNotes(props) {
       noteIdList: [localStorage.getItem("currentNoteId")],
     };
     noteServices
-      .changeNoteColor(localStorage.getItem("id"), colorNoteObject)
+      .changeNoteColor(colorNoteObject)
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {
@@ -53,7 +39,7 @@ export default function DashBoardNotes(props) {
             ...newNotesArray[currentNoteIndex],
             color: color,
           };
-          props.setAllNotes(newNotesArray);
+          props.setAllNotes(newNotesArray.reverse());
         }
       })
       .catch((error) => {
@@ -79,7 +65,7 @@ export default function DashBoardNotes(props) {
       noteIdList: [localStorage.getItem("currentNoteId")],
     };
     noteServices
-      .deleteNote(localStorage.getItem("id"), deleteNoteObject)
+      .deleteNote(deleteNoteObject)
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {
@@ -102,7 +88,7 @@ export default function DashBoardNotes(props) {
       noteIdList: [localStorage.getItem("currentNoteId")],
     };
     noteServices
-      .deleteNoteForever(localStorage.getItem("id"), deletedNoteForever)
+      .deleteNoteForever(deletedNoteForever)
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {
@@ -124,7 +110,7 @@ export default function DashBoardNotes(props) {
       noteIdList: [localStorage.getItem("currentNoteId")],
     };
     noteServices
-      .changeNoteArchiveStatus(localStorage.getItem("id"), archiveNoteObject)
+      .changeNoteArchiveStatus( archiveNoteObject)
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {
@@ -132,7 +118,7 @@ export default function DashBoardNotes(props) {
             ...newNotesArray[currentNoteIndex],
             isArchived: noteArchiveStatus,
           };
-          props.setAllNotes(newNotesArray);
+          props.setAllNotes(newNotesArray.reverse());
           if (isEdit) {
             setIsEdit(false);
           }
@@ -143,7 +129,7 @@ export default function DashBoardNotes(props) {
       });
   };
 
-  const note = allTypeOfNotes.reverse().map((note) => {
+  const note = props.allNotes.reverse().map((note) => {
     return (
       <div
         className="each-note"
@@ -152,13 +138,15 @@ export default function DashBoardNotes(props) {
         style={{ backgroundColor: note.color }}
       >
         <div className="note-body" onClick={() => editNote(note)}>
-          <div className="note-titel">{note.title.slice(0, 20)}</div>
+          <div className="note-titel">
+            {note.title.length < 20
+              ? note.title
+              : note.title.slice(0, 20) + "..."}
+          </div>
           <div className="note-description">
-            {note.description.slice(0, 25)}
-            <br />
-            {note.description.slice(26, 50)}
-            <br />
-            {note.description.slice(51, 75)}
+            {note.description.length < 400
+              ? note.description
+              : note.description.slice(0, 400) + "..."}
           </div>
         </div>
         <div className="note-footer">
@@ -178,14 +166,18 @@ export default function DashBoardNotes(props) {
 
   return (
     <>
-      <div
-        className={clsx({
-          "display-notes-grid-view": props.gridViewMode,
-          "display-notes-list-view": !props.gridViewMode,
-        })}
-      >
-        {note}
-      </div>
+      {props.gridViewMode ? (
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 360: 1, 500: 2, 750: 3, 1000: 5 }}
+          className="ResponsiveMasonry"
+        >
+          <Masonry gutter="10px" className="Masonry">
+            {note}
+          </Masonry>
+        </ResponsiveMasonry>
+      ) : (
+        <div className="display-notes-list-view">{note}</div>
+      )}
       <EditNote
         deleteNote={deleteNote}
         currentNoteDetails={currentNoteDetails}
@@ -194,6 +186,7 @@ export default function DashBoardNotes(props) {
         allNotes={props.allNotes}
         setAllNotes={props.setAllNotes}
         addArchiveStatus={addArchiveStatus}
+        isDisabledEdit={disabledEdit}
       />
     </>
   );

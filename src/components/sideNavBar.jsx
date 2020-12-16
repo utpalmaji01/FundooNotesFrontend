@@ -14,12 +14,14 @@ import {
   DeleteOutline as DeleteOutlineIcon,
 } from "@material-ui/icons";
 import clsx from "clsx";
+import history from "../History";
 import "../style/sideNavBar.scss";
 
 export default function SideNavBar(props) {
   const selectedMenu = (e, currentMenu) => {
     e.preventDefault();
     props.setSelectedMenu(currentMenu);
+    history.push("/dashBoard/"+currentMenu);
   };
   return (
     <>
@@ -39,6 +41,7 @@ export default function SideNavBar(props) {
             })}
           >
             <ListItemIcon
+             onClick={(e) => selectedMenu(e, "Notes")}
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Notes",
               })}
@@ -46,6 +49,7 @@ export default function SideNavBar(props) {
               <EmojiObjectsIcon />
             </ListItemIcon>
             <ListItemText
+             onClick={(e) => selectedMenu(e, "Notes")}
               primary="Notes"
               className={clsx("listItemText", {
                 "list-min": props.isDrawerMin,
@@ -60,6 +64,7 @@ export default function SideNavBar(props) {
             })}
           >
             <ListItemIcon
+            onClick={(e) => selectedMenu(e, "Reminders")}
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Reminders",
               })}
@@ -67,6 +72,7 @@ export default function SideNavBar(props) {
               <NotificationsNoneIcon />
             </ListItemIcon>
             <ListItemText
+            onClick={(e) => selectedMenu(e, "Reminders")}
               primary="Reminders"
               className={clsx("listItemText", {
                 "list-min": props.isDrawerMin,
@@ -102,6 +108,7 @@ export default function SideNavBar(props) {
             })}
           >
             <ListItemIcon
+            onClick={(e) => selectedMenu(e, "Archives")}
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Archives",
               })}
@@ -109,6 +116,7 @@ export default function SideNavBar(props) {
               <ArchiveIcon />
             </ListItemIcon>
             <ListItemText
+            onClick={(e) => selectedMenu(e, "Archives")}
               primary="Archives"
               className={clsx("listItemText", {
                 "list-min": props.isDrawerMin,
@@ -123,6 +131,7 @@ export default function SideNavBar(props) {
             })}
           >
             <ListItemIcon
+            onClick={(e) => selectedMenu(e, "Trash")}
               className={clsx("sidenav-icon", {
                 "sidenav-icon-active": props.selectedMenu === "Trash",
               })}
@@ -130,6 +139,7 @@ export default function SideNavBar(props) {
               <DeleteOutlineIcon />
             </ListItemIcon>
             <ListItemText
+            onClick={(e) => selectedMenu(e, "Trash")}
               primary="Trash"
               className={clsx("listItemText", {
                 "list-min": props.isDrawerMin,

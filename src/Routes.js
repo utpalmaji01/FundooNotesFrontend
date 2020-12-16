@@ -9,13 +9,12 @@ import DashBoard from "./components/dashBoard.jsx";
 import history from "./History";
 
 export default class Routes extends Component {
-  
   render() {
     return (
       <Router history={history}>
         <Switch>
           <Route exact path="/">
-            <Redirect to="/dashBoard" component={SingUp} />
+            <Redirect to="/dashBoard/Notes" component={SingUp} />
           </Route>
           <Route exact path="/singUp" component={SingUp} />
           <Route exact path="/login" component={LogIn} />
@@ -25,8 +24,9 @@ export default class Routes extends Component {
             path="/dashBoard"
             redirectPath="/login"
             component={DashBoard}
-            exact
-            condition={localStorage.getItem("id") && localStorage.getItem("id").length}
+            condition={
+              localStorage.getItem("id") && localStorage.getItem("id").length
+            }
           />
         </Switch>
       </Router>

@@ -18,14 +18,14 @@ import axiosServices from "./axiosServices";
 class noteServices {
   /********************************* Note Services *********************************/
 
-  /*
+  /* localStorage.getItem("id")
    * @description service to log out for user
    * @params {token} data i.e. sent from the backend for authorization
    */
-  getAllNotes = (token) => {
+  getAllNotes = () => {
     let header = {
       headers: {
-        'Authorization' : token
+        'Authorization' : localStorage.getItem("id")
       }
     };
     return axiosServices.getServices(
@@ -39,10 +39,10 @@ class noteServices {
    * @params {token} data i.e. sent from the backend for authorization
    * @params {noteObject} data i.e. details of note
    */
-  addNewNote = (token, noteObject) => {
+  addNewNote = ( noteObject) => {
     let header = {
       headers: {
-        'Authorization' : token
+        'Authorization' : localStorage.getItem("id")
       }
     };
     return axiosServices.postServices(
@@ -56,10 +56,10 @@ class noteServices {
    * @description service to log out for user
    * @params {token} data i.e. sent from the backend for authorization
    */
-  getNote = (token, noteId, noteIdObject) => {
+  getNote = ( noteId, noteIdObject) => {
     let header = {
       headers: {
-        'Authorization' : token
+        'Authorization' : localStorage.getItem("id")
       }
     };
     return axiosServices.getServices(
@@ -74,10 +74,10 @@ class noteServices {
    * @params {token} data i.e. sent from the backend for authorization
    * @params {noteObject} data i.e. details of note
    */
-  updateNote = (token, noteObject) => {
+  updateNote = (noteObject) => {
     let header = {
       headers: {
-        'Authorization' : token
+        'Authorization' : localStorage.getItem("id")
       }
     };
     return axiosServices.postServices(
@@ -92,10 +92,10 @@ class noteServices {
    * @params {token} data i.e. sent from the backend for authorization
    * @params {noteObject} data i.e. details of note
    */
-  changeNoteColor = (token, noteObject) => {
+  changeNoteColor = ( noteObject) => {
     let header = {
       headers: {
-        'Authorization' : token
+        'Authorization' : localStorage.getItem("id")
       }
     };
     return axiosServices.postServices(
@@ -110,10 +110,10 @@ class noteServices {
    * @params {token} data i.e. sent from the backend for authorization
    * @params {noteObject} data i.e. details of note
    */
-  changeNoteArchiveStatus = (token, noteObject) => {
+  changeNoteArchiveStatus = (noteObject) => {
     let header = {
       headers: {
-        'Authorization' : token
+        'Authorization' : localStorage.getItem("id")
       }
     };
     return axiosServices.postServices(
@@ -128,10 +128,10 @@ class noteServices {
    * @params {token} data i.e. sent from the backend for authorization
    * @params {noteObject} data i.e. details of note
    */
-  deleteNote = (token, noteObject) => {
+  deleteNote = ( noteObject) => {
     let header = {
       headers: {
-        'Authorization' : token
+        'Authorization' : localStorage.getItem("id")
       }
     };
     return axiosServices.postServices(
@@ -146,10 +146,10 @@ class noteServices {
    * @params {token} data i.e. sent from the backend for authorization
    * @params {noteObject} data i.e. details of note
    */
-  deleteNoteForever = (token, noteObject) => {
+  deleteNoteForever = ( noteObject) => {
     let header = {
       headers: {
-        'Authorization' : token
+        'Authorization' : localStorage.getItem("id")
       }
     };
     return axiosServices.postServices(

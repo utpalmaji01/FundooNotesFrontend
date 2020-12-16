@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import {
   Menu as MenuIcon,
-  ViewAgenda as ViewAgendaIcon,
+  ViewAgendaOutlined as ViewAgendaOutlinedIcon,
   Search as SearchIcon,
   DashboardOutlined as DashboardOutlinedIcon,
 } from "@material-ui/icons";
@@ -26,6 +26,13 @@ export default function AppHeader(props) {
   const [email, setEmail] = useState("");
   const [isProfileClicked, setIsProfileClicked] = useState(false);
 
+  const setsearchKeyword = (e) => {
+    if (e.charCode === 13) {
+      // console.log("setsearchKeyword reached");
+      props.setSelectedMenu("Search");
+      props.setSearchNote(e.target.value);
+    }
+  }
   const showProfile = () => {
     setIsProfileClicked(!isProfileClicked);
     setName(
@@ -67,6 +74,9 @@ export default function AppHeader(props) {
           margin="dense"
           variant="outlined"
           type="text"
+          // onClick={setMenu}
+          
+          onKeyPress={setsearchKeyword}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start" className="search-icon">
@@ -83,7 +93,7 @@ export default function AppHeader(props) {
             className="toggle-view-mode"
             onClick={props.setViewMode}
           >
-            <ViewAgendaIcon fontSize="small" />
+            <ViewAgendaOutlinedIcon fontSize="small" />
           </IconButton>
         ) : (
           <IconButton

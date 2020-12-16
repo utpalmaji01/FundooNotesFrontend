@@ -32,7 +32,7 @@ export default function DashBoardNotes(props) {
     };
 
     noteServices
-      .addNewNote(localStorage.getItem("id"), newNoteObj)
+      .addNewNote(newNoteObj)
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {

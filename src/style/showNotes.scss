@@ -18,13 +18,20 @@
   align-items: center;
 }
 
-.display-notes-grid-view .each-note {
-  margin: 3px;
+.each-note {
   padding: 10px;
   border: 1px solid $color-border;
   border-radius: 5px;
-  width: 230px;
+}
+
+.display-notes-grid-view .each-note {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  width: 227px;
   min-height: 122px;
+  max-height: 350px;
   @media screen and (max-width: $break-medium) {
     width: 240px;
   }
@@ -40,6 +47,7 @@
   border-radius: 5px;
   width: 55%;
   min-height: 122px;
+  max-height: 350px;
   @media screen and (max-width: $break-medium) {
     width: 70%;
   }
@@ -62,6 +70,7 @@
 }
 
 .note-description {
+  text-align: justify;
   min-height: 50px;
   padding: 5px 0;
 }

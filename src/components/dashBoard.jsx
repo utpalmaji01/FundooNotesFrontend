@@ -1,9 +1,15 @@
 import React, { lazy, PureComponent, Suspense } from "react";
+import { Router, Switch, Route, Redirect } from "react-router-dom";
+import history from "../History";
+
 import clsx from "clsx";
 import AppBar from "./appBar.jsx";
 import SideNavBar from "./sideNavBar.jsx";
-import AddNotes from "./addNotes.jsx";
+// import AddNotes from "./addNotes.jsx";
 import Loader from "./Loading.jsx";
+import Notes from "./notes.jsx";
+import Trash from "./trashNotes.jsx";
+import Archive from "./archiveNotes.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/dashBoard.scss";
 // const ShowNotes = lazy(() => import("./showNotes.jsx"));
@@ -20,18 +26,25 @@ class DashBoard extends PureComponent {
     allNotes: [],
     selectedMenu: "Notes",
     gridViewMode: true,
+    searchNote: "",
   };
 
-  showAddNotes = () => {
-    if (
-      this.state.selectedMenu === "Archives" ||
-      this.state.selectedMenu === "Trash"
-    ) {
-      return false;
-    } else {
-      return true;
-    }
+  setSearchNote = (searchKeywords) => {
+    this.setState({
+      searchNote: searchKeywords,
+    });
   };
+
+  // showAddNotes = () => {
+  //   if (
+  //     this.state.selectedMenu === "Archives" ||
+  //     this.state.selectedMenu === "Trash"
+  //   ) {
+  //     return false;
+  //   } else {
+  //     return true;
+  //   }
+  // };
   setViewMode = () => {
     this.setState({
       gridViewMode: !this.state.gridViewMode,
@@ -64,7 +77,7 @@ class DashBoard extends PureComponent {
 
   componentDidMount() {
     noteServices
-      .getAllNotes(localStorage.getItem("id"))
+      .getAllNotes()
       .then((responce) => {
         console.log(responce);
         this.setState({
@@ -90,6 +103,8 @@ class DashBoard extends PureComponent {
               setListSize={this.setListSize}
               gridViewMode={this.state.gridViewMode}
               setViewMode={this.setViewMode}
+              setSelectedMenu={this.setSelectedMenu}
+              setSearchNote={this.setSearchNote}
             />
           </div>
           <div
@@ -111,23 +126,54 @@ class DashBoard extends PureComponent {
                 "drawer-open": !this.state.isDrawerMin,
               })}
             >
-              {this.showAddNotes() && (
+              {/* {this.showAddNotes() && (
                 <div className="addAnyNotes">
                   <AddNotes
                     allNotes={this.state.allNotes}
                     addNote={this.addNote}
                   />
                 </div>
-              )}
+              )} */}
               <div className="showNotes">
-                <Suspense fallback={<Loader />}>
-                  <ShowNotes
-                    allNotes={this.state.allNotes}
-                    selectedMenu={this.state.selectedMenu}
-                    setAllNotes={this.setAllNotes}
-                    gridViewMode={this.state.gridViewMode}
+                <Switch>
+                  <Route
+                    path="/dashBoard/Notes"
+                    component={() => (
+                      <Notes
+                        allNotes={this.state.allNotes}
+                        addNote={this.addNote}
+                        selectedMenu={this.state.selectedMenu}
+                        setAllNotes={this.setAllNotes}
+                        gridViewMode={this.state.gridViewMode}
+                        searchNote={this.state.searchNote}
+                      />
+                    )}
                   />
-                </Suspense>
+                  <Route
+                    path="/dashBoard/Trash"
+                    component={() => (
+                      <Trash
+                        allNotes={this.state.allNotes}
+                        selectedMenu={this.state.selectedMenu}
+                        setAllNotes={this.setAllNotes}
+                        gridViewMode={this.state.gridViewMode}
+                        searchNote={this.state.searchNote}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/dashBoard/Archives"
+                    component={() => (
+                      <Archive
+                        allNotes={this.state.allNotes}
+                        selectedMenu={this.state.selectedMenu}
+                        setAllNotes={this.setAllNotes}
+                        gridViewMode={this.state.gridViewMode}
+                        searchNote={this.state.searchNote}
+                      />
+                    )}
+                  />
+                </Switch>
               </div>
             </div>
           </div>

@@ -4,7 +4,7 @@ import {
   CardActions,
   Dialog,
   InputBase,
-  Snackbar,
+  // Snackbar,
 } from "@material-ui/core";
 import CardAction from "./cardAction.jsx";
 import noteServices from "../sevices/noteServices.js";
@@ -52,7 +52,7 @@ export default function EditNote(props) {
       color: editNoteColor,
     };
     noteServices
-      .updateNote(localStorage.getItem("id"), updateNoteObject)
+      .updateNote(updateNoteObject)
       .then((responce) => {
         console.log(responce);
         if (responce.status === 200) {
@@ -63,7 +63,7 @@ export default function EditNote(props) {
             description: editNoteDescription,
             color: editNoteColor,
           };
-          props.setAllNotes(newNotesArray);
+          props.setAllNotes(newNotesArray.reverse());
           console.log(editNoteArchiveStatus);
           console.log("success");
           props.setIsEdit(false);
@@ -88,6 +88,7 @@ export default function EditNote(props) {
           <div className="edit-note-input">
             <InputBase
               fullWidth
+              disabled={props.isDisabledEdit}
               margin="dense"
               multiline
               value={editNoteTitle}
@@ -110,9 +111,10 @@ export default function EditNote(props) {
             />
             <InputBase
               fullWidth
+              disabled={props.isDisabledEdit}
               margin="dense"
               multiline
-              rowsMax={8}
+              rowsMax={10}
               value={editNoteDescription}
               placeholder="Take a note..."
               onChange={(e) => {

@@ -70,6 +70,9 @@ fieldset {
   height: 40px;
   right: 60px;
   top: 5px;
+  @media screen and (max-width: $break-xsmall) {
+    pointer-events: none;
+  }
 }
 
 .profile-button {
