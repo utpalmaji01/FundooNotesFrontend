@@ -122,6 +122,24 @@ class noteServices {
       header
     );
   };
+  /*
+   * @description service to color of a note
+   * @params {token} data i.e. sent from the backend for authorization
+   * @params {fromData} data i.e. profile picture of user
+   */
+  addProfilePicture = (fromData) => {
+    let header = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+         Authorization: localStorage.getItem("id"),
+      }
+    };
+    return axiosServices.postServices(
+      process.env.REACT_APP_ADD_PROFILE_PICTURE_API_PATH,
+      fromData,
+      header
+    );
+  };
 
   /*
    * @description service to delete a note

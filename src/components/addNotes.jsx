@@ -102,17 +102,6 @@ export default function DashBoardNotes(props) {
                 setNewNoteTitle(e.target.value);
               }}
               className="add-note-title"
-              // endAdornment={
-              //   isAddNote && (
-              //     <InputAdornment position="end">
-              //       <Tooltip title="Pin Note">
-              //         <IconButton aria-label="Pin Note">
-              //           <PinDropOutlinedIcon />
-              //         </IconButton>
-              //       </Tooltip>
-              //     </InputAdornment>
-              //   )
-              // }
             />
             {isAddNote && (
               <InputBase

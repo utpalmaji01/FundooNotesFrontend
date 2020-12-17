@@ -72,7 +72,7 @@ export default function DashBoardNotes(props) {
           newNotesArray[currentNoteIndex].isDeleted = !newNotesArray[
             currentNoteIndex
           ].isDeleted;
-          props.setAllNotes(newNotesArray.reverse());
+          props.setAllNotes(newNotesArray);
         }
       })
       .catch((error) => {
@@ -118,7 +118,7 @@ export default function DashBoardNotes(props) {
             ...newNotesArray[currentNoteIndex],
             isArchived: noteArchiveStatus,
           };
-          props.setAllNotes(newNotesArray.reverse());
+          props.setAllNotes(newNotesArray);
           if (isEdit) {
             setIsEdit(false);
           }

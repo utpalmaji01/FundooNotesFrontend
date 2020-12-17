@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import IconButton from "@material-ui/core/IconButton";
 import {
   Button,
@@ -20,20 +20,29 @@ import notesLogo from "../assets/NotesLogo.png";
 import userServices from "../sevices/userServices.js";
 import history from "../History";
 import "../style/appBar.scss";
+import noteServices from "../sevices/noteServices";
 
 export default function AppHeader(props) {
   const [name, setName] = useState("");
+  const [imgUrl, setimgUrl] = useState(
+    "http://fundoonotes.incubation.bridgelabz.com/" +
+      localStorage.getItem("profilePic")
+  );
   const [email, setEmail] = useState("");
   const [isProfileClicked, setIsProfileClicked] = useState(false);
+  const inputFile = useRef(null);
 
   const setsearchKeyword = (e) => {
     if (e.charCode === 13) {
-      // console.log("setsearchKeyword reached");
-      props.setSelectedMenu("Search");
-      props.setSearchNote(e.target.value);
-      history.push("/dashBoard/Search")
+      if (e.target.value) {
+        props.setSelectedMenu("Search");
+        props.setSearchNote(e.target.value);
+        history.push("/dashBoard/Search");
+      } else {
+        history.push("/dashBoard/Notes");
+      }
     }
-  }
+  };
   const showProfile = () => {
     setIsProfileClicked(!isProfileClicked);
     setName(
@@ -51,11 +60,35 @@ export default function AppHeader(props) {
         localStorage.setItem("firstName", "");
         localStorage.setItem("lastName", "");
         localStorage.setItem("email", "");
-        // localStorage.clear();
         history.push("/login");
       }
     });
   };
+
+  const onButtonClick = () => {
+    inputFile.current.click();
+  };
+
+  const handleFileUpload = (e) => {
+    console.log(e.target.files[0]);
+    console.log("hello");
+    const fd = new FormData();
+    fd.append("file", e.target.files[0]);
+    noteServices
+      .addProfilePicture(fd)
+      .then((responce) => {
+        console.log(responce);
+        localStorage.setItem("profilePic", responce.data.status.imageUrl);
+        setimgUrl(
+          "http://fundoonotes.incubation.bridgelabz.com/" +
+            localStorage.getItem("profilePic")
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <>
       <div className="appBar-container">
@@ -75,8 +108,6 @@ export default function AppHeader(props) {
           margin="dense"
           variant="outlined"
           type="text"
-          // onClick={setMenu}
-          
           onKeyPress={setsearchKeyword}
           InputProps={{
             startAdornment: (
@@ -105,26 +136,48 @@ export default function AppHeader(props) {
             <DashboardOutlinedIcon fontSize="small" />
           </IconButton>
         )}
-        
+
         <IconButton
           aria-label="menu"
           onClick={showProfile}
           className="profile-button"
         >
-          <samp className="profile-icon">
-            {localStorage.getItem("firstName").slice(0, 1)}
-          </samp>
+          {localStorage.getItem("profilePic").length > 1 ? (
+            <img className="profile-image" src={imgUrl} alt="profile-pic" />
+          ) : (
+            <samp className="profile-icon">
+              {localStorage.getItem("firstName").slice(0, 1)}
+            </samp>
+          )}
         </IconButton>
       </div>
       {isProfileClicked && (
         <Card className="profile">
-          <CardContent>
-            <Typography variant="h5" color="textPrimary">
-              {name}
-            </Typography>
-            <Typography variant="body2" color="textSecondary">
-              {email}
-            </Typography>
+          <CardContent className="profile-contant">
+            <div className="profile-pic" onClick={onButtonClick}>
+              {localStorage.getItem("profilePic").length > 1 ? (
+                <img src={imgUrl} alt="profile-pic" />
+              ) : (
+                <samp className="profile-name-icon">
+                  {localStorage.getItem("firstName").slice(0, 1)}
+                </samp>
+              )}
+            </div>
+            <input
+              style={{ display: "none" }}
+              ref={inputFile}
+              onChange={handleFileUpload}
+              type="file"
+              accept="image/*"
+            />
+            <div className="profile-details">
+              <Typography variant="h5" color="textPrimary">
+                {name}
+              </Typography>
+              <Typography variant="body2" color="textSecondary">
+                {email}
+              </Typography>
+            </div>
           </CardContent>
           <Divider light />
           <CardActions>

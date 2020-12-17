@@ -4,7 +4,6 @@ import {
   CardActions,
   Dialog,
   InputBase,
-  // Snackbar,
 } from "@material-ui/core";
 import CardAction from "./cardAction.jsx";
 import noteServices from "../sevices/noteServices.js";
@@ -97,17 +96,6 @@ export default function EditNote(props) {
                 setEditNoteTitle(e.target.value);
               }}
               className="edit-note-title"
-              // endAdornment={
-              //   isAddNote && (
-              //     <InputAdornment position="end">
-              //       <Tooltip title="Pin Note">
-              //         <IconButton aria-label="Pin Note">
-              //           <PinDropOutlinedIcon />
-              //         </IconButton>
-              //       </Tooltip>
-              //     </InputAdornment>
-              //   )
-              // }
             />
             <InputBase
               fullWidth
@@ -136,15 +124,6 @@ export default function EditNote(props) {
             <Button className="close-button" onClick={editNote}>
               Close
             </Button>
-            {/* <Snackbar
-                open={snackbarActive}
-                autoHideDuration={1000}
-                onClose={closeSnackbar}
-              >
-                <Alert severity={snackBarSeverity} onClose={closeSnackbar}>
-                  {snackBarMesage}
-                </Alert>
-              </Snackbar> */}
           </CardActions>
         </div>
       </Dialog>

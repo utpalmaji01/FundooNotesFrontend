@@ -4,7 +4,7 @@ import Loader from "./Loading.jsx";
 
 const ShowNotes = lazy(() => {
   return new Promise((resolve) => {
-    setTimeout(() => resolve(import("./showNotes.jsx")), 1000);
+    setTimeout(() => resolve(import("./showNotes.jsx")), 3000);
   });
 });
 export default function Notes(props) {

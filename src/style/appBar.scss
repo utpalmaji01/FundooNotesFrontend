@@ -77,10 +77,18 @@ fieldset {
 
 .profile-button {
   position: absolute !important;
-  height: 35px;
+  padding: 0 !important;
+  height: 30px;
+  width: 30px;
   right: 20px;
   background-color: $color-teal !important;
-  margin: 8px 0 !important;
+  margin: 10px 0 !important;
+}
+
+.profile-image {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
 }
 
 .profile-icon {
@@ -93,6 +101,34 @@ fieldset {
   z-index: 1100;
   right: 1%;
   top: 53px;
+}
+
+.profile-contant {
+  display: flex;
+}
+
+.profile-pic {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7px;
+  margin-right: 7px;
+  height: 45px;
+  width: 45px;
+  background-color: aqua;
+  border-radius: 50%;
+}
+
+.profile-pic img {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.profile-name-icon {
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: white;
 }
 
 .logout-button {

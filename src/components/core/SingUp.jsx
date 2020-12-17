@@ -319,23 +319,6 @@ class SingUp extends Component {
                   type={this.state.showPassword ? "text" : "password"}
                   error={this.state.confirmPassWordFlag}
                   onChange={this.checkConfirmPassword}
-                  // InputProps={{
-                  //   // <-- toggle button is added.
-                  //   endAdornment: (
-                  //     <InputAdornment position="end">
-                  //       <IconButton
-                  //         aria-label="toggle password visibility"
-                  //         onClick={this.handleClickShowPassword}
-                  //       >
-                  //         {this.state.showPassword ? (
-                  //           <Visibility />
-                  //         ) : (
-                  //           <VisibilityOff />
-                  //         )}
-                  //       </IconButton>
-                  //     </InputAdornment>
-                  //   ),
-                  // }}
                 />
               </Grid>
               <Grid item md={1} sm={1} xs={1}>

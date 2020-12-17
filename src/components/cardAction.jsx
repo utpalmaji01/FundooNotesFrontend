@@ -158,7 +158,6 @@ export default function CardAction(props) {
           color="inherit"
           aria-label="change color"
           className={props.class}
-          // className={`color-set ${props.class}`}
         >
           <PaletteOutlinedIcon fontSize="small" className="action-icon" />
         </IconButton>

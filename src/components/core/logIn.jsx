@@ -118,7 +118,8 @@ class LogIn extends Component {
             localStorage.setItem("lastName", responce.data.lastName);
             localStorage.setItem("email", responce.data.email);
             localStorage.setItem("id", responce.data.id);
-            history.push("/dashBoard");
+            localStorage.setItem("profilePic", responce.data.imageUrl);
+            history.push("/dashBoard/Notes");
           }
         })
         .catch((error) => {
@@ -226,7 +227,7 @@ class LogIn extends Component {
                   <Button
                     color="primary"
                     className="crate-account-button"
-                    onClick={() => history.push("/")}
+                    onClick={() => history.push("/singUp")}
                   >
                     Create Account
                   </Button>

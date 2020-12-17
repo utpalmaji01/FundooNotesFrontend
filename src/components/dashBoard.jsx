@@ -1,25 +1,15 @@
-import React, { lazy, PureComponent, Suspense } from "react";
-import { Router, Switch, Route, Redirect } from "react-router-dom";
-import history from "../History";
+import React, { PureComponent } from "react";
+import { Switch, Route } from "react-router-dom";
 
 import clsx from "clsx";
 import AppBar from "./appBar.jsx";
 import SideNavBar from "./sideNavBar.jsx";
-// import AddNotes from "./addNotes.jsx";
-import Loader from "./Loading.jsx";
 import Notes from "./notes.jsx";
 import Trash from "./trashNotes.jsx";
 import Archive from "./archiveNotes.jsx";
 import Search from "./searchNotes.jsx";
 import noteServices from "../sevices/noteServices.js";
 import "../style/dashBoard.scss";
-// const ShowNotes = lazy(() => import("./showNotes.jsx"));
-
-const ShowNotes = lazy(() => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(import("./showNotes.jsx")), 1000);
-  });
-});
 
 class DashBoard extends PureComponent {
   state = {
@@ -36,16 +26,6 @@ class DashBoard extends PureComponent {
     });
   };
 
-  // showAddNotes = () => {
-  //   if (
-  //     this.state.selectedMenu === "Archives" ||
-  //     this.state.selectedMenu === "Trash"
-  //   ) {
-  //     return false;
-  //   } else {
-  //     return true;
-  //   }
-  // };
   setViewMode = () => {
     this.setState({
       gridViewMode: !this.state.gridViewMode,
@@ -127,14 +107,6 @@ class DashBoard extends PureComponent {
                 "drawer-open": !this.state.isDrawerMin,
               })}
             >
-              {/* {this.showAddNotes() && (
-                <div className="addAnyNotes">
-                  <AddNotes
-                    allNotes={this.state.allNotes}
-                    addNote={this.addNote}
-                  />
-                </div>
-              )} */}
               <div className="showNotes">
                 <Switch>
                   <Route
