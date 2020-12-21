@@ -143,7 +143,7 @@ const ResetPassword = () => {
             <Grid item md={12} sm={12} xs={12} className="input-field">
               <TextField
                 fullWidth
-                name="Password"
+                name="password"
                 required={true}
                 label="New Password"
                 helperText={passwordHelperText}
@@ -157,7 +157,7 @@ const ResetPassword = () => {
             <Grid item md={12} sm={12} xs={12} className="input-field">
               <TextField
                 fullWidth
-                name="Password"
+                name="confirmPassword"
                 required={true}
                 label="Confirm Password"
                 helperText={confirmPasswordHelperText}

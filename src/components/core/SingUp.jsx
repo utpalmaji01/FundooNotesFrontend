@@ -37,6 +37,7 @@ class SingUp extends Component {
   };
 
   checkFirstName = (e) => {
+    console.log(e);
     this.setState({
       firstName: e.target.value,
     });
@@ -74,6 +75,7 @@ class SingUp extends Component {
       });
     }
   };
+  
   checkEmail = (e) => {
     this.setState({
       email: e.target.value,
@@ -261,6 +263,7 @@ class SingUp extends Component {
               <Grid item md={6} sm={6} xs={12} className="input-field">
                 <TextField
                   fullWidth
+                  name="firstName"
                   required={true}
                   label="First Name"
                   helperText={this.state.firstNameHelperText}
@@ -273,6 +276,7 @@ class SingUp extends Component {
               <Grid item md={6} sm={6} xs={12} py={4} className="input-field">
                 <TextField
                   fullWidth
+                  name="lastName"
                   required={true}
                   label="Last Name"
                   helperText={this.state.lastNameHelperText}
@@ -285,6 +289,7 @@ class SingUp extends Component {
               <Grid item md={12} sm={12} xs={12} className="input-field">
                 <TextField
                   fullWidth
+                  name="email"
                   required={true}
                   label="Email"
                   type="email"
@@ -298,8 +303,9 @@ class SingUp extends Component {
               <Grid item md={5} sm={5} xs={11} className="input-field">
                 <TextField
                   fullWidth
+                  name="password"
                   required={true}
-                  label="Password"
+                  label="password"
                   helperText={this.state.passwordHelperText}
                   margin="dense"
                   variant="outlined"
@@ -311,6 +317,7 @@ class SingUp extends Component {
               <Grid item md={6} sm={6} xs={11} className="input-field">
                 <TextField
                   fullWidth
+                  name="confirmPassword"
                   required={true}
                   label="Confirm"
                   helperText={this.state.confirmPasswordHelperText}

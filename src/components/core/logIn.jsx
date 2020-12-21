@@ -199,6 +199,7 @@ class LogIn extends Component {
                     endAdornment: (
                       <InputAdornment position="end">
                         <IconButton
+                          className="toggle-password-eye"
                           aria-label="toggle password visibility"
                           onClick={this.handleClickShowPassword}
                         >

@@ -103,7 +103,7 @@ const ForgetPassword = () => {
             <Grid item md={12} sm={12} xs={12} className="input-field">
               <TextField
                 fullWidth
-                name="Email"
+                name="email"
                 required={true}
                 label="Email"
                 type="email"
